@@ -1,0 +1,70 @@
+/* profile chip */
+
+.myChip {
+    display: inline-block;
+    padding: 0 18px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: #f1f1f1;
+    color: black;
+    margin-right: 30px;
+    cursor: pointer;
+  }
+  
+  .myChip img {
+    float: left;
+    margin: 0 10px 0 -25px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  
+  /* tooltip css */
+  
+  /* Tooltip container */
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    /* border-bottom: 1px dotted black; If you want dots under the hoverable text */
+  }
+  
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    /* width: 120px; */
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 6px;
+    width: fit-content;
+    height: auto;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 40;
+    top: 70px;
+    left: -81%;
+  }
+  
+  #t1{
+    left: 2%;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+  .tooltip:active .tooltiptext {
+    visibility: visible;
+  }
+  
+  .tooltiptext h6{
+    margin: 9px 0;
+  }
+  
+  .profBtn:hover{
+    background-color: white !important;
+    color: black !important;
+  }
