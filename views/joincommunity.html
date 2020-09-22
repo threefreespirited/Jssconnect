@@ -2,9 +2,8 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Compiled and minified CSS -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -18,40 +17,48 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/index.css" />
   <link rel="stylesheet" href="/profile.css" />
-
   <!--Font Awesome-->
   <script src="https://kit.fontawesome.com/efd71d3ed7.js" crossorigin="anonymous"></script>
 
   <link rel="icon" href="public/images/favicon.ico" type="image/x-icon">
-  <title>JSS Connect</title>
+  <title>Join Community</title>
 
   <style>
-    #container {
-      padding: 0 20%;
-      margin-top: 100px;
-      font-size: 1.2rem;
+    #navbar {
+      font-family: 'Cairo', sans-serif;
+      letter-spacing: 1px;
+      width: 100%;
+      font-weight: 600;
+      position: fixed;
+      top: 0px;
+      z-index: 200;
+      box-shadow: none;
     }
 
-    #container img {
-      max-width: 300px;
-      width: 75%;
+    #navbar ul li a:hover {
+      background-color: rgba(0, 0, 0, 0.3);
     }
 
-    @media screen and (max-width: 750px) {
-      #container {
-        padding: 0 10%;
-      }
-
-      #heading h2 {
-        font-size: 3rem;
-      }
-    }
 
     @media screen and (max-width: 1000px) {
       #logoText {
         display: none;
       }
+    }
 
+    #newsBtn {
+      border-radius: 15px;
+      padding: 7px;
+      font-size: 1.2rem;
+      border: 2px solid white;
+      cursor: pointer;
+      background-color: #434e52;
+      color: white;
+    }
+
+    #newsBtn:hover {
+      filter: saturate(10);
+      /* background-color: aqua; */
     }
 
     .socials:hover {
@@ -63,13 +70,123 @@
       transition: 0.7s linear all;
     }
 
+    #container {
+      margin-top: 20px;
+    }
+
+    .socials {
+      font-size: 2rem;
+      margin: 10px;
+    }
+
+    #wave {
+      background-image: linear-gradient(to bottom, #2c7873, #2c7873);
+      background-position: left top;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      position: relative;
+      color: #FFFFFF;
+      height: 650px;
+      display: flex;
+      /* justify-content: center; */
+      align-items: center;
+    }
+
+    #wave:after {
+      content: "";
+      display: block;
+      position: absolute;
+      background: url(https://cdn1.byjus.com/byjusweb/img/home/svg/banner_mobile_wave_bottom.svg) no-repeat;
+      background-size: 100%;
+      background-position: left bottom;
+      left: 0;
+      bottom: -1px;
+      width: 100%;
+      height: inherit;
+      z-index: 10;
+    }
+
+    #join {
+      text-align: center;
+      margin: 75px;
+      margin-bottom: 120px;
+    }
+
+    #join form {
+      /* margin: 145px; */
+      display: block;
+      width: 45%;
+      margin: 0 auto;
+    }
+
+    #join form input {
+      display: block;
+      margin: 20px 0;
+      /* width: 45%; */
+    }
+
+    #join form button {
+      margin: 30px 0;
+    }
+
+    @media (min-width: 768px) {
+      #wave:after {
+        background: url(https://cdn1.byjus.com/byjusweb/img/home/svg/banner_wave_bottom.svg) no-repeat;
+        background-size: 100%;
+        background-position: left bottom;
+      }
+    }
+
+    #wave img {
+      width: 30%;
+      margin: 0;
+    }
+
+    @media (min-width: 350px) and (max-width: 754px) {
+      #wave {
+        height: 900px;
+        padding-bottom: 30px;
+        justify-content: flex-start;
+      }
+    }
+
+    @media screen and (max-width: 750px) {
+      #join h2 {
+        font-size: 2.7rem;
+      }
+
+      #join form {
+        width: 75%;
+        margin: 0 auto;
+      }
+
+      #container {
+        margin-top: 55px;
+      }
+
+      #wave {
+        flex-direction: column;
+        padding-top: 45px;
+      }
+
+      #wave img {
+        width: 70%;
+        max-width: 360px;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+
     .day {
       display: none;
     }
   </style>
+
 </head>
 
 <body>
+
+  <!--Navbar-->
   <nav id="navbar" style="background-color: #2c7873">
     <div class="nav-wrapper">
       <a href="/" class="brand-logo"><img src="public/images/logo.png" alt=""
@@ -128,143 +245,63 @@
     <li><a href="/contact" style=" color: white;">Contact</a></li>
   </ul>
 
-  <div id="container">
+  <!--Form -->
 
-    <div id="heading" style="text-align: center;">
-      <img src="public/images/privacy.png" alt="PRIVACY">
-      <h2 id="termsandconditions" style="margin-bottom: 60px;color: #364e68;">Privacy Policy for Jssconnect</h2>
+  <div id="container">
+    <div id="wave">
+      <img src="public/images/joincomm.png" style="margin: 10%;" alt="Join">
+      <div style="text-align:center;">
+        <h2 style="color: white;">Join the community</h2>
+        <h5>Inspire.Impact.Support.</h5>
+
+      </div>
+    </div>
+    <div id="join">
+
+      <h4 style="color: #64958f;">Fill the form below</h4>
+      <form action="/joincommunity" method="POST">
+
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your E-mail" required>
+        <select name="year" id="year" required>
+          <option value="1st year">1st year</options>
+          <option value="2nd year">2nd year</options>
+          <option value="3rd year">3rd year</options>
+          <option value="4th year">4th year</options>
+        </select>
+        <select name="department" id="department" required>
+          <option value="CS">CS</option>
+          <option value="IT">IT</option>
+          <option value="ECE">ECE</option>
+          <option value="EE">EE</option>
+          <option value="EEE">EEE</option>
+          <option value="ME">ME</option>
+          <option value="CE">CE</option>
+        </select>
+        <input type="text" name="about" placeholder="Enter a short intro" required maxlength="70">
+        <input type="text" name="gHub" placeholder="Enter Github profile URL" required>
+        <input type="text" name="lIn" placeholder="Enter Linked In profle URL" required>
+
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+      <a href="/community"><button class="btn waves-effect waves-light green" style="margin-top: 60px;">View Community
+          <i class="material-icons right">people_outline</i>
+        </button>
+      </a>
+      <a href="https://jsswire.herokuapp.com"><button class="btn waves-effect waves-light purple"
+          style="margin-top: 60px;margin-left: 60px;">Connect with wire
+          <i class="material-icons right">chat</i>
+        </button>
+      </a>
+
     </div>
 
-    <p>At Jssconnect, accessible from <a href="https://jssconnect.herokuapp.com"
-        style="color: crimson;">https://jssconnect.herokuapp.com</a>, one of our main priorities is the privacy
-      of
-      our visitors. This Privacy Policy document contains types of information that is collected and recorded by
-      Jssconnect and how we use it.</p>
-
-    <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to
-      contact us.</p>
-
-    <p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with
-      regards to the information that they shared and/or collect in Jssconnect. This policy is not applicable to
-      any information collected offline or via channels other than this website.
-    </p>
-
-    <h3>Consent</h3>
-
-    <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
-
-    <h3>Information we collect</h3>
-
-    <p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will
-      be made clear to you at the point we ask you to provide your personal information.</p>
-    <p>If you contact us directly, we may receive additional information about you such as your name, email address,
-      phone number, the contents of the message and/or attachments you may send us, and any other information you
-      may choose to provide.</p>
-    <p>When you register for an Account, we may ask for your contact information, including items such as name,
-      company name, address, email address, and telephone number.</p>
-
-    <h3>How we use your information</h3>
-
-    <p>We use the information we collect in various ways, including to:</p>
-
-    <ul>
-      <li>Provide, operate, and maintain our webste</li>
-      <li>Improve, personalize, and expand our webste</li>
-      <li>Understand and analyze how you use our webste</li>
-      <li>Develop new products, services, features, and functionality</li>
-      <li>Communicate with you, either directly or through one of our partners, including for customer service, to
-        provide you with updates and other information relating to the webste, and for marketing and promotional
-        purposes</li>
-      <li>Send you emails</li>
-      <li>Find and prevent fraud</li>
-    </ul>
-
-    <h3>Log Files</h3>
-
-    <p>Jssconnect follows a standard procedure of using log files. These files log visitors when they visit
-      websites. All hosting companies do this and a part of hosting services' analytics. The information collected
-      by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date
-      and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any
-      information that is personally identifiable. The purpose of the information is for analyzing trends,
-      administering the site, tracking users' movement on the website, and gathering demographic information.</p>
-
-    <h3>Cookies and Web Beacons</h3>
-
-    <p>Like any other website, Jssconnect uses 'cookies'. These cookies are used to store information including
-      visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is
-      used to optimize the users' experience by customizing our web page content based on visitors' browser type
-      and/or other information.</p>
-
-    <p>For more general information on cookies, please read <a
-        href="https://www.cookieconsent.com/what-are-cookies/">"What Are Cookies"</a>.</p>
 
 
-
-    <h3>Advertising Partners Privacy Policies</h3>
-
-    <P>You may consult this list to find the Privacy Policy for each of the advertising partners of Jssconnect.</p>
-
-    <p>Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are
-      used in their respective advertisements and links that appear on Jssconnect, which are sent directly to
-      users' browser. They automatically receive your IP address when this occurs. These technologies are used to
-      measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that
-      you see on websites that you visit.</p>
-
-    <p>Note that Jssconnect has no access to or control over these cookies that are used by third-party advertisers.
-    </p>
-
-    <h3>Third Party Privacy Policies</h3>
-
-    <p>Jssconnect's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to
-      consult the respective Privacy Policies of these third-party ad servers for more detailed information. It
-      may include their practices and instructions about how to opt-out of certain options. </p>
-
-    <p>You can choose to disable cookies through your individual browser options. To know more detailed information
-      about cookie management with specific web browsers, it can be found at the browsers' respective websites.
-    </p>
-
-    <h3>CCPA Privacy Rights (Do Not Sell My Personal Information)</h3>
-
-    <p>Under the CCPA, among other rights, California consumers have the right to:</p>
-    <p>Request that a business that collects a consumer's personal data disclose the categories and specific pieces
-      of personal data that a business has collected about consumers.</p>
-    <p>Request that a business delete any personal data about the consumer that a business has collected.</p>
-    <p>Request that a business that sells a consumer's personal data, not sell the consumer's personal data.</p>
-    <p>If you make a request, we have one month to respond to you. If you would like to exercise any of these
-      rights, please contact us.</p>
-
-    <h3>GDPR Data Protection Rights</h3>
-
-    <p>We would like to make sure you are fully aware of all of your data protection rights. Every user is entitled
-      to the following:</p>
-    <p>The right to access – You have the right to request copies of your personal data. We may charge you a small
-      fee for this service.</p>
-    <p>The right to rectification – You have the right to request that we correct any information you believe is
-      inaccurate. You also have the right to request that we complete the information you believe is incomplete.
-    </p>
-    <p>The right to erasure – You have the right to request that we erase your personal data, under certain
-      conditions.</p>
-    <p>The right to restrict processing – You have the right to request that we restrict the processing of your
-      personal data, under certain conditions.</p>
-    <p>The right to object to processing – You have the right to object to our processing of your personal data,
-      under certain conditions.</p>
-    <p>The right to data portability – You have the right to request that we transfer the data that we have
-      collected to another organization, or directly to you, under certain conditions.</p>
-    <p>If you make a request, we have one month to respond to you. If you would like to exercise any of these
-      rights, please contact us.</p>
-
-    <h3>Children's Information</h3>
-
-    <p>Another part of our priority is adding protection for children while using the internet. We encourage parents
-      and guardians to observe, participate in, and/or monitor and guide their online activity.</p>
-
-    <p>Jssconnect does not knowingly collect any Personal Identifiable Information from children under the age of
-      13. If you think that your child provided this kind of information on our website, we strongly encourage you
-      to contact us immediately and we will do our best efforts to promptly remove such information from our
-      records.</p>
   </div>
-
-
 
   <!-- Floating button -->
 
@@ -353,7 +390,6 @@
   </footer>
 
 
-
   <script>
     // JS for floating buuton
 
@@ -366,12 +402,22 @@
       var elems = document.querySelectorAll('.sidenav');
       var instances = M.Sidenav.init(elems);
     });
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+    });
 
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+    });
+
+
+    const wave = document.getElementById('wave');
+    const sidenav = document.querySelector('.sidenav');
     const brightness = document.getElementById('brightness');
     const foot = document.querySelector("footer");
     const navbar = document.querySelector("nav");
-    const sidenav = document.querySelector('.sidenav');
-
     let count = 0;
     brightness.addEventListener("click", () => {
 
@@ -392,15 +438,17 @@
 
       const currentTheme = localStorage.getItem("theme");
       if (currentTheme == "dark") {
-        foot.style.backgroundColor = "#1b262c"
         navbar.style.backgroundColor = "#1b262c";
-        brightness.innerHTML = "<i class='fa fa-sun-o' style='color: goldenrod;'></i>"
         sidenav.style.backgroundColor = "#1b262c";
+        foot.style.backgroundColor = "#1b262c";
+        wave.style.backgroundImage = "linear-gradient(to bottom,#1b262c ,#1b262c)";
+        brightness.innerHTML = "<i class='fa fa-sun-o' style='color: goldenrod;'></i>"
       }
       else {
-        foot.style.backgroundColor = "#323232"
         navbar.style.backgroundColor = "#2c7873";
         sidenav.style.backgroundColor = "#2c7873";
+        wave.style.backgroundImage = "linear-gradient(to bottom,#2c7873 ,#2c7873)";
+        foot.style.backgroundColor = "#323232";
         brightness.innerHTML = "<i class='fa fa-moon-o' style='color: white;'></i>"
       }
     }
@@ -457,7 +505,6 @@
       let myUsername = localStorage.getItem("username")
       let myEmail = localStorage.getItem("email");
       let myImg = localStorage.getItem("img");
-
 
       //   M.toast({ html: `Welcome ${myUsername} to Jssconnect` });
       chipName.innerHTML = myUsername;

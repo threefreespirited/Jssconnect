@@ -77,7 +77,8 @@ var blogData = [
         away on platforms like hackerrank , codechef or codeforces etc,
         <br>
         <br>
-        Read More. Which competitive programming platform is the best to practice?
+        <a href="https://www.w3schools.com">Read More.</a>
+         Which competitive programming platform is the best to practice?
         <br>
         <br>
         <strong>Learn Data Structures and Algorithms</strong> –They are very important for your placements as well as in
@@ -174,7 +175,7 @@ var blogData = [
                   
                     console.log("Promise is returned")})<br>
                   
-                    console.log("Promise is being processed");<br></strong><br>
+                    console.log("Promise is being processed");<br></strong><br><br>
     
            <strong> Output:Promise is being processed; Promise is returned<br></strong><br><br>
                     
@@ -200,7 +201,107 @@ var blogData = [
     
     
     `
-     }
+     },
+     {
+        
+        "date": `21-Sept-2020`,
+        "title": `  'Asynchronous JavaScript(2nd Part)'`,
+        "authorPortfolio": `https://devwebaman.netlify.app/`,
+        "authorImg":`https://media-exp1.licdn.com/dms/image/C5603AQHG2HBfNZ1PWw/profile-displayphoto-shrink_200_200/0?e=1605744000&v=beta&t=iKjQsNKs4vZzZkS4I6y8qF215YHiGS5CvtV38YWGSZk`,
+        "authorName": `Aman Dixit`,
+        "contentImg": `https://wallpapercave.com/wp/wp2465898.png`,
+        "content": ` This is the second blog of series of Asynchronous JavaScript, 
+        if you haven't gone through first blog I suggest you to go through it first before this blog for better
+        understanding purpose,I have provided the link at bottom to the first blog of this series.
+        <br><br>
+        So,in the first blog of Asynchronous series I talked about various key aspects related to Asynchronous 
+        Javascript, in today's blog I had explained the second method of implementing <strong>'Asynchronous Javascript'</strong>
+        <br><br>
+        <strong>Async/Await</strong><br>
+        You might be thinking what are the two words that I am talking about,no need to worry just go through the blog I have explained these in detail<br>
+       <br><strong>Ques.</strong>What actually are these two keywords(Async/Await)?<br>
+        <strong>Ans.</strong> Actually async and await  are two keywords that enable asynchronous, promise-based behavior to be written in a cleaner style, avoiding the need to explicitly configure promise chains.
+     <br>Let's begin with an example<br>
+      <br>
+        async function cricapi(){ <br>
+            const url="https://cricapi.com/api/playerStats"; <br>
+            const res = await fetch(url); <br>
+            const data = await res.json(); <br>
+            console.log("after execution"); <br>
+        } <br>
+        crickapi();<br>
+        console.log("before execution of async function");<br><br>
+ 
+        <strong>Output:</strong><br>
+        Before execution of async function<br>
+        After execution of async function completed<br><br>
+        <strong>Explaination:</strong><br>
+        Async function waits for execution of await blocks untill they are executing, the control skips to the next line
+        so, I feel you might have understood the example.<br><br>
+        Async functions can contain zero or more await expressions. Await expressions pause the execution across 
+         async function, yielding control and subsequently resuming progress only when an awaited promise-based 
+         asynchronous operation is either fulfilled or rejected. The resolved value of the promise is treated as 
+         the return value of the await expression. Use of async / await enables the use of ordinary
+          try / catch blocks around asynchronous code.<br><br>
+          Async functions always return a promise. If the return value of an
+           async function is not explicitly a promise, it will be implicitly wrapped in a promise.<br><br>
+ 
+          <strong>Key Points:</strong><br>
+          1.The await keyword is only valid inside async functions. 
+          If you use it outside of an async function's body, you will get a <strong>SyntaxError.</strong><br>
+          2.The purpose of async/await is to simplify the syntax necessary to consume promise-based APIs.
+          The behavior of async/await is similar to combining generators and promises.<br><br>
+         So, this is it in this blog of Asynchronous Series.<br>
+         Don't forget to give feedback about this blog and you can give suggestion about the topics on which you want blogs to be written.<br>
+         *First Blog of this series 👉 <a href="/blogs">Asynchronous(1)</a><br>
+         *Link to feedback page 👉 <a href="/feedback">Feedback</a>`
+ },
+ {
+    "date": `21-Sept-2020`,
+    "title": `  'Competitive Programming'`,
+    "authorPortfolio": `https://devwebaman.netlify.app/`,
+    "authorImg":`https://media-exp1.licdn.com/dms/image/C5603AQHG2HBfNZ1PWw/profile-displayphoto-shrink_200_200/0?e=1605744000&v=beta&t=iKjQsNKs4vZzZkS4I6y8qF215YHiGS5CvtV38YWGSZk`,
+    "authorName": `Aman Dixit`,
+    "contentImg": `https://cdn.pixabay.com/photo/2017/07/31/11/31/laptop-2557468__340.jpg`,
+    "content": ` In this blog I will be giving answers to basically two questions related to <strong>Competitive Programming</strong> which every beginners find difficult to get answers<br>
+    <br><strong>Q1:</strong>What is competitive programming?<br>
+    <strong>Q2:</strong>How to start competitive programming as a beginner?<br><br>
+    So, if you are a beginner and want to enter the arena of <strong>CP</strong> then you will surely find this blog useful.<br>
+    As a coder, you should not be limited with just reading and coding on your computer. 
+    For developing  and enhancing your coding skills, you need to test yourself.
+    So,basically <strong>CP</strong> provides you this oppurtunity to test yourself with others and see where you are standing
+    You need to take yourself outside your comfort zone and evaluate how you perform. 
+    That’s what different coding competitions do for you.
+     As you compete in several coding competitions you get a feel coding under pressure. Plus, it will push you to execute shorter 
+     and quicker codes, enhance your problem-solving skills and make you a much better coder than before.You get a chance to meet other coders who are at the top and you admire to become like them.
+     So,basically CP gives you all ranging from exposure and experience to motivation.
+     <br><br>
+     But, for beginner it is difficult to know about how to start <strong>CP</strong> and what are the resources that are helpful
+     So, below are the top resources and platforms for practicing and developing your competitive skills along with the below mentioned one there are other resources too I have only listed few of them:<br>
+     <br>
+     <strong>Top Platforms:</strong><br>
+     1.Code Chef<br>
+     2.Code Forces<br>
+     3.Hacker Rank<br>
+     4.Hacker Earth<br>
+     So,these are few of the Competitive Programming Arenas where contest are organized regularly along with
+     contest there are practice questions and tutorials which help in developing and testing your CP skills.
+    <br>
+    <strong>Top Tools:</strong><br>
+    During programming contests, you can use a number of tools to debug a problem or highlight a problem. 
+    These are a few tools that can be really helpful for you:<br>
+    1.Online Ides like <strong>Ideone,Code Chef,CSAcademy Ide</strong><br>
+    2.Difference Checker like <strong>CSAcademy Ide</strong>
+    <br>
+    So,If you are new to Compettive Programming are want to start it,just be consistent and patience as 
+    there might be some situations where the results will not go your side but keep in mind that CP 
+    is not one night thing, for being successful in CP you should be hardworking,consistent and patient as it takes months even years 
+    for excelling in CP skills.So don't worry and just be consistent and hardworking,results will start coming...
+    <br>Wishing you <em>Best of Luck</em>.<br>
+    
+     `
+ }
+
     
 ]
 
