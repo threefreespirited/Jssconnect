@@ -743,7 +743,7 @@ app.get("/community", (req, res) => {
         <h5 style="margin-top:15px;">Find the tribe that matches your vibe.</h5>
         </div>
         <img
-          src="https://clipart-library.com/images_k/teamwork-transparent-background/teamwork-transparent-background-15.png"
+          src="public/images/mycommunity.png"
           alt="OurCommunity">
       </div>
 
@@ -1308,8 +1308,8 @@ app.post("/CommunityFilter", (req, res) => {
         <h5 style="margin-top:15px;">Find the tribe that matches your vibe.</h5>
         </div>
         <img
-          src="http://clipart-library.com/images_k/teamwork-transparent-background/teamwork-transparent-background-15.png"
-          alt="OurCommunity">
+        src="public/images/mycommunity.png"
+        alt="OurCommunity">
       </div>
 
       <div id="myContents">
