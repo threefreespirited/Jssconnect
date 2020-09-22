@@ -140,6 +140,15 @@ app.get("/userblog", function (req, res) {
   }
 });
 
+app.get("/joincommunity", function (req, res) {
+  if (req.isAuthenticated()) {
+  res.sendFile(__dirname + "/views/joincommunity.html");
+  }
+  else {
+  res.redirect("/login");
+  }
+});
+
 // Contribute Strategy
 
 app.get('/auth/google/contribute',
@@ -452,14 +461,12 @@ app.get("/community", (req, res) => {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
     <!-- Compiled and minified CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  
   
     <!--Google fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
@@ -469,7 +476,7 @@ app.get("/community", (req, res) => {
     <script src="https://kit.fontawesome.com/efd71d3ed7.js" crossorigin="anonymous"></script>
   
     <link rel="icon" href="public/images/favicon.ico" type="image/x-icon">
-    <title>Join Community</title>
+    <title>Jssconnect | Community</title>
   
     <style>
       #navbar {
@@ -736,7 +743,7 @@ app.get("/community", (req, res) => {
         <h5 style="margin-top:15px;">Find the tribe that matches your vibe.</h5>
         </div>
         <img
-          src="http://clipart-library.com/images_k/teamwork-transparent-background/teamwork-transparent-background-15.png"
+          src="https://clipart-library.com/images_k/teamwork-transparent-background/teamwork-transparent-background-15.png"
           alt="OurCommunity">
       </div>
 
@@ -1036,7 +1043,7 @@ app.post("/CommunityFilter", (req, res) => {
     <script src="https://kit.fontawesome.com/efd71d3ed7.js" crossorigin="anonymous"></script>
   
     <link rel="icon" href="public/images/favicon.ico" type="image/x-icon">
-    <title>Join Community</title>
+    <title>Jssconnect | Community</title>
   
     <style>
       #navbar {
@@ -1655,7 +1662,7 @@ app.post("/firstyear", (req, res) => {
           <script src="https://kit.fontawesome.com/efd71d3ed7.js" crossorigin="anonymous"></script>
 
           <link rel="icon" href="https://www.freelogoservices.com/api/main/images/1j+ojFVDOMkX9Wytexe43D6kifODqxBHnRbIwXs1M3EMoAJtlSkkjvBt9Ps+" style="width: 16px;height:16px;" type="image/x-icon">
-          <title>JSS Connect</title>
+          <title>JSS Connect | FirstYear Resources</title>
           <style>
               .booksBox,.notesBox{
                   border: 4px solid gray;
@@ -2035,7 +2042,7 @@ app.post("/secondyear", (req, res) => {
           <script src="https://kit.fontawesome.com/efd71d3ed7.js" crossorigin="anonymous"></script>
 
           <link rel="icon" href="https://www.freelogoservices.com/api/main/images/1j+ojFVDOMkX9Wytexe43D6kifODqxBHnRbIwXs1M3EMoAJtlSkkjvBt9Ps+" width="10" height="10" type="image/x-icon">
-          <title>JSS Connect</title>
+          <title>JSS Connect | SecondYear Resources</title>
           <style>
               .booksBox,.notesBox{
                   border: 4px solid gray;
@@ -2770,7 +2777,7 @@ app.post("/usecondyear", (req, res) => {
           <script src="https://kit.fontawesome.com/efd71d3ed7.js" crossorigin="anonymous"></script>
 
           <link rel="icon" href="https://www.freelogoservices.com/api/main/images/1j+ojFVDOMkX9Wytexe43D6kifODqxBHnRbIwXs1M3EMoAJtlSkkjvBt9Ps+" width="10" height="10" type="image/x-icon">
-          <title>JSS Connect</title>
+          <title>JSS Connect | Contribution</title>
           <style>
               .booksBox,.notesBox{
                   border: 4px solid gray;
