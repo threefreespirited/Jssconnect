@@ -683,6 +683,12 @@ app.get("/community", (req, res) => {
         margin-top: 45px;
       }
 
+        #notFound{
+           width:400px;
+           margin-left:40%;
+           max-width:97vw;
+       }
+
       @media (max-width:1000px){
         #myContents{
           flex-direction:column;
@@ -696,7 +702,11 @@ app.get("/community", (req, res) => {
           margin:0 auto;
           margin-bottom:30px;
         }
-
+        #notFound{
+           width:400px;
+           margin-left:2%;
+           max-width:97vw;
+       }
         .flip-card{
           margin:2% auto;
         }
@@ -1002,7 +1012,7 @@ app.get("/community", (req, res) => {
       }
       else {
         myCommunity =
-		`<img class="logo" src="public/images/notFound.svg" style="width:400px;margin-left:40%;max-width:97vw;" alt="My_Logo">`
+		`<img class="logo" src="public/images/notFound.svg" id="notFound" alt="My_Logo">`
       }
       var myUserData = navbar + myCommunity + footer;
       res.write(myUserData);
@@ -1250,6 +1260,12 @@ app.post("/CommunityFilter", (req, res) => {
         margin-top: 45px;
       }
 
+        #notFound{
+           width:400px;
+           margin-left:40%;
+           max-width:97vw;
+       }
+
       @media (max-width:1000px){
         #myContents{
           flex-direction:column;
@@ -1263,7 +1279,11 @@ app.post("/CommunityFilter", (req, res) => {
           margin:0 auto;
           margin-bottom:30px;
         }
-
+        #notFound{
+           width:400px;
+           margin-left:2%;
+           max-width:97vw;
+       }
         .flip-card{
           margin:2% auto;
         }
@@ -1561,7 +1581,7 @@ app.post("/CommunityFilter", (req, res) => {
       }
       else {
         myCommunity =
-          `<img class="logo" src="public/images/notFound.svg" style="width:400px;margin-left:40%;max-width:97vw;" alt="My_Logo">`
+          `<img class="logo" src="public/images/notFound.svg" id="notFound" alt="My_Logo">`
       }
 
       var myUserData = navbar + myCommunity + footer;
