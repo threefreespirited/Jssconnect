@@ -670,8 +670,8 @@ app.get("/community", (req, res) => {
         filter:contrast(4);
       }
       #filter{
-        margin: 0 6%;
-        margin-right: 7.5%;
+        margin: 0 7%;
+        margin-right: 40px;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.45);
         border-radius:10px;
         text-align:center;
@@ -1237,7 +1237,8 @@ app.post("/CommunityFilter", (req, res) => {
         filter:contrast(4);
       }
       #filter{
-        margin: 0 6%;
+        margin: 0 7%;
+        margin-right:40px;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.45);
         border-radius:10px;
         text-align:center;
