@@ -1002,7 +1002,7 @@ app.get("/community", (req, res) => {
       }
       else {
         myCommunity =
-          `<img class="logo" src="public/images/notFound.svg" style="width:100%;margin-left:20%;" alt="My_Logo">`
+          `<img class="logo" src="public/images/notFound.svg" style="width:100%;margin-left:40%;" alt="My_Logo">`
       }
       var myUserData = navbar + myCommunity + footer;
       res.write(myUserData);
@@ -1561,7 +1561,7 @@ app.post("/CommunityFilter", (req, res) => {
       }
       else {
         myCommunity =
-          `<img class="logo" src="public/images/notFound.svg" style="width:100%;margin-left:20%;" alt="My_Logo">`
+          `<img class="logo" src="public/images/notFound.svg" style="width:100%;margin-left:40%;" alt="My_Logo">`
       }
 
       var myUserData = navbar + myCommunity + footer;
