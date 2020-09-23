@@ -32,8 +32,9 @@
   
   /* Tooltip text */
   .tooltip .tooltiptext {
-    visibility: hidden;
-    /* width: 120px; */
+     /* visibility: hidden; */
+      display:none;
+    /* width: 120px; */ */
     background-color: black;
     color: #fff;
     text-align: center;
@@ -54,10 +55,12 @@
   
   /* Show the tooltip text when you mouse over the tooltip container */
   .tooltip:hover .tooltiptext {
-    visibility: visible;
+    /* visibility: visible; */
+      display:block;
   }
   .tooltip:active .tooltiptext {
-    visibility: visible;
+   /* visibility: visible;  */
+            display:block;
   }
   
   .tooltiptext h6{
