@@ -1333,6 +1333,12 @@ app.post("/CommunityFilter", (req, res) => {
         alt="OurCommunity">
       </div>
 
+      <div>
+      <a href="/joincommunity"><button class="btn waves-effect waves-light green" style="display:block;width:300px;margin:auto;margin-top: 60px;">Join our Community
+      <i class="material-icons right">people_outline</i>
+     </button>
+     </a>
+      </div>
       <div id="myContents">
       <div id="filter">
       <img src="https://img.icons8.com/bubbles/2x/filter.png" alt="filter" style="width: 150px;margin:20px 0;">
