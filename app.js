@@ -1000,8 +1000,8 @@ app.get("/community", (req, res) => {
         <div class="flip-card-back">
           <h5 style="margin: 18% 10%;">${data[i].about}</h5>
           <div class="mybox2" style="font-size:2.2rem;margin-top:20px;">
-            <a href="${data[i].gHub}" id="gHub" style="margin:0 15px;color:#52575d;"><i class="fa fa-github-square"></i></a>
-            <a href="${data[i].lIn}" id="lIn" style="margin:0 15px;color:#07689f;"><i class="fa fa-linkedin-square"></i></a>
+            <a href="${data[i].gHub} || https://github.com/" id="gHub" style="margin:0 15px;color:#52575d;"><i class="fa fa-github-square"></i></a>
+            <a href="${data[i].lIn} || https://www.linkedin.com/" id="lIn" style="margin:0 15px;color:#07689f;"><i class="fa fa-linkedin-square"></i></a>
           </div>
         </div>
       </div>
