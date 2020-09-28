@@ -131,12 +131,12 @@ app.get('/auth/google/userblog',
   });
 
 app.get("/userblog", function (req, res) {
-  // if (req.isAuthenticated()) {
+  if (req.isAuthenticated()) {
   res.sendFile(__dirname + "/views/userblog.html");
-  // }
-  // else {
-  // res.redirect("/login");
-  // }
+   }
+   else {
+   res.redirect("/login");
+   }
 });
 
 app.get("/joincommunity", function (req, res) {
