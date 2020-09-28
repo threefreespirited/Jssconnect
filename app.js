@@ -988,13 +988,13 @@ app.get("/community", (req, res) => {
             if (commData[j].email == data[i].email) {
               myImage = commData[j].picture;
             }
-	    else{
-	      myImage = "https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg";
-	    }
           }
 		var myGithub = data[i].gHub;
 		var myLinkedIn = data[i].lIn;
-		
+	
+        if(myImage == ""){
+           myImage = "https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg";
+	}
 	if(myGithub == ""){
 	   myGithub = "https://github.com/";
 	}
