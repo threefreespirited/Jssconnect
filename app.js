@@ -140,12 +140,12 @@ app.get("/userblog", function (req, res) {
 });
 
 app.get("/joincommunity", function (req, res) {
-  if (req.isAuthenticated()) {
+//   if (req.isAuthenticated()) {
     res.sendFile(__dirname + "/views/joincommunity.html");
-  }
-  else {
-    res.redirect("/login");
-  }
+//   }
+//   else {
+//     res.redirect("/login");
+//   }
 });
 
 // Contribute Strategy
@@ -992,7 +992,7 @@ app.get("/community", (req, res) => {
           myCommunity += `<div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-front">
-          <img src="${myImage}" alt="Avatar" style="width:90px;height: 90px;margin-top: 10px;border-radius: 50%;">
+          <img src="${myImage} || https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg" alt="Avatar" style="width:90px;height: 90px;margin-top: 10px;border-radius: 50%;">
           <p style="text-align: center;font-size: 2rem;margin:10px 0;color:#2c7873;">${data[i].name}</p>
           <p style="font-size:1.2rem;font-weight:400;">${data[i].department}</p>
           <p style="font-weight:bold;color:#c36a2d;">${data[i].year}</p>
