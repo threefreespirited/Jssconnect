@@ -989,10 +989,21 @@ app.get("/community", (req, res) => {
               myImage = commData[j].picture;
             }
           }
+		var myGithub = data[i].gHub;
+		var myLinkedIn = data[i].lIn;
+	if(myImage == ""){
+	   myImage = "https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg";
+	}
+	if(myGithub == ""){
+	   myGithub = "https://github.com/";
+	}
+	if(myLinkedIn == ""){
+	   myLinkedIn = "https://www.linkedin.com/";
+	}
           myCommunity += `<div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-front">
-          <img src="${myImage} || https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg" alt="Avatar" style="width:90px;height: 90px;margin-top: 10px;border-radius: 50%;">
+          <img src="${myImage}" alt="Avatar" style="width:90px;height: 90px;margin-top: 10px;border-radius: 50%;">
           <p style="text-align: center;font-size: 2rem;margin:10px 0;color:#2c7873;">${data[i].name}</p>
           <p style="font-size:1.2rem;font-weight:400;">${data[i].department}</p>
           <p style="font-weight:bold;color:#c36a2d;">${data[i].year}</p>
@@ -1000,8 +1011,8 @@ app.get("/community", (req, res) => {
         <div class="flip-card-back">
           <h5 style="margin: 18% 10%;">${data[i].about}</h5>
           <div class="mybox2" style="font-size:2.2rem;margin-top:20px;">
-            <a href="${data[i].gHub} || https://github.com/" id="gHub" style="margin:0 15px;color:#52575d;"><i class="fa fa-github-square"></i></a>
-            <a href="${data[i].lIn} || https://www.linkedin.com/" id="lIn" style="margin:0 15px;color:#07689f;"><i class="fa fa-linkedin-square"></i></a>
+            <a href="${myGithub}" id="gHub" style="margin:0 15px;color:#52575d;"><i class="fa fa-github-square"></i></a>
+            <a href="${myLinkedIn}" id="lIn" style="margin:0 15px;color:#07689f;"><i class="fa fa-linkedin-square"></i></a>
           </div>
         </div>
       </div>
