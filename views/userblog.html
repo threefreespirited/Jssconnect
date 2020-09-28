@@ -85,12 +85,12 @@
       }
     }
 
-    #blog img{
-      width:45%;
+    #blog img {
+      width: 45%;
       margin: 15px auto;
-      display:block;
+      display: block;
     }
-    
+
     .socials {
       font-size: 2rem;
       margin: 10px;
@@ -131,17 +131,23 @@
     .day {
       display: none;
     }
-    @media screen and (max-width: 770px){
-    #blog {
-    margin-top: 55px;
-    flex-direction: column;
-    /* height: 720px; */
-    justify-content: normal;
-    }
-      
-    #blog img{
-      width: 27%;
-    }
+
+    @media screen and (max-width: 770px) {
+      #blog {
+        margin-top: 55px;
+        flex-direction: column;
+        /* height: 720px; */
+        justify-content: normal;
+      }
+
+      #container form {
+        width: 82%;
+        margin: 60px auto;
+      }
+
+      #blog img {
+        width: 27%;
+      }
     }
   </style>
 </head>
@@ -162,9 +168,8 @@
         <li><a href="/contact">Contact</a></li>
         <li class="tooltip" id="userProfile">
           <span class="myChip" style="margin: 10px 30px;">
-            <img
-              src="https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg"
-              id="picture" alt="Person" width="96" height="96">
+            <img src="https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg" id="picture"
+              alt="Person" width="96" height="96">
             <span id="chipName">Guest</span>
           </span>
           <span class="tooltiptext">
@@ -184,9 +189,8 @@
     <br />
     <li class="tooltip" id="userProfile">
       <span class="myChip" style="margin: 10px 30px;">
-        <img
-          src="https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg"
-          id="picture1" alt="Person" width="96" height="96">
+        <img src="https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg" id="picture1"
+          alt="Person" width="96" height="96">
         <span id="chipName1">Guest</span>
       </span>
       <span class="tooltiptext" id="t1">
@@ -222,12 +226,13 @@
       <h2 style="color: #056674;">Enter your blog details</h2>
       <form action="/userblog" method="POST">
         <input type="text" name="title" id="title" placeholder="Enter Title of Blog" maxlength="250" required>
-        <input type="text" name="imageurl" id="url" placeholder="Enter image url (image must br related to Blog Title)" required>
+        <input type="text" name="imageurl" id="url" placeholder="Enter image url (image must be related to Blog Title)"
+          required>
         <input type="date" name="date" id="date" required>
         <input type="text" name="shortDescription" id="shortDescription" placeholder="Enter short Description of Blog"
           required>
         <textarea name="blogcontent" id="blogcontent" placeholder="Enter Blog Content" style="min-height: 400px;"
-          maxlength="1500" required></textarea>
+          maxlength="2200" required></textarea>
         <button class="btn waves-effect waves-light" type="submit" name="action"
           style="margin-top: 45px;padding: 0 45px;">Submit
           <i class="material-icons right">send</i>

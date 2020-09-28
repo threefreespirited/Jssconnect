@@ -14,6 +14,7 @@ const findOrCreate = require("mongoose-findorcreate");
 const hostname = '127.0.0.1';
 const port = process.env.PORT || '80';
 
+
 //List of letiables
 
 const app = express();
@@ -24,8 +25,6 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -90,9 +89,9 @@ passport.use(new GoogleStrategy({
       return cb(err, user);
     });
 
-
   }
 ));
+
 
 //Now the profile will be updated only when the user is authenticated
 
@@ -132,20 +131,20 @@ app.get('/auth/google/userblog',
   });
 
 app.get("/userblog", function (req, res) {
-  if (req.isAuthenticated()) {
+  // if (req.isAuthenticated()) {
   res.sendFile(__dirname + "/views/userblog.html");
-  }
-  else {
-  res.redirect("/login");
-  }
+  // }
+  // else {
+  // res.redirect("/login");
+  // }
 });
 
 app.get("/joincommunity", function (req, res) {
   if (req.isAuthenticated()) {
-  res.sendFile(__dirname + "/views/joincommunity.html");
+    res.sendFile(__dirname + "/views/joincommunity.html");
   }
   else {
-  res.redirect("/login");
+    res.redirect("/login");
   }
 });
 
@@ -1012,7 +1011,7 @@ app.get("/community", (req, res) => {
       }
       else {
         myCommunity =
-		`<img class="logo" src="public/images/notFound.svg" id="notFound" alt="My_Logo">`
+          `<img class="logo" src="public/images/notFound.svg" id="notFound" alt="My_Logo">`
       }
       var myUserData = navbar + myCommunity + footer;
       res.write(myUserData);
@@ -2025,6 +2024,7 @@ app.post("/firstyear", (req, res) => {
                 <div class="Bthree" style="border-color:#434e52;">
                 <div class="Btwo" style="background-color:#ff2e63">
                <p style="font-weight:bold;font-size:1.2rem;padding-top:20px;color:white;">${found[i].resname}</p>
+               <p style="font-weight:bold;font-size:1.2rem;padding-top:20px;color:white;">AKTU</p>
                <div class="Bone">
                <p style="margin:0;color:#ff2e63;font-weight: 500;padding:0 2px;">${found[i].year}</p>
                </div>
@@ -2032,15 +2032,13 @@ app.post("/firstyear", (req, res) => {
                </div>
                </a>  
                `;
-
       }
-
     }
 
-    let total = navbar + books1 + "</div> <h3 style='margin-top:60px;margin-bottom:0;margin-left:6%;color:#81b214;'>Notes</h3><div class='booksGrid'>" + notes1 + "</div>" + "<h3 style='margin-top:60px;margin-bottom:0;margin-left:6%;color:#81b214;'>Previous year papers</h3><div class='booksGrid'>" + papers1 + "</div>" + footer;
+    let total = navbar + books1 + "</div> <h3 style='margin-top:60px;margin-bottom:0;margin-left:6%;color:#81b214;'>Notes</h3><div class='booksGrid'>" + notes1 + "</div>" + "<h3 style='margin-top:60px;margin-bottom:0;margin-left:6%;color:#81b214;'>Archives</h3><div class='booksGrid'>" + papers1 + "</div>" + footer;
     res.write(total);
     res.send();
-  })
+  });
 });
 
 // SecondYear Resources
@@ -2192,7 +2190,7 @@ app.post("/secondyear", (req, res) => {
           <h3 style="margin-top:45px;margin-left:6%;color:#64958f">Books</h3>
           <div class="booksGrid">
           `;
-  let footer = `
+ let footer = `
             </div>
           
   <!-- Floating button -->
@@ -2283,7 +2281,7 @@ app.post("/secondyear", (req, res) => {
 
       
         <script>
-          // JS for floating buuton
+          // JS for floating button
       
           document.addEventListener('DOMContentLoaded', function () {
             let elems = document.querySelectorAll('.fixed-action-btn');
@@ -2355,6 +2353,7 @@ app.post("/secondyear", (req, res) => {
                    <div class="Bthree">
                   <div class="Btwo">
                    <p style="font-weight:bold;font-size:1.2rem;padding-top:20px;color:white;">${found[i].resname}</p>
+               <p style="font-weight:bold;font-size:1.2rem;padding-top:20px;color:white;">AKTU</p>
                   <div class="Bone">
                   <p style="margin:0;color:#204051;font-weight: 500;padding:0 2px;">${found[i].authorName}</p>
                   </div>
@@ -2401,23 +2400,24 @@ app.post("/secondyear", (req, res) => {
 
       for (let i = 0; i < found.length; i++) {
         papers1 += `
-                <a href="${found[i].link}" class="resLink">
-                <div class="Bthree" style="border-color:#434e52;">
-                <div class="Btwo" style="background-color:#ff2e63">
-               <p style="font-weight:bold;font-size:1.2rem;padding-top:20px;color:white;">${found[i].resname}</p>
-               <div class="Bone">
-               <p style="margin:0;color:#ff2e63;font-weight: 500;padding:0 2px;">${found[i].year}</p>
-               </div>
-               </div>
-               </div>
-               </a>  
+        <a href="${found[i].link}" class="resLink">
+        <div class="Bthree" style="border-color:#434e52;">
+        <div class="Btwo" style="background-color:#ff2e63">
+       <p style="font-weight:bold;font-size:1.2rem;padding-top:20px;color:white;">${found[i].resname}</p>
+       <p style="font-weight:bold;font-size:1.2rem;padding-top:20px;color:white;">AKTU</p>
+       <div class="Bone">
+       <p style="margin:0;color:#ff2e63;font-weight: 500;padding:0 2px;">${found[i].year}</p>
+       </div>
+       </div>
+       </div>
+       </a>  
                `;
 
       }
 
     }
 
-    let total = navbar + books1 + "</div> <h3 style='margin-top:60px;margin-bottom:0;margin-left:6%;color:#81b214;'>Notes</h3><div class='booksGrid'>" + notes1 + "</div>" + "<h3 style='margin-top:60px;margin-bottom:0;margin-left:6%;color:#81b214;'>Previous year papers</h3><div class='booksGrid'>" + papers1 + "</div>" + footer;
+    let total = navbar + books1 + "</div> <h3 style='margin-top:60px;margin-bottom:0;margin-left:6%;color:#81b214;'>Notes</h3><div class='booksGrid'>" + notes1 + "</div>" + "<h3 style='margin-top:60px;margin-bottom:0;margin-left:6%;color:#81b214;'>Archives</h3><div class='booksGrid'>" + papers1 + "</div>" + footer;
     res.write(total);
     res.send();
   })
@@ -3132,17 +3132,7 @@ app.post("/usecondyear", (req, res) => {
     res.write(total);
     res.send();
   })
-})
-
-
-
-
-
-
-
-
-
-
+});
 
 app.listen(port, () => {
   console.log(`Server running at  http://${hostname}:${port}/`);
