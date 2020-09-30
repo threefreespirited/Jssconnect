@@ -2365,7 +2365,6 @@ app.post("/secondyear", (req, res) => {
                    <div class="Bthree">
                   <div class="Btwo">
                    <p style="font-weight:bold;font-size:1.2rem;padding-top:20px;color:white;">${found[i].resname}</p>
-               <p style="font-weight:bold;font-size:1.2rem;padding-top:20px;color:white;">AKTU</p>
                   <div class="Bone">
                   <p style="margin:0;color:#204051;font-weight: 500;padding:0 2px;">${found[i].authorName}</p>
                   </div>
