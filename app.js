@@ -10,9 +10,9 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
-
+const ejs = require("ejs")
 const hostname = '127.0.0.1';
-const port = process.env.PORT || '80';
+const port = process.env.PORT || '3000';
 
 
 //List of letiables
@@ -130,22 +130,14 @@ app.get('/auth/google/userblog',
     res.redirect('/userblog');
   });
 
-app.get("/userblog", function (req, res) {
-  if (req.isAuthenticated()) {
-  res.sendFile(__dirname + "/views/userblog.html");
-   }
-   else {
-   res.redirect("/login");
-   }
-});
 
 app.get("/joincommunity", function (req, res) {
-//   if (req.isAuthenticated()) {
-    res.sendFile(__dirname + "/views/joincommunity.html");
-//   }
-//   else {
-//     res.redirect("/login");
-//   }
+  //   if (req.isAuthenticated()) {
+  res.sendFile(__dirname + "/views/joincommunity.html");
+  //   }
+  //   else {
+  //     res.redirect("/login");
+  //   }
 });
 
 // Contribute Strategy
@@ -204,9 +196,13 @@ app.post("/joincommunity", (req, res) => {
 const userBlogSchema = new mongoose.Schema({
   title: String,
   imageurl: String,
+  socialurl: String,
+  permission: String,
   date: String,
   shortDescription: String,
-  blogcontent: String
+  blogcontent: String,
+  authorName: String,
+  authorImg: String,
 });
 
 const userBlog = mongoose.model("userBlog", userBlogSchema);
@@ -418,15 +414,40 @@ app.get("/privacy", (req, res) => {
 app.get("/contribute", (req, res) => {
   res.sendFile(__dirname + "/views/contribute.html");
 })
-app.get("/myblog", (req, res) => {
-  res.sendFile(__dirname + "/views/blog.html");
-})
+app.post("/myblog", (req, res) => {
+  console.log(req.body.uniqueId);
+  let uniId = req.body.uniqueId;
+  userBlog.find({}, (err, data) => {
+    if (err) console.log(err);
+    else {
+      console.log(data[uniId]);
+      app.set("view engine", "ejs");
+      res.render("blog", { blogData: data[uniId] });
+    }
+  });
+
+});
+
 app.get("/blogs", (req, res) => {
-  res.sendFile(__dirname + "/views/blogs.html");
+  app.set("view engine", "ejs");
+  userBlog.find({}, (err, data) => {
+    if (err) console.log(err);
+    else {
+      res.render("blogs", { data: data });
+    };
+  })
 })
-app.get("/userblog", (req, res) => {
-  res.sendFile(__dirname + "/views/userblog.html");
-})
+
+
+app.get("/userblog", function (req, res) {
+  if (req.isAuthenticated()) {
+    res.sendFile(__dirname + "/views/userblog.html");
+  }
+  else {
+    res.redirect("/login");
+  }
+});
+
 app.get("/usercontributions", (req, res) => {
   res.sendFile(__dirname + "/views/usercontributions.html");
 })
@@ -983,24 +1004,24 @@ app.get("/community", (req, res) => {
 
       if (data != "") {
         for (let i = 0; i < data.length; i++) {
-          let myImage="";
+          let myImage = "";
           for (let j = 0; j < commData.length; j++) {
             if (commData[j].email == data[i].email) {
               myImage = commData[j].picture;
             }
           }
-		var myGithub = data[i].gHub;
-		var myLinkedIn = data[i].lIn;
-	
-        if(myImage == ""){
-           myImage = "https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg";
-	}
-	if(myGithub == ""){
-	   myGithub = "https://github.com/";
-	}
-	if(myLinkedIn == ""){
-	   myLinkedIn = "https://www.linkedin.com/";
-	}
+          var myGithub = data[i].gHub;
+          var myLinkedIn = data[i].lIn;
+
+          if (myImage == "") {
+            myImage = "https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg";
+          }
+          if (myGithub == "") {
+            myGithub = "https://github.com/";
+          }
+          if (myLinkedIn == "") {
+            myLinkedIn = "https://www.linkedin.com/";
+          }
           myCommunity += `<div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-front">
@@ -2202,7 +2223,7 @@ app.post("/secondyear", (req, res) => {
           <h3 style="margin-top:45px;margin-left:6%;color:#64958f">Books</h3>
           <div class="booksGrid">
           `;
- let footer = `
+  let footer = `
             </div>
           
   <!-- Floating button -->
