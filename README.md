@@ -1,8 +1,5 @@
 https://jssconnect-beta.herokuapp.com/
 <h2 style="text-align:center;font-size:53px;color:red"><span style="color:blue">JSS</span>CONNECT</h2>
-<a href="https://heckfree.herokuapp.com"><img alt="Website" src="https://img.shields.io/website?color=blue&down_color=red&down_message=offline&label=heckfree&logo=heckfree&style=for-the-badge&up_color=green&up_message=live&url=https%3A%2F%2Fjssconnect.herokuapp.com"></a>
-<hr />
-
 [![GitHub forks](https://img.shields.io/github/forks/threefreespirited/heckfree?style=social&label=Fork&maxAge=2592000)](https://github.com/threefreespirited/jssconnect)
 [![GitHub stars](https://img.shields.io/github/stars/threefreespirited/heckfree?style=social&label=Star&maxAge=2592000)](https://github.com/threefreespirited/jssconnect)
 [![GitHub watchers](https://img.shields.io/github/watchers/threefreespirited/heckfree?style=social&label=Watch&maxAge=2592000)](https://github.com/threefreespirited/jssconnect)
