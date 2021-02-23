@@ -1,8 +1,5 @@
 https://jssconnect-beta.herokuapp.com/
 <h2 style="text-align:center;font-size:53px;color:red"><span style="color:blue">JSS</span>CONNECT</h2>
-[![GitHub forks](https://img.shields.io/github/forks/threefreespirited/heckfree?style=social&label=Fork&maxAge=2592000)](https://github.com/threefreespirited/jssconnect)
-[![GitHub stars](https://img.shields.io/github/stars/threefreespirited/heckfree?style=social&label=Star&maxAge=2592000)](https://github.com/threefreespirited/jssconnect)
-[![GitHub watchers](https://img.shields.io/github/watchers/threefreespirited/heckfree?style=social&label=Watch&maxAge=2592000)](https://github.com/threefreespirited/jssconnect)
 
 <h3 style="text-align:center;color:yellow;font-size:1.8rem;">One Destination for meeting all your educational needs related to college study.</h3>
 <p style="text-align:center;font-size:1.5rem;">Jss Connect is an e-platform for helping engineering students in their academics.</p>
