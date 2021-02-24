@@ -43,6 +43,7 @@ Engineering students can</h2>
 <hr />
 <br />
 <br />
+<h2>You can contribute by following below set of instructions</h2>
 ## Environment Setup-
 
 * Drop a :star: on the GitHub repository.
@@ -124,3 +125,11 @@ use db <db name>
 show collections
 <db name> .find()
 ```
+<h3>***Note</h3>
+*Get connection string from Mongo Atlas by creating a cluster or you can also use your locally installed mongodb<br>
+*You can click here to learn how to connect atlas to you project<br>
+*Create a new file named .env in the Backend folder and copy the format of .env.example file<br>
+*Paste the connection string in the .env file in the MONGODB_URI variable<br>
+*Get your client_id and client_secret by creating a new app in google developer console.And enter client_id in CLIENT_ID variable and client_secret in CLIENT_SECRET variable.
+
+****No need for google sign in in production mode.
