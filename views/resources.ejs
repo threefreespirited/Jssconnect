@@ -1,0 +1,185 @@
+<%- include("header") %>
+
+
+<div id="container">
+  <div id="wave">
+    <h2 style="text-align:center;font-weight:1000;">E-RESOURCES</h2>
+    <img src="https://jssaten.ac.in/Lib/img/LibraryPics/Lib2.jpg" alt="">
+    <p>An e-library exclusively for JSS
+      students, where all your academic's will be fulfilled. Here you will find all the books, materials,
+      notes and question papers shared ever by any of the student or professor. You will also find certain
+      filters to be applied in way to find the materials of a particular department and year easily.</p>
+  </div>
+  <h3 style="margin-left: 17.1%;font-size:4rem;margin-top:55px;margin-bottom: 60px;color: #5e6f64;">Filter the
+    resources as per
+    your need</h3>
+  
+  <div style="border-left:14px dotted #7510f7;border-right:14px dotted #7510f7;">
+  <!-- First Year -->
+  <div class="year">
+    <div class="box1">
+      <img
+        src="https://www.une.edu/sites/default/files/styles/full_width/public/shared/first-year-plan_0.png?itok=975IQe8r"
+        alt="FIRST YEAR">
+
+    </div>
+    <!-- First Year Form -->
+    <form action="/firstyear" method="POST" class="ui form select-form">
+      <div class="field">
+        <select name="department" id="department">
+          <option value="CS/IT" disabled>Choose department</option>
+          <option value="CS/IT">CS / IT</option>
+          <option value="EE">EE</option>
+          <option value="ECE">ECE</option>
+          <option value="ME">ME</option>
+          <option value="cE">CE</option>
+          <option value="EEE">EEE</option>
+        </select>
+        <select name="subject" id="subject">
+          <option value="CS/IT" disabled>First year</option>
+          <option value="PPS">Programming for Problem Solving</option>
+          <option value="PE">Professional English</option>
+          <option value="BEE">Basic Electrical Engineering</option>
+          <option value="M1">Maths I</option>
+          <option value="M2">Maths II</option>
+          <option value="P">Physics</option>
+          <option value="C">Chemistry</option>
+        </select>
+        <button class="ui large right labeled icon button submit-btn" style="margin-top:30px;" type="submit"
+          name="action">
+          <i class="right arrow icon"></i>
+          Next
+        </button>
+      </div>
+    </form>
+  </div>
+  </div>
+  <div style="border-left:14px dotted #7510f7;border-right:14px dotted #7510f7;">
+<!-- Second Year -->
+<div class="year">
+  <div class="box1">
+    <img src="https://www.une.edu/sites/default/files/shared/second-year-plan_1.png" alt="SECOND YEAR">
+  </div>
+  <!-- Second Year Form -->
+  <form action="/secondyear" method="POST" class="ui form select-form">
+    <div class="field">
+      <select name="department" id="department">
+        <option value="CS/IT" disabled>Choose department</option>
+        <option value="CS/IT">CS / IT</option>
+        <option value="EE">EE</option>
+        <option value="ECE">ECE</option>
+        <option value="ME">ME</option>
+        <option value="cE">CE</option>
+        <option value="EEE">EEE</option>
+      </select>
+      <select name="subject" id="subject">
+        <option value="" disabled>3rd Sem</option>
+        <option value="DS">Data Structures</option>
+        <option value="DSTL">Discrete Structures and Theory of Logic</option>
+        <option value="ES">Engineering Science</option>
+        <option value="COA">Computer Organisation and Architecture</option>
+        <option value="TC">Technical Communication</option>
+        <option value="CSS">Computer System and Security</option>
+        <option value="PP">Python Programming</option>
+        <option value="M4">Maths IV</option>
+        <option value="UHV">Universal Human Values</option>
+        <option value="" disabled>4th Sem</option>
+        <option value="OS">Operating Systems</option>
+        <option value="TAFL">Theory of automata and Formal Languages</option>
+        <option value="FL">Formal Languages</option>
+        <option value="WD">Web Designing</option>
+      </select>
+      <button class="ui large right labeled icon button submit-btn" style="margin-top:30px;" type="submit"
+        name="action">
+        <i class="right arrow icon"></i>
+        Next
+      </button>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<!-- <div style="display: flex;align-items: center;justify-content: center;margin: 75px 0;">
+          <div class="box1">
+              <img src="https://www.une.edu/sites/default/files/styles/full_width/public/shared/third-year-plan_0.png?itok=4jex1_TE"
+                  style="width: 100%;" alt="THIRD YEAR">
+
+          </div>
+          <div class="box2" class="input-field">
+              <form action="/thirdyear" method="POST">
+
+                  <select name="department" id="department">
+                      <option value="CS/IT">CS / IT</option>
+                      <option value="EE">EE</option>
+                      <option value="ECE">ECE</option>
+                      <option value="ME">ME</option>
+                      <option value="cE">CE</option>
+                      <option value="EEE">EEE</option>
+                  </select>
+                  <select name="subject" id="subject">
+                      
+                  </select>
+                  <button class="btn waves-effect waves-light" type="submit" name="action">Find
+                      <i class="material-icons right">send</i>
+                  </button>
+              </form>
+          </div>
+      </div>
+      <div style="display: flex;align-items: center;justify-content: center;margin: 75px 0;">
+          <div class="box1">
+              <img src="https://www.une.edu/sites/default/files/styles/full_width/public/shared/fourth-year-plan.png?itok=nlehI-h1"
+                  style="width: 100%;" alt="FOURTH YEAR">
+
+          </div>
+          <div class="box2" class="input-field">
+              <form action="/fourthyear" method="POST">
+
+                  <select name="department" id="department">
+                      <option value="CS/IT">CS / IT</option>
+                      <option value="EE">EE</option>
+                      <option value="ECE">ECE</option>
+                      <option value="ME">ME</option>
+                      <option value="CE">CE</option>
+                      <option value="EEE">EEE</option>
+                  </select>
+                  <select name="subject" id="subject">
+                      
+                  </select>
+                  <button class="btn waves-effect waves-light" type="submit" name="action">Find
+                      <i class="material-icons right">send</i>
+                  </button>
+              </form>
+          </div>
+      </div> -->
+</div>
+
+<div style="display:block;width:50%;padding:10px;text-align: center;margin: 75px auto;margin-top: 120px;">
+  <p style="font-size:1.8rem;font-family:cursive;font-weight:1000;color:#5e6f64">Have a look on others contributions as well.</p>
+  <a href="/usercontributions" class="ui right labeled icon button" style="font-size:1.2rem;text-align:center;">SEE CONTRIBUTION<i class="fa fa-eye" style="margin-left:10px;" aria-hidden="true"></i></a>
+</div>
+<!-- Footer -->
+<%- include("footer") %>
+
+<!-- Fomantic Select Box -->
+<script>
+  $('.selection.dropdown')
+    .dropdown();
+</script>
+<!-- annotation -->
+<script type="module">
+  import { annotate } from 'https://unpkg.com/rough-notation?module';
+      const e = document.querySelectorAll('.myAnnotation');
+      for (let i = 0; i < e.length; i++) {
+        const annotation = annotate(e[i], { type: 'underline', color: 'yellow' });
+        annotation.show();
+      }
+</script>
+
+</body>
+
+</html>

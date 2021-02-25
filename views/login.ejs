@@ -1,0 +1,135 @@
+   <%- include("header") %>
+
+
+
+
+  <img class="wave" src="/images/wave.png">
+  <div id="container">
+    <div class="img">
+      <img src="/images/bg.svg">
+    </div>
+    <div class="login-content">
+        <img src="/images/avatar.svg">
+        <h2 class="title">Welcome Back</h2>
+        <p style="margin-bottom: 60px;font-size: 1.3rem;">Glad to see you again</p>
+    <a href="/auth/google"><button class="ui inverted huge violet button" id="login-btn"><i class="fa fa-google-plus"></i> Join for free</button></a>
+        
+        <a style="text-align:center" href="/register">New User? Register here</a>
+    </div>
+
+  </div>
+
+
+
+
+  <!-- Floating button 
+
+  <div class="fixed-action-btn" id="myFl">
+    <a class="btn-floating btn-large black myFloatingBtn">
+      <img src="/images/logo.png" alt="" style="width: 60px;margin: 10px -1px;filter: invert();" />
+    </a>
+    <ul>
+      <li><a href="/contact#team" class="btn-floating green myFloat">Team</a>
+      </li>
+      <li><a href="http://jsswire.herokuapp.com" class="btn-floating red myFloat">
+        
+        <img src="/images/share.png" alt="" style="width: 30px;margin: 6px -1px;filter: invert();" />
+      </a>
+      </li>
+
+      <li style="margin: 12px 0px;">
+
+        <a class="btn-floating btn-large black" id="brightness">
+          <i class="fa fa-moon-o" style="color: white;"></i>
+        </a>
+
+      </li>
+
+    </ul>
+  </div>
+-->
+   <!-- Footer -->
+
+    <%- include("footer") %>
+    
+  
+
+  <script>
+    
+    // JS for floating buuton
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems);
+    });
+
+    const brightness = document.getElementById('brightness');
+    const foot = document.querySelector("footer");
+    const navbar = document.querySelector("nav"); 
+  const sidenav = document.querySelector('.sidenav');
+    let count = 0;
+    brightness.addEventListener("click", () => {
+
+      if (count < 1) {
+        count = 1;
+        localStorage.setItem("theme", "dark");
+        
+      }
+      else if (count == 1) {
+        count = 0;
+        localStorage.setItem("theme", "light");
+      }
+      setTheme();
+    })
+
+
+    function setTheme() {
+
+      const currentTheme = localStorage.getItem("theme");
+      if (currentTheme == "dark") {
+        foot.style.backgroundColor = "#1b262c"
+        navbar.style.backgroundColor = "#1b262c";
+        brightness.innerHTML = "<i class='fa fa-sun-o' style='color: goldenrod;'></i>"
+        sidenav.style.backgroundColor = "#1b262c";
+      }
+      else {
+        foot.style.backgroundColor = "#323232"
+        navbar.style.backgroundColor = "#2c7873";
+        sidenav.style.backgroundColor = "#2c7873";
+        brightness.innerHTML = "<i class='fa fa-moon-o' style='color: white;'></i>"
+      }
+    }
+
+    const inputs = document.querySelectorAll(".input");
+
+
+    function addcl() {
+      let parent = this.parentNode.parentNode;
+      parent.classList.add("focus");
+    }
+
+    function remcl() {
+      let parent = this.parentNode.parentNode;
+      if (this.value == "") {
+        parent.classList.remove("focus");
+      }
+    }
+
+
+    inputs.forEach(input => {
+      input.addEventListener("focus", addcl);
+      input.addEventListener("blur", remcl);
+    });
+
+
+  </script>
+
+
+</body>
+
+</html>

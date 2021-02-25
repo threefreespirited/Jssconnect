@@ -1,0 +1,100 @@
+<%- include("header") %>
+  <style>
+
+  </style>
+  <div class="first-year-container">
+    <h2 id="year-heading">
+      <%= year %>
+    </h2>
+    <h3 style="margin-top:85px;margin-left:6%;color:#7510f7;font-size:3.5rem;">Books</h3>
+    <div class="booksGrid">
+      <!-- Books -->
+      <% for (let i=0; i < Books.length ; i++) { %>
+        <a href=<%=Books[i].link %> class="resLink">
+          <div class="Bthree">
+            <div class="Btwo" style="background-color: #7510f7;">
+              <p style="font-weight:bold;font-size:1.2rem;padding-top:20px;color:white;">
+                <%= Books[i].resname %>
+              </p>
+              <div class="Bone">
+                <p style="margin:0;color:#204051;font-weight: 500;padding:0 2px;">
+                  <%= Books[i].authorName %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <% } %>
+    </div>
+
+    <!-- Notes -->
+    <h3 style='margin-top:60px;margin-bottom:0;margin-left:6%;color:#81b214;font-size:3.5rem;'>Notes</h3>
+    <div class='booksGrid'>
+      <% for (let i=0; i < Notes.length; i++) { %>
+        <a href=<%=Notes[i].link %> class="resLink">
+          <div class="Bthree" style="border-color:#596157;">
+            <div class="Btwo" style="background-color:#5b8c5a">
+              <p style="font-weight:bold;font-size:1.2rem;padding-top:20px;color:white;">
+                <%= Notes[i].resname %>
+              </p>
+              <div class="Bone">
+                <p style="margin:0;color:#5b8c5a;font-weight: 500;padding:0 2px;">
+                  <%= Notes[i].authorName %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <% } %>
+
+    </div>
+    <!-- Archive -->
+    <h3 style='margin-top:60px;margin-bottom:0;margin-left:6%;color:#ff2e63;font-size:3.5rem;'>Archives</h3>
+    <div class='booksGrid'>
+
+      <% for (let i=0; i < Papers.length; i++) { %>
+
+        <a href=<%=Papers[i].link %> class="resLink">
+          <div class="Bthree" style="border-color:#434e52;">
+            <div class="Btwo" style="background-color:#ff2e63">
+              <p style="font-weight:bold;font-size:1.2rem;padding-top:20px;color:white;">
+                <%= Papers[i].resname %>
+              </p>
+              <p style="font-weight:bold;font-size:1.2rem;padding-top:20px;color:white;">AKTU</p>
+              <div class="Bone">
+                <p style="margin:0;color:#ff2e63;font-weight: 500;padding:0 2px;">
+                  <%= Papers[i].year %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <% } %>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <%- include("footer") %>
+
+    <!-- Fomantic Select Box -->
+    <script>
+      $('.selection.dropdown')
+        .dropdown();
+    </script>
+    <!-- annotation -->
+    <script type="module">
+      import { annotate } from 'https://unpkg.com/rough-notation?module';
+      const e = document.querySelectorAll('.myAnnotation');
+      for (let i = 0; i < e.length; i++) {
+        const annotation = annotate(e[i], { type: 'underline', color: 'yellow' });
+        annotation.show();
+      }
+    </script>
+
+    </body>
+
+    </html>

@@ -1,0 +1,60 @@
+<style>
+  .ui.footer {
+    padding: 45px 0;
+    background-color: #f5f5f5 !important;
+    font-size: 1.1rem !important;
+  }
+  .ui.footer .item {
+    color: black !important;
+  }
+  .ui.footer .item:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="ui  vertical footer segment">
+  <div class="ui center aligned container">
+    <div class="ui stackable  divided grid">
+      <div class="four wide column">
+        <h4 class="ui  header">Jssconnect</h4>
+        <div class="ui  link list">
+          <a href="/blogs" class="item">Blogs</a>
+          <a href="/resources" class="item">Ebooks</a>
+          <a href="/contribute" class="item">Contribute</a>
+        </div>
+      </div>
+      <div class="four wide column">
+        <h4 class="ui  header">Connect</h4>
+        <div class="ui  link list">
+          <a href="/community" class="item">Community</a>
+          <a href="/contact" class="item">Contact Us</a>
+          <a href="/contact#team" class="item">Our Team</a>
+          <a href="/feedback" class="item">Feedback</a>
+        </div>
+      </div>
+      <div class="six wide column">
+        <h5 style="text-align: left;margin-left: 40px;margin-bottom: 45px;">We strive to provide you the best study
+          material and other resources at one place.
+        </h5>
+        <p class="item">© 2021 Jssconnect. All rights reserved.</p>
+      </div>
+    </div>
+    <div class="ui  section divider"></div>
+    <img src="/images/logo.png" style="width: 45px;" class="ui centered image">
+    <div class="ui horizontal  small divided link list">
+      <a class="item" href="/contact">Contact Us</a>
+      <a class="item" href="/privacy">Privacy Policy</a>
+    </div>
+  </div>
+</div>
+<script>
+  $('.ui.dropdown')
+    .dropdown()
+    ;
+     // Jquery code to trigger sidebar on clicking hamburger icon
+  $(document).ready(function () {
+    // create sidebar and attach to menu open
+    $(".ui.sidebar").sidebar("attach events", ".toc.item");
+  });
+  
+</script>

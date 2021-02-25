@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <!-- Compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  
+    <!--Google fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/profile.css" />
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/efd71d3ed7.js" crossorigin="anonymous"></script>
+  
+    <link rel="icon" href="public/images/favicon.ico" type="image/x-icon">
+    <title>Jssconnect | Community</title>
+  
+    <style>
+      #navbar {
+        font-family: 'Cairo', sans-serif;
+        letter-spacing: 1px;
+        width: 100%;
+        font-weight: 600;
+        position: fixed;
+        top: 0px;
+        z-index: 200;
+        box-shadow: none;
+      }
+  
+      #navbar ul li a:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+  
+  
+      @media screen and (max-width: 1000px) {
+        #logoText {
+          display: none;
+        }
+      }
+  
+      #newsBtn {
+        border-radius: 15px;
+        padding: 7px;
+        font-size: 1.2rem;
+        border: 2px solid white;
+        cursor: pointer;
+        background-color: #434e52;
+        color: white;
+      }
+  
+      #newsBtn:hover {
+        filter: saturate(10);
+        /* background-color: aqua; */
+      }
+  
+      .socials:hover {
+        filter: saturate(3);
+      }
+  
+      .myFloatingBtn:hover {
+        transform: rotate(360deg);
+        transition: 0.7s linear all;
+      }
+  
+      footer{
+        margin-top: 100px !important;
+      }
+
+      .socials {
+        font-size: 2rem;
+        margin: 10px;
+      }
+  
+      #wave {
+        background-image: linear-gradient(to bottom, #2c7873, #2c7873);
+        background-position: left top;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        position: relative;
+        color: #FFFFFF;
+        height: 490px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+  
+      #wave:after {
+        content: "";
+        display: block;
+        position: absolute;
+        background: url(https://cdn1.byjus.com/byjusweb/img/home/svg/banner_mobile_wave_bottom.svg) no-repeat;
+        background-size: 100%;
+        background-position: left bottom;
+        left: 0;
+        bottom: -1px;
+        width: 100%;
+        height: inherit;
+        z-index: 10;
+      }
+  
+      @media (min-width: 768px) {
+        #wave:after {
+            
+          background: url(https://cdn1.byjus.com/byjusweb/img/home/svg/banner_wave_bottom.svg) no-repeat;
+          background-size: 100%;
+          background-position: left bottom;
+        }
+      }
+  
+      #wave img {
+        width: 30%;
+        margin-left: 10%;
+      }
+  
+      @media (min-width: 601px) and (max-width: 768px) {
+        #wave {
+          padding: 60px 10%;
+          height: 640px;  
+          padding-bottom: 30px;
+          margin: 0 auto;
+           margin-top:-100px;
+        }
+        #wave img {
+          width: 45%;
+          margin-left: 10%;
+        }
+    
+      }
+  
+      @media screen and (min-width: 320px)  and (max-width: 600px){
+  
+        #wave {
+          flex-direction: column;
+          padding: 60px 10%;
+          height: 625px;  
+          padding-bottom: 30px;
+          margin: 0 auto;
+        }
+  
+        #wave img {
+          width: 75%;
+          max-width: 270px;
+          display: block;
+          margin: 30px auto;
+      }
+      }
+  
+      .day {
+        display: none;
+      }
+  
+      .flip-card {
+        background-color: transparent;
+        cursor:pointer;
+        width: 265px;
+        height: 290px;
+        perspective: 1000px;
+      }
+      
+      .flip-card-inner {
+          /* position: relative; */
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          transition: transform 0.9s;
+        transform-style: preserve-3d;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.45);
+      }
+      
+      .flip-card:hover .flip-card-inner {
+          transform: rotateY(180deg);
+      }
+      
+      .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+      }
+      
+      .flip-card-front {
+          background-color: #f9fbfc;
+          color: black;
+      }
+      
+      .flip-card-back {
+          /* background-color: #2980b9; */
+          /* color: white; */
+          background-color: #f9fbfc;
+          transform: rotateY(180deg);
+      }
+      
+      #myContents{
+        margin-top: 75px;
+        display:flex;
+        justify-content:center;
+      }
+      
+      #allBox{
+        display: grid;
+        grid-gap: 2.5rem;
+        grid-template-columns: repeat(2,1fr); 
+      }
+      .mybox2 a:hover{
+        filter:saturate(4);
+        filter:contrast(4);
+      }
+      #filter{
+        margin: 0 7%;
+        margin-right: 40px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.45);
+        border-radius:10px;
+        text-align:center;
+        padding: 30px;
+        height: 470px;
+      }
+
+      #filter button{
+        margin-top: 45px;
+      }
+
+        #notFound{
+           width:400px;
+           margin-left:40%;
+           max-width:97vw;
+       }
+
+      @media (max-width:1000px){
+        #myContents{
+          flex-direction:column;
+        }
+        #allBox{
+          grid-template-columns: repeat(1,1fr);
+        }
+        #filter{
+          width: 70%;
+          max-width: 360px;
+          margin:0 auto;
+          margin-bottom:30px;
+        }
+        #notFound{
+           width:400px;
+           margin-left:2%;
+           max-width:97vw;
+       }
+        .flip-card{
+          margin:2% auto;
+        }
+
+      }
+    </style>
+  
+  </head>
+  
+  <body>
+  
+    <!--Navbar-->
+    <nav id="navbar" style="background-color: #2c7873">
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo"><img src="public/images/logo.png" alt=""
+            style="width: 75px;margin-top: 7px;filter: invert();" /></a>
+        <a href="/" class="brand-logo" id="logoText" style="margin-left: 75px; font-size: 2rem">JSS Connect</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="main-menu" class="right hide-on-med-and-down">
+  
+          <li><a href="/blogs">Blogs</a></li>
+          <li><a href="/resources">Resources</a></li>
+          <li><a href="/contribute">Contribute</a></li>
+          <li><a href="/community">Community</a></li>
+          <li><a href="/contact">Contact</a></li>
+          
+        </ul>
+      </div>
+    </nav>
+  
+    <ul class="sidenav" id="mobile-demo" style="background-color: #2c7873;">
+      <br />
+      <li><a href="/blogs" style=" color: white;">Blogs</a></li>
+      <li><a href="/resources" style=" color: white;">Resources</a></li>
+      <li><a href="/contribute" style=" color: white;">Contribute</a></li>
+      <li><a href="/community" style=" color: white;">Community</a></li>
+      <li><a href="/contact" style=" color: white;">Contact</a></li>
+       
+    </ul>
+  
+      <div id="wave">
+        <div style="margin-top: -10px;">
+        <h2>Our Community</h2>
+        <h5 style="margin-top:15px;">Find the tribe that matches your vibe.</h5>
+        </div>
+        <img
+          src="images/mycommunity.png"
+          alt="OurCommunity">
+      </div>
+
+      <div>
+      <a href="/joincommunity"><button class="btn waves-effect waves-light green" style="display:block;width:300px;margin:auto;margin-top: 60px;">Join our Community
+      <i class="material-icons right">people_outline</i>
+     </button>
+     </a>
+      </div>
+      <div id="myContents">
+      <div id="filter">
+      <img src="https://img.icons8.com/bubbles/2x/filter.png" alt="filter" style="width: 150px;margin:20px 0;">
+      <form action="/CommunityFilter" method="POST">
+      <select name="year">
+      <option value="1st year">1st year</options>
+      <option value="2nd year">2nd year</options>
+        <option value="3rd year">3rd year</options>
+        <option value="4th year">4th year</options>
+      </select>
+      <select name="department">
+        <option value="CS">CS</options>
+        <option value="IT">IT</options>
+        <option value="EE">EE</options>
+        <option value="ECE">ECE</options>
+        <option value="EEE">EEE</options>
+        <option value="CE">CE</options>
+        <option value="ME">ME</options>
+      </select>
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <i class="material-icons right">send</i>
+        </button>
+
+      </form>
+
+      </div>
+      
+      <% 
+      let myCommunity = "";
+      let myImage = "";
+      if (data != "") {
+        for (let i = 0; i < data.length; i++) {
+          
+          for (let j = 0; j < commData.length; j++) {
+            if (commData[j].email == data[i].email) {
+              myImage = commData[j].picture;
+            }
+          }
+          var myGithub = data[i].gHub;
+          var myLinkedIn = data[i].lIn;
+
+          if (myImage == "") {
+            myImage =
+              "https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg";
+          }
+          if (myGithub == "") {
+            myGithub = "https://github.com/";
+          }
+          if (myLinkedIn == "") {
+            myLinkedIn = "https://www.linkedin.com/";
+          }
+          myCommunity += ` <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="${myImage}" alt="Avatar" style="width:90px;height: 90px;margin-top: 10px;border-radius: 50%;">
+                <p style="text-align: center;font-size: 2rem;margin:10px 0;color:#2c7873;">${data[i].name}</p>
+                <p style="font-size:1.2rem;font-weight:400;">${data[i].department}</p>
+                <p style="font-weight:bold;color:#c36a2d;">${data[i].year}</p>
+              </div>
+              <div class="flip-card-back">
+                <h5 style="margin: 18% 10%;">${data[i].about}</h5>
+                <div class="mybox2" style="font-size:2.2rem;margin-top:20px;">
+                  <a href="${myGithub}" id="gHub" style="margin:0 15px;color:#52575d;"><i class="fa fa-github-square"></i></a>
+                  <a href="${myLinkedIn}" id="lIn" style="margin:0 15px;color:#07689f;"><i class="fa fa-linkedin-square"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>`;
+        }
+      } else {
+        myCommunity = `<img class="logo" src="images/notFound.svg" id="notFound" alt="My_Logo">`;
+      }
+      
+      %>
+       
+      <div id="allBox">
+        <%- myCommunity %>
+      </div>
+    </div>
+    <!-- Floating button -->
+  
+    <div class="fixed-action-btn" id="myFl">
+      <a class="btn-floating btn-large black myFloatingBtn">
+        <img src="public/images/logo.png" alt="" style="width: 60px;margin: 10px -1px;filter: invert();" />
+      </a>
+      <ul>
+        <li><a href="/contact#team" class="btn-floating green myFloat">Team</a>
+        </li>
+        <li><a href="https://jsswire.herokuapp.com" class="btn-floating red myFloat">
+  
+            <img src="public/images/share.png" alt="" style="width: 30px;margin: 6px -1px;filter: invert();" />
+          </a>
+        </li>
+  
+        <li style="margin: 12px 0px;">
+  
+          <a class="btn-floating btn-large black" id="brightness">
+            <i class="fa fa-moon-o" style="color: white;"></i>
+          </a>
+  
+        </li>
+  
+      </ul>
+    </div>
+  
+    <!-- Footer -->
+  
+    <!-- <footer class="page-footer" style="background-color: #1a1a1a;margin-top:36px;"> -->
+    <footer class="page-footer" style="background-color: #323232;margin-top:36px;">
+      <div class="container">
+        <div class="row">
+          <div style="text-align: center;margin: 75px 0;">
+            <h2>Let’s stay connected.</h2>
+            <form action="/newsletter" method="POST" style="margin: 30px 0px;">
+              <input type="email" name="email" required placeholder="Enter your Email"
+                style="width:40%;margin-right: 20px;color: white;" required>
+              <button id="newsBtn" type="submit">Subscribe</button>
+            </form>
+            <p>Sign up to receive our newsletter and exclusive updates.</p>
+            <div style="margin-top: 45px;">
+              <a href="https://www.facebook.com/JssAcademyOfTechnicalEducationnoida/" class="socials"
+                style="color: #1b6ca8;"><i class="fa fa-facebook-official"></i></a>
+              <a href="https://twitter.com/jssatenoida?lang=en" class="socials" style="color: #3282b8;"><i
+                  class="fa fa-twitter-square"></i></a>
+            </div>
+          </div>
+          <hr>
+          <div class="col l3 offset-l1 s6">
+            <h5 class="white-text">Quick Links</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="/blogs">Blogs</a></li>
+              <li><a class="grey-text text-lighten-3" href="/resources">Ebooks</a></li>
+              <li><a class="grey-text text-lighten-3" href="/usercontributions">User Contributions</a></li>
+              <li><a class="grey-text text-lighten-3" href="http://jsswire.herokuapp.com">Connect with wire</a></li>
+              <li><a class="grey-text text-lighten-3" href="/contribute">Contribute</a></li>
+            </ul>
+          </div>
+          <div class="col l3 offset-l1 s6">
+            <h5 class="white-text">Recent Blogs</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="/blogs">What to do when entering a college?</a></li>
+              <li><a class="grey-text text-lighten-3" href="/blogs">What I Learned My Freshman Year of College</a></li>
+              <li><a class="grey-text text-lighten-3" href="/blogs">A glimpse into Async JavaScript</a></li>
+            </ul>
+          </div>
+          <div class="col l3 offset-l1 s6">
+            <h5 class="white-text">Contact</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="/contact">Contact Us</a></li>
+              <li><a class="grey-text text-lighten-3" href="/contact#team">Our Team</a></li>
+              <li><a class="grey-text text-lighten-3" href="/feedback">Feedback</a></li>
+            </ul>
+          </div>
+  
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          <span>© &nbsp; jssconnect.herokuapp.com &nbsp; 2020</span>
+          <span style="margin-left: 20%;">JSSconnnect</span>
+          <a class="grey-text text-lighten-4 right" href="/privacy">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+  
+  
+    <script>
+      //  JS for floating buuton
+  
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems);
+      });
+  
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems);
+      });
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+      });
+  
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+      });
+  
+  
+      const wave = document.getElementById('wave');
+      const sidenav = document.querySelector('.sidenav');
+      const brightness = document.getElementById('brightness');
+      const foot = document.querySelector("footer");
+      const navbar = document.querySelector("nav");
+      let count = 0;
+      brightness.addEventListener("click", () => {
+  
+        if (count < 1) {
+          count = 1;
+          localStorage.setItem("theme", "dark");
+  
+        }
+        else if (count == 1) {
+          count = 0;
+          localStorage.setItem("theme", "light");
+        }
+        setTheme();
+      })
+  
+  
+      function setTheme() {
+  
+        const currentTheme = localStorage.getItem("theme");
+        if (currentTheme == "dark") {
+          navbar.style.backgroundColor = "#1b262c";
+          sidenav.style.backgroundColor = "#1b262c";
+          foot.style.backgroundColor = "#1b262c";
+          wave.style.backgroundImage = "linear-gradient(to bottom,#1b262c ,#1b262c)";
+          brightness.innerHTML = "<i class='fa fa-sun-o' style='color: goldenrod;'></i>"
+        }
+        else {
+          navbar.style.backgroundColor = "#2c7873";
+          sidenav.style.backgroundColor = "#2c7873";
+          wave.style.backgroundImage = "linear-gradient(to bottom,#2c7873 ,#2c7873)";
+          foot.style.backgroundColor = "#323232";
+          brightness.innerHTML = "<i class='fa fa-moon-o' style='color: white;'></i>"
+        }
+      }
+  
+    </script>
+  
+  
+  </body>
+  
+  </html>

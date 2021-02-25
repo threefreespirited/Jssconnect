@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Compiled and minified CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!--Google fonts-->
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/profile.css" />
+
+  <!--Font Awesome-->
+  <script src="https://kit.fontawesome.com/efd71d3ed7.js" crossorigin="anonymous"></script>
+
+  <link rel="icon" href="public/images/favicon.ico" type="image/x-icon">
+  <title>JSS Connect|User Contributions</title>
+  <style>
+    #navbar {
+      font-family: 'Cairo', sans-serif;
+      letter-spacing: 1px;
+      width: 100%;
+      font-weight: 600;
+      position: fixed;
+      top: 0px;
+      z-index: 200;
+      box-shadow: none;
+    }
+
+    #navbar ul li a:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+
+
+    @media screen and (max-width: 1000px) {
+      #logoText {
+        display: none;
+      }
+    }
+
+    #newsBtn {
+      border-radius: 15px;
+      padding: 7px;
+      font-size: 1.2rem;
+      border: 2px solid white;
+      cursor: pointer;
+      background-color: #434e52;
+      color: white;
+    }
+
+    #newsBtn:hover {
+      filter: saturate(10);
+      /* background-color: aqua; */
+    }
+
+    .myFloatingBtn:hover {
+      transform: rotate(360deg);
+      transition: 0.7s linear all;
+    }
+
+    .socials:hover {
+      filter: saturate(3);
+    }
+
+    #container {
+      margin-top: 60px;
+    }
+
+    .socials {
+      font-size: 2rem;
+      margin: 10px;
+    }
+
+    .box1 {
+      /* border: 2px solid black; */
+      width: 175px;
+      height: 175px;
+      margin-right: 150px;
+    }
+
+    .box2 {
+      width: 40%;
+    }
+
+    .box2 button {
+      margin-top: 45px;
+      width: 150px;
+    }
+
+    .box2 form {
+      width: 100%;
+    }
+
+    #wave {
+      background-image: linear-gradient(to bottom, #2c7873, #2c7873);
+      background-position: left top;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      position: relative;
+      color: #FFFFFF;
+      height: 600px;
+    }
+
+    #wave img {
+      width: 22%;
+      display: inline-block;
+      /* margin-left: auto; */
+      margin-left: 38%;
+      margin-top: 30px;
+      border-radius: 2%;
+    }
+
+    #wave p {
+      font-size: 1.5rem;
+      text-align: center;
+      padding: 30px 18%;
+    }
+
+    #wave:after {
+      content: "";
+      display: block;
+      position: absolute;
+      background: url(https://cdn1.byjus.com/byjusweb/img/home/svg/banner_mobile_wave_bottom.svg) no-repeat;
+      background-size: 100%;
+      background-position: left bottom;
+      left: 0;
+      bottom: -1px;
+      width: 100%;
+      height: inherit;
+      z-index: 10;
+    }
+
+    .year {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 75px 0px;
+    }
+
+    .box1 img {
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      #wave:after {
+        background: url(https://cdn1.byjus.com/byjusweb/img/home/svg/banner_wave_bottom.svg) no-repeat;
+        background-size: 100%;
+        background-position: left bottom;
+      }
+
+    }
+
+    @media screen and (max-width:1024px) {
+      #container {
+        margin-top: 55px;
+      }
+
+      #wave {
+        padding-top: 15px;
+      }
+
+      #wave img {
+        width: 70%;
+        max-width: 300px;
+        display: block;
+        margin: 30px auto;
+        margin-bottom: 0;
+      }
+
+      #wave h1 {
+        font-size: 3rem;
+      }
+
+      #wave p {
+        font-size: 1.3rem;
+        text-align: center;
+        padding: 30px 5%;
+      }
+
+      .year {
+        flex-direction: column;
+      }
+
+      .box1 img {
+        transform: translateX(55px);
+      }
+
+      .box2 {
+        margin-top: 15px;
+        width: 80%;
+      }
+    }
+
+    .day {
+      display: none;
+    }
+
+    select {
+      display: block !important;
+    }
+
+    @media (max-width: 400px) {
+      #wave {
+        height: 540px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav id="navbar" style="background-color: #2c7873">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo"><img src="public/images/logo.png" alt=""
+          style="width: 75px;margin-top: 7px;filter: invert();" /></a>
+      <a href="/" class="brand-logo" id="logoText" style="margin-left: 75px; font-size: 2rem">JSS Connect</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="main-menu" class="right hide-on-med-and-down">
+
+        <li><a href="/blogs">Blogs</a></li>
+        <li><a href="/resources">Resources</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/contribute">Contribute</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li class="tooltip" id="userProfile">
+          <span class="myChip" style="margin: 10px 30px;">
+            <img
+              src="https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg"
+              id="picture" alt="Person" width="96" height="96">
+            <span id="chipName">Guest</span>
+          </span>
+          <span class="tooltiptext">
+            <h6 id="username">Guest</h6>
+            <h6 id="email">guest@guest.com</h6>
+            <a class="waves-effect waves-light btn profBtn" style="margin: 10px auto;" id="logBtn"
+              href="/logout">Logout</a>
+            <a class="waves-effect waves-light btn profBtn" style="margin: 10px auto;" id="regBtn"
+              href="/register">Login/Register</a>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo" style="background-color: #2c7873;">
+    <br />
+    <li class="tooltip" id="userProfile">
+      <span class="myChip" style="margin: 10px 30px;">
+        <img
+          src="https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg"
+          id="picture1" alt="Person" width="96" height="96">
+        <span id="chipName1">Guest</span>
+      </span>
+      <span class="tooltiptext" id="t1">
+        <h6 id="username1">Guest</h6>
+        <h6 id="email1">guest@guest.com</h6>
+        <a class="waves-effect waves-light btn profBtn" style="margin: 10px auto;" id="logBtn1"
+          href="/logout">Logout</a>
+        <a class="waves-effect waves-light btn profBtn" style="margin: 10px auto;" id="regBtn1"
+          href="/register">Login/Register</a>
+      </span>
+    </li>
+    <li><a href="/blogs" style=" color: white;">Blogs</a></li>
+    <li><a href="/resources" style=" color: white;">Resources</a></li>
+    <li><a href="/contribute" style=" color: white;">Contribute</a></li>
+    <li><a href="/community" style=" color: white;">Community</a></li>
+    <li><a href="/contact" style=" color: white;">Contact</a></li>
+  </ul>
+
+
+  <div id="container">
+    <div id="wave">
+      <img src="https://open.edx.org/wp-content/uploads/2018/12/Community@2x.png" alt="">
+      <h1 style="text-align:center; margin:0; ">User Contributions</h1>
+      <p style="color: white;padding-top: 0;">E-Library for all users contributions</p>
+    </div>
+    <h3 style="margin-left: 17.1%;margin-top: 45px;margin-bottom: 60px;color: #5e6f64;">Filter the resources as you want
+    </h3>
+    <div class="year">
+      <div class="box1">
+        <img
+          src="https://www.une.edu/sites/default/files/styles/full_width/public/shared/first-year-plan_0.png?itok=975IQe8r"
+          alt="FIRST YEAR">
+
+      </div>
+      <div class="box2 input-field">
+        <form action="/ufirstyear" method="POST">
+
+          <select name="department" id="department">
+            <option value="CS/IT" disabled>Choose department</option>
+            <option value="CS/IT">CS / IT</option>
+            <option value="EE">EE</option>
+            <option value="ECE">ECE</option>
+            <option value="ME">ME</option>
+            <option value="cE">CE</option>
+            <option value="EEE">EEE</option>
+          </select>
+          <select name="subject" id="subject">
+            <option value="CS/IT" disabled>First year</option>
+            <option value="PPS">Programming for Problem Solving</option>
+            <option value="PE">Professional English</option>
+            <option value="BEE">Basic Electrical Engineering</option>
+            <option value="M1">Maths I</option>
+            <option value="M2">Maths II</option>
+            <option value="P">Physics</option>
+            <option value="C">Chemistry</option>
+          </select>
+          <button class="btn waves-effect waves-light" type="submit" name="action">Find
+            <i class="material-icons right">send</i>
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="year">
+      <div class="box1">
+        <img src="https://www.une.edu/sites/default/files/shared/second-year-plan_1.png" style="width: 100%;"
+          alt="SECOND YEAR">
+
+      </div>
+      <div class="box2 input-field">
+        <form action="/usecondyear" method="POST">
+
+          <select name="department" id="department">
+            <option value="CS/IT" disabled>Choose department</option>
+            <option value="CS/IT">CS / IT</option>
+            <option value="EE">EE</option>
+            <option value="ECE">ECE</option>
+            <option value="ME">ME</option>
+            <option value="cE">CE</option>
+            <option value="EEE">EEE</option>
+          </select>
+          <select name="subject" id="subject">
+            <option value="" disabled>3rd Sem</option>
+            <option value="DS">Data Structures</option>
+            <option value="DSTL">Discrete Structures and Theory of Logic</option>
+            <option value="ES">Engineering Science</option>
+            <option value="COA">Computer Organisation and Architecture</option>
+            <option value="TC">Technical Communication</option>
+            <option value="CSS">Computer System and Security</option>
+            <option value="PP">Python Programming</option>
+            <option value="M4">Maths IV</option>
+            <option value="UHV">Universal Human Values</option>
+            <option value="" disabled>4th Sem</option>
+            <option value="OS">Operating Systems</option>
+            <option value="TAFL">Theory of automata and Formal Languages</option>
+            <option value="FL">Formal Languages</option>
+            <option value="WD">Web Designing</option>
+          </select>
+          <button class="btn waves-effect waves-light" type="submit" name="action">Find
+            <i class="material-icons right">send</i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Floating button -->
+
+  <div class="fixed-action-btn" id="myFl">
+    <a class="btn-floating btn-large black myFloatingBtn">
+      <img src="public/images/logo.png" alt="" style="width: 60px;margin: 10px -1px;filter: invert();" />
+    </a>
+    <ul>
+      <li><a href="/contact#team" class="btn-floating green myFloat">Team</a>
+      </li>
+      <li><a href="http://jsswire.herokuapp.com" class="btn-floating red myFloat">
+
+          <img src="public/images/share.png" alt="" style="width: 30px;margin: 6px -1px;filter: invert();" />
+        </a>
+      </li>
+
+      <li style="margin: 12px 0px;">
+
+        <a class="btn-floating btn-large black" id="brightness">
+          <i class="fa fa-moon-o" style="color: white;"></i>
+        </a>
+
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- Footer -->
+
+  <!-- <footer class="page-footer" style="background-color: #1a1a1a;margin-top:36px;"> -->
+  <footer class="page-footer" style="background-color: #323232;margin-top:36px;">
+    <div class="container">
+      <div class="row">
+        <div style="text-align: center;margin: 75px 0;">
+          <h2>Let’s stay connected.</h2>
+          <form action="/newsletter" method="POST" style="margin: 30px 0px;">
+            <input type="email" name="email" required placeholder="Enter your Email"
+              style="width:40%;margin-right: 20px;color: white;" required>
+            <button id="newsBtn" type="submit">Subscribe</button>
+          </form>
+          <p>Sign up to receive our newsletter and exclusive updates.</p>
+          <div style="margin-top: 45px;">
+            <a href="https://www.facebook.com/JssAcademyOfTechnicalEducationnoida/" class="socials"
+              style="color: #1b6ca8;"><i class="fa fa-facebook-official"></i></a>
+            <a href="https://twitter.com/jssatenoida?lang=en" class="socials" style="color: #3282b8;"><i
+                class="fa fa-twitter-square"></i></a>
+          </div>
+        </div>
+        <hr>
+        <div class="col l3 offset-l1 s6">
+          <h5 class="white-text">Quick Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="/blogs">Blogs</a></li>
+            <li><a class="grey-text text-lighten-3" href="/resources">Ebooks</a></li>
+            <li><a class="grey-text text-lighten-3" href="/usercontributions">User Contributions</a></li>
+            <li><a class="grey-text text-lighten-3" href="http://jsswire.herokuapp.com">Connect with wire</a></li>
+            <li><a class="grey-text text-lighten-3" href="/contribute">Contribute</a></li>
+          </ul>
+        </div>
+        <div class="col l3 offset-l1 s6">
+          <h5 class="white-text">Recent Blogs</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="/blogs">What to do when entering a college?</a></li>
+            <li><a class="grey-text text-lighten-3" href="/blogs">What I Learned My Freshman Year of College</a></li>
+            <li><a class="grey-text text-lighten-3" href="/blogs">A glimpse into Async JavaScript</a></li>
+          </ul>
+        </div>
+        <div class="col l3 offset-l1 s6">
+          <h5 class="white-text">Contact</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="/contact">Contact Us</a></li>
+            <li><a class="grey-text text-lighten-3" href="/contact#team">Our Team</a></li>
+            <li><a class="grey-text text-lighten-3" href="/feedback">Feedback</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <span>© &nbsp; jssconnect.herokuapp.com &nbsp; 2020</span>
+        <span style="margin-left: 20%;">JSSconnnect</span>
+        <a class="grey-text text-lighten-4 right" href="/privacy">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <script>
+    // JS for floating buuton
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems);
+    });
+
+
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     var elems = document.querySelectorAll('select');
+    //     var instances = M.FormSelect.init(elems);
+    // });
+
+    const brightness = document.getElementById('brightness');
+    const wave = document.getElementById('wave');
+    const foot = document.querySelector("footer");
+    const navbar = document.querySelector('nav');
+    const sidenav = document.querySelector('.sidenav');
+
+    let count = 0;
+    brightness.addEventListener("click", () => {
+
+      if (count < 1) {
+        count = 1;
+        localStorage.setItem("theme", "dark");
+
+      }
+      else if (count == 1) {
+        count = 0;
+        localStorage.setItem("theme", "light");
+      }
+      setTheme();
+    })
+
+
+    function setTheme() {
+
+      const currentTheme = localStorage.getItem("theme");
+      if (currentTheme == "dark") {
+        navbar.style.backgroundColor = "#1b262c";
+        sidenav.style.backgroundColor = "#1b262c";
+        wave.style.backgroundImage = "linear-gradient(to bottom,#1b262c ,#1b262c)";
+        foot.style.backgroundColor = "#1b262c";
+        brightness.innerHTML = "<i class='fa fa-sun-o' style='color: goldenrod;'></i>"
+      }
+      else {
+        navbar.style.backgroundColor = "#2c7873";
+        sidenav.style.backgroundColor = "#2c7873";
+        wave.style.backgroundImage = "linear-gradient(to bottom,#2c7873 ,#2c7873)";
+        foot.style.backgroundColor = "#323232";
+        brightness.innerHTML = "<i class='fa fa-moon-o' style='color: white;'></i>"
+      }
+    }
+
+
+    // Js for profile
+
+
+    let name = document.getElementById("username");
+    let chipName = document.getElementById("chipName");
+    let mail = document.getElementById("email");
+    let picture = document.getElementById("picture");
+    let name1 = document.getElementById("username1");
+    let chipName1 = document.getElementById("chipName1");
+    let mail1 = document.getElementById("email1");
+    let picture1 = document.getElementById("picture1");
+    let logBtn = document.getElementById("logBtn");
+    logBtn.style.display = "none";
+    let logBtn1 = document.getElementById("logBtn1");
+    logBtn1.style.display = "none";
+    let regBtn = document.getElementById("regBtn");
+    let regBtn1 = document.getElementById("regBtn1");
+
+
+    // const query = window.location.search.substring(1)
+
+    const query = window.location.href.substr(0, window.location.href.indexOf('#'));
+    const token = query.split('email=')[1]
+    console.log(token);
+
+    name.innerHTML = "Guest";
+    mail.innerHTML = "guest@guest.com";
+    picture.setAttribute("src", "https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg");
+
+    loadDoc();
+
+    async function loadDoc() {
+      const res = await fetch(`/profile/${token}`);
+      const data = await res.json();
+
+      console.log(data);
+      console.log(data.length);
+      if (data != "") {
+        let username = data[0].name;
+        let email = data[0].email;
+        let img = data[0].picture;
+        localStorage.setItem("username", username);
+        localStorage.setItem("email", email);
+        localStorage.setItem("img", img);
+      }
+      displayProfile();
+    }
+
+    function displayProfile() {
+
+      let myUsername = localStorage.getItem("username")
+      let myEmail = localStorage.getItem("email");
+      let myImg = localStorage.getItem("img");
+
+
+      //   M.toast({ html: `Welcome ${myUsername} to Jssconnect` });
+      chipName.innerHTML = myUsername;
+      name.innerHTML = "<i class='material-icons' style='display:inline;margin:9px;'>verified_user</i>"
+      name.innerHTML += myUsername;
+      mail.innerHTML = "<i class='material-icons' style='display:inline;margin:9px;'>email</i>"
+      mail.innerHTML += myEmail;
+      picture.setAttribute("src", myImg);
+      logBtn.style.display = "block";
+      logBtn1.style.display = "block";
+      regBtn.style.display = "none";
+      regBtn1.style.display = "none";
+
+      chipName1.innerHTML = myUsername;
+      name1.innerHTML = "<i class='material-icons' style='display:inline;margin:9px;'>verified_user</i>"
+      name1.innerHTML += myUsername;
+      mail1.innerHTML = "<i class='material-icons' style='display:inline;margin:9px;'>email</i>"
+      mail1.innerHTML += myEmail;
+      picture1.setAttribute("src", myImg);
+    }
+
+
+  </script>
+
+
+</body>
+
+</html>

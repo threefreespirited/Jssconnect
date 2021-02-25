@@ -1,379 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Compiled and minified CSS -->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
+<%- include("header") %>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <div id="container">
 
-    <!--Google fonts-->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"> -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cairo&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/profile.css" />
 
-    <!--Font Awesome-->
-    <script
-      src="https://kit.fontawesome.com/efd71d3ed7.js"
-      crossorigin="anonymous"
-    ></script>
+    <!-- Top Section -->
+    <div id="blog-header" style="text-align:center;">
+      <h2 class="myAnnotation" style="width: fit-content;margin: 0 auto;font-size:3.4rem;">#BLOGS</h2>
 
-    <link rel="icon" href="public/images/favicon.ico" type="image/x-icon" />
-    <title>Jssconnect | Blogs</title>
-    <style>
-      #navbar {
-        letter-spacing: 1px;
-        font-family: "Cairo", sans-serif;
-        width: 100%;
-        font-weight: 600;
-        position: fixed;
-        top: 0px;
-        z-index: 200;
-        box-shadow: none;
-      }
-
-      #navbar ul li a:hover {
-        background-color: rgba(0, 0, 0, 0.3);
-      }
-
-      a {
-        color: black;
-      }
-
-      @media screen and (max-width: 1000px) {
-        #logoText {
-          display: none;
-        }
-      }
-
-      #blog {
-        background-image: linear-gradient(to bottom, #2c7873, #2c7873);
-        background-position: left top;
-        background-size: 100%;
-        background-repeat: no-repeat;
-        position: relative;
-        color: #ffffff;
-        height: 600px;
-        /* padding-top: 75px; */
-        display: flex;
-        /* justify-content: center; */
-        align-items: center;
-      }
-
-      #blog:after {
-        content: "";
-        display: block;
-        position: absolute;
-        background: url(https://cdn1.byjus.com/byjusweb/img/home/svg/banner_mobile_wave_bottom.svg)
-          no-repeat;
-        background-size: 100%;
-        background-position: left bottom;
-        left: 0;
-        bottom: -1px;
-        width: 100%;
-        height: inherit;
-        z-index: 10;
-      }
-
-      @media (min-width: 768px) {
-        #blog:after {
-          background: url(https://cdn1.byjus.com/byjusweb/img/home/svg/banner_wave_bottom.svg)
-            no-repeat;
-          background-size: 100%;
-          background-position: left bottom;
-        }
-      }
-
-      .blogBigBox,
-      #userBlogs {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        padding: 0 10%;
-        margin-top: 90px;
-      }
-
-      @media screen and (max-width: 1100px) {
-        .blogBigBox,
-        #userBlogs {
-          grid-template-columns: repeat(2, 1fr);
-          padding: 0 10%;
-        }
-      }
-
-      #blog img {
-        width: 75%;
-        margin-left: 21%;
-        display: block;
-      }
-
-      @media screen and (max-width: 750px) {
-        .blogBigBox,
-        #userBlogs {
-          grid-template-columns: repeat(1, 1fr);
-          padding: 0;
-        }
-
-        #blog {
-          flex-direction: column;
-          height: 750px;
-          padding-top: 45px;
-        }
-
-        #blog img {
-          max-width: 360px;
-          margin: auto;
-        }
-      }
-
-      .blogBox {
-        width: 275px;
-        height: 400px;
-        /* border: 2px solid blue; */
-        box-shadow: 0px 0px 10px 0px black;
-        border-radius: 6px;
-        margin: 45px auto;
-        background-color: rgba(0, 0, 0, 0.54);
-        position: relative;
-        color: white;
-        transition: 1s linear all;
-        padding: 20px;
-      }
-
-      .blogBox:hover {
-        cursor: pointer;
-        background-color: rgba(0, 0, 0, 0.7);
-      }
-
-      .two {
-        display: none;
-        margin-top: 110px;
-      }
-
-      .blogBox::before {
-        content: "";
-        position: absolute;
-        top: 0%;
-        left: 0%;
-        width: 100%;
-        height: 100%;
-        z-index: -10;
-      }
-
-      #blogOne::before {
-        background: url("https://static.vecteezy.com/system/resources/previews/000/464/809/non_2x/vector-businessman-confuse-between-pile-of-books.jpg")
-          no-repeat center center/cover;
-      }
-
-      #blogTwo::before {
-        background: url("https://miro.medium.com/max/1134/1*F4cJeBulfT9-Q1Eap-rO0Q.png")
-          no-repeat center center/cover;
-      }
-
-      #blogThree::before {
-        background: url("https://miro.medium.com/max/1134/1*F4cJeBulfT9-Q1Eap-rO0Q.png")
-          no-repeat center center/cover;
-      }
-
-      #blogFour::before {
-        background: url("https://cdn.pixabay.com/photo/2018/06/08/00/48/developer-3461405__340.png")
-          no-repeat center center/cover;
-      }
-
-      .socials {
-        font-size: 2rem;
-        margin: 10px;
-      }
-
-      #newsBtn {
-        border-radius: 15px;
-        padding: 7px;
-        font-size: 1.2rem;
-        border: 2px solid white;
-        cursor: pointer;
-        background-color: #434e52;
-        color: white;
-      }
-
-      #newsBtn:hover {
-        filter: saturate(10);
-        /* background-color: aqua; */
-      }
-
-      .socials:hover {
-        filter: saturate(3);
-      }
-
-      .myFloatingBtn:hover {
-        transform: rotate(360deg);
-        transition: 0.7s linear all;
-      }
-
-      .day {
-        display: none;
-      }
-    </style>
-  </head>
-
-  <body>
-    <nav id="navbar" style="background-color: #2c7873">
-      <div class="nav-wrapper">
-        <a href="/" class="brand-logo"
-          ><img
-            src="public/images/logo.png"
-            alt=""
-            style="width: 75px; margin-top: 7px; filter: invert()"
-        /></a>
-        <a
-          href="/"
-          class="brand-logo"
-          id="logoText"
-          style="margin-left: 75px; font-size: 2rem"
-          >JSS Connect</a
-        >
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"
-          ><i class="material-icons">menu</i></a
-        >
-        <ul id="main-menu" class="right hide-on-med-and-down">
-          <li><a href="/blogs">Blogs</a></li>
-          <li><a href="/resources">Resources</a></li>
-          <li><a href="/community">Community</a></li>
-          <li><a href="/contribute">Contribute</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li class="tooltip" id="userProfile">
-            <span class="myChip" style="margin: 10px 30px">
-              <img
-                src="https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg"
-                id="picture"
-                alt="Person"
-                width="96"
-                height="96"
-              />
-              <span id="chipName">Guest</span>
-            </span>
-            <span class="tooltiptext">
-              <h6 id="username">Guest</h6>
-              <h6 id="email">guest@guest.com</h6>
-              <a
-                class="waves-effect waves-light btn profBtn"
-                style="margin: 10px auto"
-                id="logBtn"
-                href="/logout"
-                >Logout</a
-              >
-              <a
-                class="waves-effect waves-light btn profBtn"
-                style="margin: 10px auto"
-                id="regBtn"
-                href="/register"
-                >Login/Register</a
-              >
-            </span>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <ul class="sidenav" id="mobile-demo" style="background-color: #2c7873">
-      <br />
-      <li class="tooltip" id="userProfile">
-        <span class="myChip" style="margin: 10px 30px">
-          <img
-            src="https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg"
-            id="picture1"
-            alt="Person"
-            width="96"
-            height="96"
-          />
-          <span id="chipName1">Guest</span>
-        </span>
-        <span class="tooltiptext" id="t1">
-          <h6 id="username1">Guest</h6>
-          <h6 id="email1">guest@guest.com</h6>
-          <a
-            class="waves-effect waves-light btn profBtn"
-            style="margin: 10px auto"
-            id="logBtn1"
-            href="/logout"
-            >Logout</a
-          >
-          <a
-            class="waves-effect waves-light btn profBtn"
-            style="margin: 10px auto"
-            id="regBtn1"
-            href="/register"
-            >Login/Register</a
-          >
-        </span>
-      </li>
-      <li><a href="/blogs" style="color: white">Blogs</a></li>
-      <li><a href="/resources" style="color: white">Resources</a></li>
-      <li><a href="/contribute" style="color: white">Contribute</a></li>
-      <li><a href="/community" style="color: white">Community</a></li>
-      <li><a href="/contact" style="color: white">Contact</a></li>
-    </ul>
-
-    <div id="container">
-      <div id="blog">
-        <div>
-          <img
-            src="https://attachment.eab.com/wp-content/uploads/2019/08/Blogs-dark-blue-background-1-e1565281744123.png"
-            alt="BLOGS"
-          />
+      <h3 style="text-align:center;font-size:1.8rem;">Read the best and knowledge enriched blogs here</h3>
+      <div class="label-container">
+        <div class="ui label">
+          #Javascript
         </div>
-        <div style="padding: 6%">
-          <h1 style="text-align: center">Blogs</h1>
-          <h5 style="text-align: center">
-            Read the best and knowledge enriched blogs here.
-          </h5>
+        <div class="ui label">
+          #Programming
+        </div>
+        <div class="ui label">
+          #Git/Github
+        </div>
+        <div class="ui label">
+          #WebDevelopment
+        </div>
+        <div class="ui label">
+          #ReactJS
+        </div>
+        <div class="ui label">
+          #NodeJS
+        </div>
+        <div class="ui label">
+          #SelfImprovement
+        </div>
+        <div class="ui label">
+          #LifeLessons
+        </div>
+        <div class="ui label">
+          #Design
+        </div>
+        <div class="ui label">
+          #Python
+        </div>
+        <div class="ui label">
+          #Coding
+        </div>
+        <div class="ui label">
+          #DataScience
+        </div>
+        <div class="ui label">
+          #Technology
         </div>
       </div>
+    </div>
 
-      <% let length; if(data){ dataLength = data.length; } let myBoxes = ``;
-      for(let i=0 ; i<dataLength;i++){ if(data[i].permission == "true") {
-      myBoxes += `
-      <style>
-        #myBlogBox${i}::before{
-            background: url('${data[i].imageurl}') center center/cover;
-        }
+
+    <% let length; if(data) { dataLength=data.length; } let myBoxes=``; for(let i=0 ; i<dataLength;i++) {
+      if(data[i].permission=="true" ) { myBoxes +=` <style>
+      #myBlogBox${i}::before{
+      background: url('${data[i].imageurl}') center center/cover;
+      }
       </style>
 
       <div class="blogBox" id="myBlogBox${i}">
         <div class="one">
           <p>${data[i].date}</p>
           <h3 style="margin-top: 135px; font-size: 2.2rem">${data[i].title}</h3>
-          <p style="position: absolute; bottom: 15px">${data[i].authorName}</p>
+          <p style="position: absolute; bottom: 30px">${data[i].authorName}</p>
         </div>
         <div class="two">
-          <p>${data[i].shortDescription}</p>
+          <p style="font-size: 1.1rem;width: 90%;position:absolute;top: 60px;left: 15px;">${data[i].shortDescription}
+          </p>
           <form action="/myblog" method="post">
-            <input
-              type="number"
-              value="${i}"
-              name="uniqueId"
-              style="display: none"
-            />
-            <button
-              read="5"
-              class="waves-effect waves-light btn readBtn"
-              style="margin-top: 45px"
-              type="submit"
-            >
+            <input type="number" value="${i}" name="uniqueId" style="display: none" />
+            <button read="5" class="ui inverted violet button btn readBtn"
+              style="position:absolute;bottom: 40px;left: 30px;" type="submit">
               Read More
             </button>
           </form>
@@ -382,192 +80,26 @@
 
       `; } } %>
 
-      <div id="userBlogs"><%- myBoxes %></div>
+      <div id="userBlogs">
+        <%- myBoxes %>
+      </div>
 
-      <div style="text-align: center; font-size: 1.5rem; margin-top: 60px">
-        <p style="color: #f0a500">Want to see more.</p>
+      <div style="text-align: center; font-size: 1.5rem; margin-top: 60px;margin-bottom:80px;">
+        <p style="color: #7510F7">Want to see more.</p>
         <p style="color: #393e46">Why don't write one?</p>
-        <a href="/userblog"
-          ><button
-            class="btn waves-effect waves-light"
-            type="submit"
-            name="action"
-          >
-            Add one
-            <i class="material-icons right">add</i>
-          </button></a
-        >
+        <a href="/userblog"><button class="ui big inverted violet button" type="submit" name="action">
+            Add one &nbsp;&nbsp;&nbsp;
+            <i class="fa fa-plus"></i>
+          </button></a>
+
       </div>
-    </div>
+  </div>
 
-    <!-- Floating button -->
 
-    <div class="fixed-action-btn" id="myFl">
-      <a class="btn-floating btn-large black myFloatingBtn">
-        <img
-          src="public/images/logo.png"
-          alt=""
-          style="width: 60px; margin: 10px -1px; filter: invert()"
-        />
-      </a>
-      <ul>
-        <li>
-          <a href="/contact#team" class="btn-floating green myFloat">Team</a>
-        </li>
-        <li>
-          <a
-            href="http://jsswire.herokuapp.com"
-            class="btn-floating red myFloat"
-          >
-            <img
-              src="public/images/share.png"
-              alt=""
-              style="width: 30px; margin: 6px -1px; filter: invert()"
-            />
-          </a>
-        </li>
 
-        <li style="margin: 12px 0px">
-          <a class="btn-floating btn-large black" id="brightness">
-            <i class="fa fa-moon-o" style="color: white"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Footer -->
-
-    <!-- <footer class="page-footer" style="background-color: #1a1a1a;margin-top:36px;"> -->
-    <footer
-      class="page-footer"
-      style="background-color: #323232; margin-top: 36px"
-    >
-      <div class="container">
-        <div class="row">
-          <div style="text-align: center; margin: 75px 0">
-            <h2>Let’s stay connected.</h2>
-            <form action="/newsletter" method="POST" style="margin: 30px 0px">
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="Enter your Email"
-                style="width: 40%; margin-right: 20px; color: white"
-                required
-              />
-              <button id="newsBtn" type="submit">Subscribe</button>
-            </form>
-            <p>Sign up to receive our newsletter and exclusive updates.</p>
-            <div style="margin-top: 45px">
-              <a
-                href="https://www.facebook.com/JssAcademyOfTechnicalEducationnoida/"
-                class="socials"
-                style="color: #1b6ca8"
-                ><i class="fa fa-facebook-official"></i
-              ></a>
-              <a
-                href="https://twitter.com/jssatenoida?lang=en"
-                class="socials"
-                style="color: #3282b8"
-                ><i class="fa fa-twitter-square"></i
-              ></a>
-            </div>
-          </div>
-          <hr />
-          <div class="col l3 offset-l1 s6">
-            <h5 class="white-text">Quick Links</h5>
-            <ul>
-              <li>
-                <a class="grey-text text-lighten-3" href="/blogs">Blogs</a>
-              </li>
-              <li>
-                <a class="grey-text text-lighten-3" href="/resources">Ebooks</a>
-              </li>
-              <li>
-                <a class="grey-text text-lighten-3" href="/usercontributions"
-                  >User Contributions</a
-                >
-              </li>
-              <li>
-                <a
-                  class="grey-text text-lighten-3"
-                  href="http://jsswire.herokuapp.com"
-                  >Connect with wire</a
-                >
-              </li>
-              <li>
-                <a class="grey-text text-lighten-3" href="/contribute"
-                  >Contribute</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="col l3 offset-l1 s6">
-            <h5 class="white-text">Recent Blogs</h5>
-            <ul>
-              <li>
-                <a class="grey-text text-lighten-3" href="/blogs"
-                  >What to do when entering a college?</a
-                >
-              </li>
-              <li>
-                <a class="grey-text text-lighten-3" href="/blogs"
-                  >What I Learned My Freshman Year of College</a
-                >
-              </li>
-              <li>
-                <a class="grey-text text-lighten-3" href="/blogs"
-                  >A glimpse into Async JavaScript</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="col l3 offset-l1 s6">
-            <h5 class="white-text">Contact</h5>
-            <ul>
-              <li>
-                <a class="grey-text text-lighten-3" href="/contact"
-                  >Contact Us</a
-                >
-              </li>
-              <li>
-                <a class="grey-text text-lighten-3" href="/contact#team"
-                  >Our Team</a
-                >
-              </li>
-              <li>
-                <a class="grey-text text-lighten-3" href="/feedback"
-                  >Feedback</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-          <span>© &nbsp; jssconnect.herokuapp.com &nbsp; 2020</span>
-          <span style="margin-left: 20%">JSSconnnect</span>
-          <a class="grey-text text-lighten-4 right" href="/privacy"
-            >Privacy Policy</a
-          >
-        </div>
-      </div>
-    </footer>
+  <%- include("footer") %>
 
     <script>
-      // JS for floating buuton
-
-      document.addEventListener("DOMContentLoaded", function () {
-        var elems = document.querySelectorAll(".fixed-action-btn");
-        var instances = M.FloatingActionButton.init(elems);
-      });
-
-      document.addEventListener("DOMContentLoaded", function () {
-        var elems = document.querySelectorAll(".sidenav");
-        var instances = M.Sidenav.init(elems);
-      });
-
       let readBtn = document.querySelectorAll(".readBtn");
 
       for (let i = 0; i < readBtn.length; i++) {
@@ -593,124 +125,34 @@
         });
       }
 
-      /* Pasted Code*/
+    </script>
 
-      const brightness = document.getElementById("brightness");
-      const blog = document.getElementById("blog");
-      const foot = document.querySelector("footer");
-      const navbar = document.querySelector("nav");
-      const sidenav = document.querySelector(".sidenav");
-
-      let count = 0;
-      brightness.addEventListener("click", () => {
-        if (count < 1) {
-          count = 1;
-          localStorage.setItem("theme", "dark");
-        } else if (count == 1) {
-          count = 0;
-          localStorage.setItem("theme", "light");
-        }
-        setTheme();
-      });
-
-      function setTheme() {
-        const currentTheme = localStorage.getItem("theme");
-        if (currentTheme == "dark") {
-          foot.style.backgroundColor = "#1b262c";
-          blog.style.backgroundImage =
-            "linear-gradient(to bottom, #1b262c, #1b262c)";
-          navbar.style.backgroundColor = "#1b262c";
-          brightness.innerHTML =
-            "<i class='fa fa-sun-o' style='color: goldenrod;'></i>";
-          sidenav.style.backgroundColor = "#1b262c";
+    <script>
+      myFunction();
+      window.onscroll = function () { myFunction() };
+      function myFunction() {
+        if (document.body.scrollTop > 390 || document.documentElement.scrollTop > 390) {
+          document.getElementById("followingMenu").style.display = "flex";
+          // document.getElementById("topMenu").style.display = "none";
         } else {
-          foot.style.backgroundColor = "#323232";
-          blog.style.backgroundImage =
-            "linear-gradient(to bottom, #2c7873, #2c7873)";
-          navbar.style.backgroundColor = "#2c7873";
-          sidenav.style.backgroundColor = "#2c7873";
-          brightness.innerHTML =
-            "<i class='fa fa-moon-o' style='color: white;'></i>";
+          // document.getElementById("topMenu").style.display = "flex";
+          document.getElementById("followingMenu").style.display = "none";
         }
       }
 
-      // Js for profile
+    </script>
 
-      let name = document.getElementById("username");
-      let chipName = document.getElementById("chipName");
-      let mail = document.getElementById("email");
-      let picture = document.getElementById("picture");
-      let name1 = document.getElementById("username1");
-      let chipName1 = document.getElementById("chipName1");
-      let mail1 = document.getElementById("email1");
-      let picture1 = document.getElementById("picture1");
-      let logBtn = document.getElementById("logBtn");
-      let regBtn = document.getElementById("regBtn");
-      logBtn.style.display = "none";
-      let logBtn1 = document.getElementById("logBtn1");
-      let regBtn1 = document.getElementById("regBtn1");
-      logBtn1.style.display = "none";
+    <!-- annotation -->
 
-      const query = window.location.search.substring(1);
-
-      // const query = window.location.href.substr(0, window.location.href.indexOf('#'));
-      const token = query.split("email=")[1];
-      console.log(token);
-
-      name.innerHTML = "Guest";
-      mail.innerHTML = "guest@guest.com";
-      picture.setAttribute(
-        "src",
-        "https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg"
-      );
-
-      loadDoc();
-
-      async function loadDoc() {
-        const res = await fetch(`/profile/${token}`);
-        const data = await res.json();
-
-        console.log(data);
-        console.log(data.length);
-        if (data != "") {
-          let username = data[0].name;
-          let email = data[0].email;
-          let img = data[0].picture;
-          localStorage.setItem("username", username);
-          localStorage.setItem("email", email);
-          localStorage.setItem("img", img);
-        }
-        displayProfile();
-      }
-
-      function displayProfile() {
-        let myUsername = localStorage.getItem("username");
-        let myEmail = localStorage.getItem("email");
-        let myImg = localStorage.getItem("img");
-
-        //   M.toast({ html: `Welcome ${myUsername} to Jssconnect` });
-        chipName.innerHTML = myUsername;
-        name.innerHTML =
-          "<i class='material-icons' style='display:inline;margin:9px;'>verified_user</i>";
-        name.innerHTML += myUsername;
-        mail.innerHTML =
-          "<i class='material-icons' style='display:inline;margin:9px;'>email</i>";
-        mail.innerHTML += myEmail;
-        picture.setAttribute("src", myImg);
-        logBtn.style.display = "block";
-        logBtn1.style.display = "block";
-        regBtn.style.display = "none";
-        regBtn1.style.display = "none";
-
-        chipName1.innerHTML = myUsername;
-        name1.innerHTML =
-          "<i class='material-icons' style='display:inline;margin:9px;'>verified_user</i>";
-        name1.innerHTML += myUsername;
-        mail1.innerHTML =
-          "<i class='material-icons' style='display:inline;margin:9px;'>email</i>";
-        mail1.innerHTML += myEmail;
-        picture1.setAttribute("src", myImg);
+    <script type="module">
+      import { annotate } from 'https://unpkg.com/rough-notation?module';
+      const e = document.querySelectorAll('.myAnnotation');
+      for (let i = 0; i < e.length; i++) {
+        const annotation = annotate(e[i], { type: 'underline', color: 'yellow' });
+        annotation.show();
       }
     </script>
-  </body>
-</html>
+
+    </body>
+
+    </html>

@@ -1,0 +1,426 @@
+<%- include("header") %>
+
+  <style>
+    /* */
+    body {
+      font-family: 'Source Sans Pro', Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    #timeline {
+      display: flex;
+      background-color: #031625;
+    }
+
+    #timeline:hover .tl-item {
+      width: 23.3333%;
+    }
+
+    .tl-item {
+      transform: translate3d(0, 0, 0);
+      position: relative;
+      width: 25%;
+      height: 100vh;
+      min-height: 600px;
+      color: #fff;
+      overflow: hidden;
+      transition: width 0.5s ease;
+    }
+
+    .tl-item:before,
+    .tl-item:after {
+      transform: translate3d(0, 0, 0);
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .tl-item:after {
+      background: rgba(3, 22, 37, 0.85);
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .tl-item:before {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 75%);
+      z-index: 1;
+      opacity: 0;
+      transform: translate3d(0, 0, 0) translateY(50%);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .tl-item:hover {
+      width: 30% !important;
+    }
+
+    .tl-item:hover:after {
+      opacity: 0.6;
+    }
+
+    .tl-item:hover:before {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) translateY(0);
+      transition: opacity 1s ease, transform 1s ease 0.25s;
+    }
+
+    .tl-item:hover .tl-content {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.75s ease 0.5s;
+      top: 15%;
+    }
+
+    .tl-item:hover .tl-bg {
+      filter: grayscale(0);
+    }
+
+    .tl-content {
+      transform: translate3d(0, 0, 0) translateY(25px);
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin: 0 1.618em;
+      top: 55%;
+      opacity: 0;
+      height: 75%;
+      overflow-y: auto;
+    }
+
+    .tl-content h1 {
+      font-family: 'Pathway Gothic One', Helvetica Neue, Helvetica, Arial, sans-serif;
+      text-transform: uppercase;
+      color: #1779cf;
+      font-size: 1.44rem;
+      font-weight: normal;
+    }
+
+    .tl-year {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      z-index: 1;
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #fff;
+      transition: all 0.75s ease 0.5s;
+    }
+
+    .tl-year p {
+      font-family: 'Pathway Gothic One', Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 1.728rem;
+    }
+
+    .tl-item:hover .tl-year {
+
+      top: 7%;
+      left: 50%;
+    }
+
+    .tl-bg {
+      transform: translate3d(0, 0, 0);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-size: cover;
+      background-position: center center;
+      transition: filter 0.5s ease;
+      filter: grayscale(100%);
+    }
+  </style>
+
+
+<% 
+          let myCommunity1 = "";
+          let myCommunity2 = "";
+          let myCommunity3 = "";
+          let myCommunity4 = "";
+          let myImage = "";
+          if (data != "") {
+            for (let i = 0; i < data.length; i++) {
+              
+              for (let j = 0; j < commData.length; j++) {
+                if (commData[j].email == data[i].email) {
+                  myImage = commData[j].picture;
+                }
+              }
+              var myGithub = data[i].gHub;
+              var myLinkedIn = data[i].lIn;
+    
+              if (myImage == "") {
+                myImage =
+                  "https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg";
+              }
+              if (myGithub == "") {
+                myGithub = "https://github.com/";
+              }
+              if (myLinkedIn == "") {
+                myLinkedIn = "https://www.linkedin.com/";
+              }
+              if(data[i].year == '1st year'){
+              myCommunity1 +=  `
+              <!-- card starts -->
+              <div
+                style="position: relative;display: flex;align-items: center;width: 100%;padding: 20px 10px;background-color: white;margin: 30px 0;">
+      
+                <div class="ui dropdown" style="position: absolute;top: 10px;right: 10px;">
+                  <i class="ellipsis vertical icon" style="color: #6e6e6e;margin-left: 10px; margin-right: 0"></i>
+      
+                  <div class="left menu" style="background-color: #6e6e6e;">
+                    <a href="/profile" class="item" style="color: white;">View Profile</a>
+                  </div>
+                </div>
+      
+                <img src="${myImage}"
+                  style="width: 120px;height: 120px;margin: auto 0px;" alt="">
+      
+                <div style="margin-left: 10px;">
+      
+                  <h3 style="color: #6e6e6e;border-bottom: 2px solid #6e6e6e;width: fit-content;">${data[i].name}</h3>
+                  <h4 style="color: black;width: fit-content;text-align: left;margin-top: 10px;">${data[i].about}</h4>
+                  <h4 style="color: black;width: fit-content;text-align: left;margin-top: 10px;border-bottom: 2px solid #6e6e6e;">${data[i].department}</h4>
+      
+                  <!-- <div id="socials" style="text-align: left;">
+                    <a href="${myGithub}" class="ui circular black github icon button">
+                      <i class="github icon" style="font-size: 1.2rem;"></i>
+                    </a>
+                    <a href="${myLinkedIn}" class="ui circular linkedin icon button">
+                      <i class="linkedin icon" style="font-size: 1.2rem;"></i>
+                    </a>
+                  </div> -->
+      
+                </div>
+              </div>
+              <!-- card ends -->
+              `;
+            }
+
+            else if(data[i].year == '2nd year'){
+              myCommunity2 +=  `
+              <!-- card starts -->
+              <div
+                style="position: relative;display: flex;align-items: center;width: 100%;padding: 20px 10px;background-color: white;margin: 30px 0;">
+      
+                <div class="ui dropdown" style="position: absolute;top: 10px;right: 10px;">
+                  <i class="ellipsis vertical icon" style="color: #6e6e6e;margin-left: 10px; margin-right: 0"></i>
+      
+                  <div class="left menu" style="background-color: #6e6e6e;">
+                    <a href="/profile" class="item" style="color: white;">View Profile</a>
+                  </div>
+                </div>
+      
+                <img src="${myImage}"
+                  style="width: 120px;height: 120px;margin: auto 0px;" alt="">
+      
+                <div style="margin-left: 10px;">
+      
+                  <h3 style="color: #6e6e6e;border-bottom: 2px solid #6e6e6e;width: fit-content;">${data[i].name}</h3>
+                  <h4 style="color: black;width: fit-content;text-align: left;margin-top: 10px;">${data[i].about}</h4>
+                  <h4 style="color: black;width: fit-content;text-align: left;margin-top: 10px;border-bottom: 2px solid #6e6e6e;">${data[i].department}</h4>
+      
+                  <!-- <div id="socials" style="text-align: left;">
+                    <a href="${myGithub}" class="ui circular black github icon button">
+                      <i class="github icon" style="font-size: 1.2rem;"></i>
+                    </a>
+                    <a href="${myLinkedIn}" class="ui circular linkedin icon button">
+                      <i class="linkedin icon" style="font-size: 1.2rem;"></i>
+                    </a>
+                  </div> -->
+      
+                </div>
+              </div>
+              <!-- card ends -->
+              `;
+            }
+            else if(data[i].year == '3rd year'){
+              myCommunity3 +=  `
+              <!-- card starts -->
+              <div
+                style="position: relative;display: flex;align-items: center;width: 100%;padding: 20px 10px;background-color: white;margin: 30px 0;">
+      
+                <div class="ui dropdown" style="position: absolute;top: 10px;right: 10px;">
+                  <i class="ellipsis vertical icon" style="color: #6e6e6e;margin-left: 10px; margin-right: 0"></i>
+      
+                  <div class="left menu" style="background-color: #6e6e6e;">
+                    <a href="/profile" class="item" style="color: white;">View Profile</a>
+                  </div>
+                </div>
+      
+                <img src="${myImage}"
+                  style="width: 120px;height: 120px;margin: auto 0px;" alt="">
+      
+                <div style="margin-left: 10px;">
+      
+                  <h3 style="color: #6e6e6e;border-bottom: 2px solid #6e6e6e;width: fit-content;">${data[i].name}</h3>
+                  <h4 style="color: black;width: fit-content;text-align: left;margin-top: 10px;">${data[i].about}</h4>
+                  <h4 style="color: black;width: fit-content;text-align: left;margin-top: 10px;border-bottom: 2px solid #6e6e6e;">${data[i].department}</h4>
+      
+                  <!-- <div id="socials" style="text-align: left;">
+                    <a href="${myGithub}" class="ui circular black github icon button">
+                      <i class="github icon" style="font-size: 1.2rem;"></i>
+                    </a>
+                    <a href="${myLinkedIn}" class="ui circular linkedin icon button">
+                      <i class="linkedin icon" style="font-size: 1.2rem;"></i>
+                    </a>
+                  </div> -->
+      
+                </div>
+              </div>
+              <!-- card ends -->
+              `;
+            }
+
+            else if(data[i].year == '4th year'){
+              myCommunity4 +=  `
+              <!-- card starts -->
+              <div
+                style="position: relative;display: flex;align-items: center;width: 100%;padding: 20px 10px;background-color: white;margin: 30px 0;">
+      
+                <div class="ui dropdown" style="position: absolute;top: 10px;right: 10px;">
+                  <i class="ellipsis vertical icon" style="color: #6e6e6e;margin-left: 10px; margin-right: 0"></i>
+      
+                  <div class="left menu" style="background-color: #6e6e6e;">
+                    <a href="/profile" class="item" style="color: white;">View Profile</a>
+                  </div>
+                </div>
+      
+                <img src="${myImage}"
+                  style="width: 120px;height: 120px;margin: auto 0px;" alt="">
+      
+                <div style="margin-left: 10px;">
+      
+                  <h3 style="color: #6e6e6e;border-bottom: 2px solid #6e6e6e;width: fit-content;">${data[i].name}</h3>
+                  <h4 style="color: black;width: fit-content;text-align: left;margin-top: 10px;">${data[i].about}</h4>
+                  <h4 style="color: black;width: fit-content;text-align: left;margin-top: 10px;border-bottom: 2px solid #6e6e6e;">${data[i].department}</h4>
+      
+                  <!-- <div id="socials" style="text-align: left;">
+                    <a href="${myGithub}" class="ui circular black github icon button">
+                      <i class="github icon" style="font-size: 1.2rem;"></i>
+                    </a>
+                    <a href="${myLinkedIn}" class="ui circular linkedin icon button">
+                      <i class="linkedin icon" style="font-size: 1.2rem;"></i>
+                    </a>
+                  </div> -->
+      
+                </div>
+              </div>
+              <!-- card ends -->
+              `;
+            }
+
+            }
+          } else {
+            myCommunity1 = `<img class="logo" src="images/notFound.svg" id="notFound" alt="My_Logo">`;
+          }
+          
+          %>
+
+
+  <section id="timeline">
+
+    <div class="tl-item">
+
+      <div class="tl-bg" style="background-image: url(images/firstYear.jpg)"></div>
+
+      <div class="tl-year">
+        <p class="f2 heading--sanSerif">First Year</p>
+      </div>
+
+      <div class="tl-content">
+        <h1
+          style="width: fit-content;margin: 20px auto;margin-bottom: 40px;padding: 0 10px;color: gold;border-left: 2px solid white;border-right: 2px solid white;">
+          Freshermen</h1>
+
+
+        <%- myCommunity1 || "<img src='images/notFound.png' style='margin-bottom: 15px;width: 45%' alt='notFound'> <p>No one here yet!</p>"  %>
+
+          <!-- user1 starts -->
+          <!-- <div class="ui move left reveal" style="margin: auto;height:80px;">
+          <div class="visible content"
+            style="display: flex;align-items:center;justify-content:center;background-color: white;width:100%;height: 100%;">
+            <div style="width:80px;height:80px;margin-right:30px;">
+              <img src="https://quiztown.herokuapp.com/images/categories.jpg" class="ui small image"
+                style="border-radius:100%;width:80px;height:80px;">
+
+            </div>
+            <div class="name" style="margin-left: 30px;">
+
+              <h2 style="color: red;">Aman Dixit</h2>
+            </div>
+          </div>
+          <div class="hidden content"
+            style=" background-color: #141c3a;color : white;padding: 40px 10%;padding-top: 45px;position: relative;">
+
+            <p>Web Developer Sophomore</p>
+
+          </div>
+        </div> -->
+          <!-- card1 ends -->
+
+      </div>
+    </div>
+
+    <div class="tl-item">
+
+      <div class="tl-bg" style="background-image: url(images/secondYear.jpg)"></div>
+
+      <div class="tl-year">
+        <p class="f2 heading--sanSerif">Second Year</p>
+      </div>
+
+      <div class="tl-content">
+        <h1
+          style="width: fit-content;margin: 20px auto;margin-bottom: 40px;padding: 0 10px;color: gold;border-left: 2px solid white;border-right: 2px solid white;">
+          Sophomore</h1>
+
+        <%- myCommunity2  || "<img src='images/notFound.png' style='margin-bottom: 15px;width: 45%' alt='notFound'> <p>No one here yet!</p>" %>
+      </div>
+
+    </div>
+    
+    <div class="tl-item">
+
+      <div class="tl-bg" style="background-image: url(images/thirdYear.jpg)"></div>
+
+      <div class="tl-year">
+        <p class="f2 heading--sanSerif">Third Year</p>
+      </div>
+
+      <div class="tl-content">
+        <h1
+          style="width: fit-content;margin: 20px auto;margin-bottom: 40px;padding: 0 10px;color: gold;border-left: 2px solid white;border-right: 2px solid white;">
+          Pre-final Year</h1>
+          
+        <%- myCommunity3  || "<img src='images/notFound.png' style='margin-bottom: 15px;width: 45%' alt='notFound'> <p>No one here yet!</p>" %>
+      </div>
+
+    </div>
+
+    <div class="tl-item">
+
+      <div class="tl-bg" style="background-image: url(images/finalYear.jpg)"></div>
+
+      <div class="tl-year">
+        <p class="f2 heading--sanSerif">Fourth Year</p>
+      </div>
+
+      <div class="tl-content">
+        <h1
+          style="width: fit-content;margin: 20px auto;margin-bottom: 40px;padding: 0 10px;color: gold;border-left: 2px solid white;border-right: 2px solid white;">
+          Final Year</h1>
+          
+        <%- myCommunity4 || "<img src='images/notFound.png' style='margin-bottom: 15px;width: 45%' alt='notFound'> <p>No one here yet!</p>" %>
+      </div>
+
+    </div>
+
+
+
+  </section>
+
+  <%- include("footer") %>

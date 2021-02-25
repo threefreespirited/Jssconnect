@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSS Connect</title>
+
+  <!-- You MUST include jQuery before Fomantic -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+</head>
+
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href=<%=cssName %> >
+
+<!-- Magic Min CSS-->
+<!-- Animation library css -->
+<link rel="stylesheet" href="css/magic.min.css">
+<!-- Font Awesome CDN -->
+<script src="https://kit.fontawesome.com/efd71d3ed7.js" crossorigin="anonymous"></script>
+
+<!-- carausel -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+<!-- google fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+<style>
+  .toc.item {
+    font-size: 1.3rem !important;
+    display: none !important;
+  }
+  @media only screen and (max-width: 700px) {
+    .logo {
+      margin: 6px auto !important;
+    }
+    .toc.item {
+      display: block !important;
+    }
+    #topMenu .right.menu,
+    #followingMenu .right.menu {
+      display: none !important;
+    }
+    .logoText {
+      display: none;
+    }
+  }
+</style>
+
+<body>
+
+  <% let dropdownMenu="" ; if(email !="" ){ dropdownMenu=` <div class="menu" style="margin-right: 10px;">
+    <a href="/profile" class="item">Profile</a>
+    <a href="/logout" class="item">Logout</a>
+    </div>
+    `;
+    }
+    else if(email == ""){
+    dropdownMenu = `
+    <div class="menu" style="margin-right: 10px;">
+      <a href="/login" class="item">Login/Register</a>
+    </div>
+    `;
+    }
+    %>
+
+    <div class="ui tabular menu" id="topMenu" style="
+        width: 100%;
+        z-index: 100;
+        font-size: 1.1rem;
+        border: none;
+        ">
+      <a class="toc item left">
+        <i class="sidebar icon"></i>
+      </a>
+      <a href="/" class="item logo">
+        <img src="images/logo.png" alt="logo" style="width: 60px;" />
+        <strong class="logoText" style="font-size: 1.5rem;">Jssconnect</strong>
+      </a>
+      <div class="right menu">
+        <a href="/blogs" class="item ui large secondary tertiary button">
+          Blogs
+        </a>
+        <a href="/resources" class="item ui large secondary tertiary button">
+          Resources
+        </a>
+        <a href="/community" class="item ui large secondary tertiary button">
+          Community
+        </a>
+        <a href="/contribute" class="item ui large secondary tertiary button">
+          Contribute
+        </a>
+        <div class="ui dropdown">
+          <a id="userLabel" style="height: fit-content;margin: 6px 10px;" class="ui basic image big label">
+            <img src=<%=picture %> />
+            <%= username %>
+              <i class="dropdown icon" style="margin-left: 10px; margin-right: 0"></i>
+          </a>
+          <%- dropdownMenu %>
+        </div>
+
+        <!-- hidden trigger -->
+        <a class="toc item right" style="visibility: hidden;">
+          <i class="sidebar icon"></i>
+        </a>
+
+      </div>
+    </div>
+    <!-- following navbar -->
+    <div class="ui tabular menu" id="followingMenu" style="
+        margin: 0;
+        background-color: white;
+        box-shadow: 0px 0px 2px 0px #999999 !important;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+        font-size: 1.1rem;
+        border: none;
+        ">
+      <a class="toc item left">
+        <i class="sidebar icon"></i>
+      </a>
+      <a href="/" class="logo">
+        <img src="images/logo.png" alt="logo" style="width: 60px;" />
+        <strong class="logoText" style="font-size: 1.5rem;">Jssconnect</strong>
+      </a>
+      <div class="right menu">
+        <a href="/blogs" class="item ui large secondary tertiary button">
+          Blogs
+        </a>
+        <a href="/resources" class="item ui large secondary tertiary button">
+          Resources
+        </a>
+        <a href="/community" class="item ui large secondary tertiary button">
+          Community
+        </a>
+        <a href="/contribute" class="item ui large secondary tertiary button">
+          Contribute
+        </a>
+        <div class="ui dropdown">
+          <a id="userLabel" style="height: fit-content;margin: 6px 10px;" class="ui basic image big label">
+            <img src=<%=picture %> />
+            <%= username %>
+              <i class="dropdown icon" style="margin-left: 10px; margin-right: 0"></i>
+          </a>
+          <%- dropdownMenu %>
+        </div>
+
+        <!-- hidden trigger -->
+        <a class="toc item right" style="visibility: hidden;">
+          <i class="sidebar icon"></i>
+        </a>
+      </div>
+
+    </div>
+    </div>
+
+
+    <!-- Sidebar Menu -->
+    <div class="ui vertical sidebar menu">
+      <a class="item" href="/blogs">Blogs</a>
+      <a class="item" href="/resources">Resources</a>
+      <a class="item" href="/community">Community</a>
+      <a class="item" href="/contribute">Contribute</a>
+      <div class="ui dropdown">
+        <a id="userLabel" style="height: fit-content;margin: 6px 10px;" class="ui basic image big label">
+          <img src=<%=picture %> />
+          <%= username %>
+            <i class="dropdown icon" style="margin-left: 10px; margin-right: 0"></i>
+        </a>
+        <%- dropdownMenu %>
+      </div>
+    </div>
+    <!-- Sidebar menu ends  -->

@@ -1,0 +1,261 @@
+<%- include("header") %>
+  <style>
+    #container {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #goal{
+      position: relative;
+      width: 100%;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7);
+      height: 540px;
+    }
+    
+    #goal::before{
+      content: "";
+      position: absolute;
+      background: url('https://jssaten.ac.in/images/JSS-Main-Gate.jpg') center center/cover no-repeat;
+      width: 100%;
+      height: 100%;
+      top: 0;left: 0;
+      z-index: -10;
+    }
+
+    #container form {
+      width: 45%;
+    }
+
+    a {
+      color: black;
+    }
+
+    @media screen and (max-width: 600px) {
+      #container {
+        padding: 10px;
+        text-align: center;
+      }
+
+      #container form {
+        width: 81%;
+      }
+    }
+
+    @media screen and (max-width: 1000px) {
+      #logoText {
+        display: none;
+      }
+    }
+
+    .memberName:hover {
+      color: orangered;
+    }
+
+  
+
+    .socials {
+      font-size: 2rem;
+      margin: 10px;
+    }
+
+    #newsBtn {
+      border-radius: 15px;
+      padding: 7px;
+      font-size: 1.2rem;
+      border: 2px solid white;
+      cursor: pointer;
+      background-color: #434e52;
+      color: white;
+    }
+
+    #newsBtn:hover {
+      filter: saturate(10);
+      /* background-color: aqua; */
+    }
+
+    .socials:hover {
+      filter: saturate(3);
+    }
+
+    .myFloatingBtn:hover {
+      transform: rotate(360deg);
+      transition: 0.7s linear all;
+    }
+
+    .day {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <!--Goal-->
+  <div id="goal" style="padding: 145px 0;text-align: center;">
+    <h1 class="e3" style="font-size: 3rem;width: fit-content;margin: 20px auto;padding: 10px;">Our <strong>Goal.</strong> </h1>
+    <h5 class="myAnnotation" style="font-size: 1.3rem;width: fit-content;margin: 20px auto;">We strive to provide you the best study material and other resources at one place.
+    </h5>
+    <h5 class="myAnnotation" style="font-size: 1.3rem;width: fit-content;margin: 20px auto;">Save your precious time to do what needs to be done at the earliest.</h5>
+    <h5 class="myAnnotation" style="font-size: 1.3rem;width: fit-content;margin: 20px auto;">We spent our time finding the best material so you don't have to worry.</h5>
+  </div>
+
+
+
+  <!-- <h1>Wanna help us?</h1>
+  <h5 style="text-align: center;">Helping others is Cool.</h5>
+  <h5 style="text-align: center;">You can help us by writing blogs,submitting previous year papers or just by sharing the word.</h5> -->
+
+
+
+  <section class="team-section">
+    <div class="container">
+      <div class="row">
+        <div class="section-title">
+          <h1 class="e3" style="width: fit-content;margin: 70px auto;padding-bottom: 0;">Reach Our Team</h1>
+        </div>
+      </div> 
+
+      <div class="row myRow">
+        <div class="team-box">
+          <div class="inner-box">
+            <div class="image-box">
+              <div class="img">
+                <img
+                  src="https://avatars.githubusercontent.com/u/47037260?s=460&u=0b2383e03b05a42a226f6745a8266d296877fd85&v=4"
+                  alt="team" />
+                <!-- social icons -->
+                <div class="social-icons">
+                  <a href="https://www.linkedin.com/in/harshit-sharma-945i/"><span class="fa fa-linkedin"></span></a>
+                  <a href="https://github.com/me-harshit"><span class="fa fa-github"></span></a>
+                </div>
+                <!-- social icons -->
+              </div>
+            </div>
+            <div class="caption-text">
+              <a href="https://me-harshit.netlify.app" class="memberName">
+                <h4>Harshit Sharma</h4>
+              </a>
+              <p>Web Developer</p>
+            </div>
+          </div>
+        </div>
+        <div class="team-box">
+          <div class="inner-box">
+            <div class="image-box">
+              <div class="img">
+                <img
+                  src="https://avatars.githubusercontent.com/u/56161073?s=460&u=358ac3d51652ec4611c62281871f76fa5a23bc77&v=4"
+                  alt="team" />
+                <!-- social icons -->
+                <div class="social-icons">
+                  <a href="https://www.linkedin.com/in/aman-dixit-b371b9190/"><span class="fa fa-linkedin"></span></a>
+                  <a href="https://github.com/AMAN123956"><span class="fa fa-github"></span></a>
+
+                </div>
+                <!-- social icons -->
+              </div>
+            </div>
+            <div class="caption-text">
+              <a href="https://www.amandixit.me" class="memberName">
+                <h4>Aman Dixit</h4>
+              </a>
+              <p>Web Developer</p>
+            </div>
+          </div>
+        </div>
+        <div class="team-box">
+          <div class="inner-box">
+            <div class="image-box">
+              <div class="img">
+                <img
+                  src="https://avatars2.githubusercontent.com/u/55016909?s=460&u=14884ea015783d7247d9791120475ccd799d3963&v=4"
+                  alt="team" />
+                <!-- social icons -->
+                <div class="social-icons">
+                  <a href="https://www.linkedin.com/in/sujal-gupta-776ba9190/"><span class="fa fa-linkedin"></span></a>
+                  <a href="https://github.com/heysujal"><span class="fa fa-github"></span></a>
+
+                </div>
+                <!-- social icons -->
+              </div>
+            </div>
+            <div class="caption-text">
+              <a href="https://heysujal.github.io/portfolio/" class="memberName">
+                <h4>Sujal Gupta</h4>
+              </a>
+              <p>Web Developer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <div id="container">
+
+    <h2 style="color: #17706e;font-size: 2.4rem;">Drop us a line</h2>
+    <h3 style="color: #84a9ac;font-size: 1.5rem;">We would be glad to hear from you.</h3>
+
+    <form class="ui form" action="/contact" method="POST">
+
+      <div class="field">
+        <label>Your Name</label>
+        <input type="text" name="name" placeholder="Your name" value="<%= username %>" readonly required>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="guest@email.com" required>
+      </div>
+      <div class="field">
+        <label>Phone</label>
+        <input type="number" name="phone" placeholder="Your Phone" required>
+         </div>
+         <div class="field">
+          <label>Message</label>
+          <textarea name="message" cols="30" rows="10" placeholder="Your Message"></textarea>
+           </div>
+      
+      <button style="margin-bottom: 20px;" type="submit" class="ui positive right labeled icon button">
+        Yep, Let's talk
+        <i class="checkmark icon"></i>
+      </button>
+
+    </form>
+
+    <p>OR</p>
+
+      <a href="mailto: threefreespirited@gmail.com" style="margin: 45px;" type="submit" class="ui violet inverted right labeled icon button">
+        Mail Us
+        <i class="checkmark icon"></i>
+      </a>
+
+
+
+  </div>
+
+
+  <%- include("footer") %>
+
+
+</body>
+  <script type="module">
+    import { annotate, annotationGroup  } from 'https://unpkg.com/rough-notation?module';
+    const e = document.querySelectorAll('.myAnnotation');
+    const e3 = document.querySelectorAll('.e3')
+      setTimeout(() => {
+      for (let i = 0; i < e.length; i++) {
+        const annotation = annotate(e[i], { type: 'underline', multiline: true ,color: 'yellow' });
+        const a3 = annotate(e3[i], { type: 'box',color: 'crimson' });
+        const ag = annotationGroup([a3, annotation]);
+        ag.show();
+      }
+      }, 1000);
+  </script>
+
+</html>

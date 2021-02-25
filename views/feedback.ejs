@@ -1,0 +1,280 @@
+<%- include("header") %>
+
+    <style>
+        a {
+            color: black;
+        }
+
+        .emojis {
+            font-size: 3rem;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+
+        #on:hover,
+        #on1:hover {
+            color: crimson;
+        }
+
+        #tw:hover,
+        #tw1:hover {
+            color: yellow;
+        }
+
+        #th:hover,
+        #th1:hover {
+            color: yellowgreen;
+        }
+
+        #fo:hover,
+        #fo1:hover {
+            color: green;
+        }
+
+        #container {
+            border: 2px solid black;
+            margin: 60px auto;
+            width: 54%;
+            padding: 20px 7%;
+            background-color: whitesmoke;
+        }
+
+        @media screen and (max-width: 700px) {
+            #container {
+                width: 90%;
+            }
+        }
+
+        #container form {
+            width: 420px;
+            max-width: 90%;
+        }
+
+        #container p {
+            font-size: 1.8rem;
+        }
+
+        #container form a {
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        .numbers {
+            color: white;
+        }
+
+        #container textarea {
+            min-width: 300px;
+            max-width: 450px;
+            width: 90%;
+        }
+    </style>
+
+
+    <div id="container" style="margin-top: 100px;">
+
+        <h1>Feedback</h1>
+        <form class="ui form" action="/feedback" method="POST">
+
+            <div class="field">
+                <label>Your Name</label>
+                <input type="text" name="name" placeholder="Your name" value="<%= username %>" readonly disabled
+                    required>
+            </div>
+            <div class="field">
+                <label>Your Email</label>
+                <input type="email" name="email" placeholder="Your Email" value="<%= email %>" readonly disabled
+                    required>
+            </div>
+            <div class="field">
+                <label>Any Suggestions?</label>
+                <textarea name="review" id="review" style="width: 100%;"
+                    placeholder="Any Suggestions? Write here."></textarea>
+            </div>
+            <div class="field">
+                <label>How was your overall experience?</label>
+                <input type="number" name="overall" id="overall" value="4" style="display: none;">
+                <i class="circular frown outline big icon emojis" id="on1"></i>
+                <i class="circular meh outline big icon emojis" id="th1"></i>
+                <i class="circular smile outline big icon emojis" id="fo1"></i>
+            </div>
+
+            <div class="field">
+                <label>How was our content quality?</label>
+                <input type="number" name="quality" id="quality" value="4" style="display: none;">
+                
+                <i class="circular frown outline big icon emojis" id="on1"></i>
+                <i class="circular meh outline big icon emojis" id="th1"></i>
+                <i class="circular smile outline big icon emojis" id="fo1"></i>
+            </div>
+
+            <div class="field">
+                <label>How likely you are to recommend our website to others?</label>
+                <input type="number" name="recommend" id="recommend" value="5" style="display: none;">
+
+                <a class="circular ui secondary icon button numbers" style="color: white;">1</a>
+                <a class="circular ui secondary icon button numbers" style="color: white;">2</a>
+                <a class="circular ui secondary icon button numbers" style="color: white;">3</a>
+                <a class="circular ui secondary icon button numbers" style="color: white;">4</a>
+                <a class="circular ui secondary icon button numbers" style="color: white;">5</a>
+            </div>
+
+            <div class="field">
+                <label>How much visually appealing do you find our site?</label>
+
+                <input type="number" name="appealing" id="appealing" value="5" style="display: none;">
+                <a class="circular ui secondary icon button numbers" style="color: white;">1</a>
+                <a class="circular ui secondary icon button numbers" style="color: white;">2</a>
+                <a class="circular ui secondary icon button numbers" style="color: white;">3</a>
+                <a class="circular ui secondary icon button numbers" style="color: white;">4</a>
+                <a class="circular ui secondary icon button numbers" style="color: white;">5</a>
+            </div>
+
+            <!-- <a type="submit" class="waves-effect btn-large waves-light btn">Submit<i class="fa fa-share-square-o" style="margin-left: 15px;"></i></a>      -->
+            <button style="margin: 30px 0;" type="submit" class="ui positive right labeled icon button">
+                Save, I'm done
+                <i class="checkmark icon"></i>
+            </button>
+        </form>
+
+    </div>
+
+    <%- include("footer") %>
+
+        <script>
+            /* Feedback Form */
+            const emoji = document.querySelectorAll(".emojis");
+            const button = document.querySelectorAll(".numbers");
+            const overall = document.querySelectorAll("#overall");
+            const quality = document.querySelectorAll("#quality");
+            const recommend = document.querySelectorAll("#recommend");
+            const appealing = document.querySelectorAll("#appealing");
+
+            emoji[0].addEventListener('click', () => {
+                emoji[0].style.color = "red";
+                emoji[1].style.color = "black";
+                emoji[2].style.color = "black";
+                overall.setAttribute("value", "1");
+            });
+            emoji[1].addEventListener('click', () => {
+                emoji[1].style.color = "yellowgreen";
+                emoji[0].style.color = "black";
+                emoji[2].style.color = "black";
+                overall.setAttribute("value", "2");
+            });
+            emoji[2].addEventListener('click', () => {
+                emoji[2].style.color = "green";
+                emoji[0].style.color = "black";
+                emoji[1].style.color = "black";
+                overall.setAttribute("value", "3");
+            });
+
+            emoji[3].addEventListener('click', () => {
+                emoji[3].style.color = "red";
+                emoji[5].style.color = "black";
+                emoji[4].style.color = "black";
+                quality.setAttribute("value", "1");
+            });
+            emoji[4].addEventListener('click', () => {
+                emoji[4].style.color = "yellowgreen";
+                emoji[5].style.color = "black";
+                emoji[3].style.color = "black";
+                quality.setAttribute("value", "2");
+            });
+            emoji[5].addEventListener('click', () => {
+                emoji[5].style.color = "green";
+                emoji[4].style.color = "black";
+                emoji[3].style.color = "black";
+                quality.setAttribute("value", "3");
+            });
+
+
+            // button 
+            button[0].addEventListener('click', () => {
+                button[0].style.backgroundColor = "red";
+                button[1].style.backgroundColor = "blue";
+                button[2].style.backgroundColor = "blue";
+                button[3].style.backgroundColor = "blue";
+                button[4].style.backgroundColor = "blue";
+                recommend.setAttribute("value", "1");
+            });
+            button[1].addEventListener('click', () => {
+                button[1].style.backgroundColor = "red";
+                button[0].style.backgroundColor = "blue";
+                button[2].style.backgroundColor = "blue";
+                button[3].style.backgroundColor = "blue";
+                button[4].style.backgroundColor = "blue";
+                recommend.setAttribute("value", "2");
+            });
+            button[2].addEventListener('click', () => {
+                button[2].style.backgroundColor = "red";
+                button[1].style.backgroundColor = "blue";
+                button[0].style.backgroundColor = "blue";
+                button[3].style.backgroundColor = "blue";
+                button[4].style.backgroundColor = "blue";
+                recommend.setAttribute("value", "3");
+            });
+            button[3].addEventListener('click', () => {
+                button[3].style.backgroundColor = "red";
+                button[1].style.backgroundColor = "blue";
+                button[2].style.backgroundColor = "blue";
+                button[0].style.backgroundColor = "blue";
+                button[4].style.backgroundColor = "blue";
+                recommend.setAttribute("value", "4");
+            });
+            button[4].addEventListener('click', () => {
+                button[4].style.backgroundColor = "red";
+                button[1].style.backgroundColor = "blue";
+                button[2].style.backgroundColor = "blue";
+                button[3].style.backgroundColor = "blue";
+                button[0].style.backgroundColor = "blue";
+                recommend.setAttribute("value", "5");
+            });
+
+            button[5].addEventListener('click', () => {
+                button[5].style.backgroundColor = "red";
+                button[6].style.backgroundColor = "blue";
+                button[7].style.backgroundColor = "blue";
+                button[8].style.backgroundColor = "blue";
+                button[9].style.backgroundColor = "blue";
+                appealing.setAttribute("value", "1");
+            });
+            button[6].addEventListener('click', () => {
+                button[6].style.backgroundColor = "red";
+                button[5].style.backgroundColor = "blue";
+                button[7].style.backgroundColor = "blue";
+                button[8].style.backgroundColor = "blue";
+                button[9].style.backgroundColor = "blue";
+                appealing.setAttribute("value", "2");
+            });
+            button[7].addEventListener('click', () => {
+                button[7].style.backgroundColor = "red";
+                button[6].style.backgroundColor = "blue";
+                button[5].style.backgroundColor = "blue";
+                button[8].style.backgroundColor = "blue";
+                button[9].style.backgroundColor = "blue";
+                appealing.setAttribute("value", "3");
+            });
+            button[8].addEventListener('click', () => {
+                button[8].style.backgroundColor = "red";
+                button[6].style.backgroundColor = "blue";
+                button[7].style.backgroundColor = "blue";
+                button[5].style.backgroundColor = "blue";
+                button[9].style.backgroundColor = "blue";
+                appealing.setAttribute("value", "4");
+            });
+            button[9].addEventListener('click', () => {
+                button[9].style.backgroundColor = "red";
+                button[6].style.backgroundColor = "blue";
+                button[7].style.backgroundColor = "blue";
+                button[8].style.backgroundColor = "blue";
+                button[5].style.backgroundColor = "blue";
+                appealing.setAttribute("value", "5");
+            });
+
+        </script>
+
+
+        </body>
+
+        </html>

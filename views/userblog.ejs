@@ -1,0 +1,259 @@
+<%- include("header") %>
+
+  <style>
+    #blog-container {
+      display: flex;
+      justify-content: center;
+      padding: 6% 3%;
+    }
+
+    #preview-container {
+      padding: 30px 4%;
+      width: 50%;
+      min-height: 75vh;
+      /* max-height: 120vh; */
+      /* border-radius: 7px; */
+      border: 2px solid;
+      /* box-shadow: 0px 0px 4px 0px #6e6e6e; */
+      overflow-y: auto;
+    }
+
+    #blogForm {
+      width: 50%;
+      padding: 30px;
+      border: 2px solid;
+      border-right: none;
+      min-height: 100vh;
+    }
+    #container form {
+      width: 90%;
+      margin: 0px auto;
+    }
+
+    @media screen and (max-width: 1000px) {
+      #blog-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #container form {
+        width: 82%;
+        margin: 60px auto;
+      }
+
+      #preview-container {
+        margin-top: 45px;
+        width: 90%;
+        max-width: 510px;
+        min-height: 90vh;
+        max-height: none;
+        overflow-y: none;
+      }
+    }
+
+  </style>
+
+
+  <div id="container">
+
+    <!-- Top Section -->
+    <div id="blog-header" style="text-align:center;">
+      <h2 class="myAnnotation" style="width: fit-content;margin: 0 auto;font-size:3.4rem;">#YOUR OWN BLOG</h2>
+
+      <h3 style="text-align:center;font-size:1.8rem;">Feel free to write your heart down or write your tech experience
+      </h3>
+      <p style="font-size: 1.2rem;">
+        You may use either HTML or even
+        simple text to write the blog.</p>
+
+      <div class="label-container">
+        <div class="ui label">
+          #Javascript
+        </div>
+        <div class="ui label">
+          #Programming
+        </div>
+        <div class="ui red label">
+          #SelfImprovement
+        </div>
+        <div class="ui red label">
+          #LifeLessons
+        </div>
+        <div class="ui red label">
+          #CollegeHacks
+        </div>
+        <div class="ui label">
+          #Git/Github
+        </div>
+        <div class="ui label">
+          #WebDevelopment
+        </div>
+        <div class="ui label">
+          #ReactJS
+        </div>
+        <div class="ui label">
+          #NodeJS
+        </div>
+        <div class="ui label">
+          #Design
+        </div>
+        <div class="ui label">
+          #Python
+        </div>
+        <div class="ui label">
+          #DataScience
+        </div>
+        <div class="ui label">
+          #Technology
+        </div>
+      </div>
+    </div>
+
+    <h2 style="color: #056674; text-align: center; margin: 20px auto;margin-top: 100px;">
+      Enter your blog details and preview it live
+    </h2>
+    <div id="blog-container">
+      <div id="blogForm">
+        <form class="ui form" action="/userblog" method="POST">
+          <div class="field">
+            <div class="field">
+              <label>Today's Date</label>
+              <input type="text" name="date" id="todaysDate" readonly required />
+            </div>
+            <label>Blog Title</label>
+            <input type="text" name="title" id="title" minlength="10" maxlength="150" placeholder="Enter Title of Blog"
+              maxlength="250" required />
+          </div>
+          
+          <div class="field">
+            <label>Social URL</label>
+            <input type="text" name="socialurl" id="socialurl" placeholder="Enter any social url of yours  (https://)"
+            required />
+          </div>
+
+          <div class="field">
+            <label>Image URL</label>
+            <input type="text" name="imageurl" id="url"
+              placeholder="Enter image url (image must be related to Blog Title)" required />
+          </div>
+
+          <div class="field">
+            <label>Short Description</label>
+            <input type="text" name="shortDescription" id="shortDescription"
+              placeholder="Enter short Description of Blog" required />
+          </div>
+
+          <div class="field">
+            <label>Content</label>
+            <textarea name="blogcontent" style="margin-top: 15px;" id="blogcontent" placeholder="Enter Blog Content"
+              style="min-height: 400px;resize: vertical;" maxlength="6000" required></textarea>
+          </div>
+
+          <button id="submit-btn" style="margin: 30px 0;" type="submit"
+            class="ui positive right labeled icon button">
+            Yep, Let's Add
+            <i class="checkmark icon"></i>
+          </button>
+
+          <!-- hidden useful inputs -->
+          <input type="text" name="permission" value="false" id="permission" required style="display:none;" />
+          <input type="text" name="authorName" value="" id="authorName" required style="display:none;" />
+          <input type="text" name="authorImg" value="" id="authorImg" required style="display:none;" />
+
+        </form>
+      </div>
+
+      <div id="preview-container">
+        <!--Preview-->
+
+        <div>
+          
+          <div id="top-section">
+            <p id="preview-date">DD/MM/YYYY</p>
+            <h2 id="preview-title">Your title goes here</h2>
+            <a id="previewSocialUrl" href="#">
+              <div class="ui image label">
+                <img src="<%= picture %>" alt="Contact Person">
+                <span><%= username %></span>
+              </div>
+            </a>
+          </div>
+
+          <div id="mid-section">
+            <img id="preview-contentImg" src="images/blogPrev.jpg"
+              style="width: 60%; display: block; margin: 20px auto" alt="contentImg" />
+
+            <p style="font-size: 1.3rem;word-wrap: break-word;" id="preview-content">
+              Your content goes here...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include("footer") %>
+
+    <script>
+      /* Preview Logic */
+      const previewTitle = document.getElementById("preview-title");
+      const previewDate = document.getElementById("preview-date");
+      const previewContent = document.getElementById("preview-content");
+      const previewContentImg = document.getElementById("preview-contentImg");
+      const previewSocialUrl = document.getElementById("previewSocialUrl");
+      const previewAuthorImg = document.getElementById("preview-authorImg");
+      const previewAuthorName = document.getElementById("preview-authorName");
+      /* Preview Input */
+
+      const inputUrl = document.getElementById("url");
+      const inputSocialUrl = document.getElementById("socialurl");
+      const inputTitle = document.getElementById("title");
+      const inputDate = document.getElementById("todaysDate");
+      const inputShortDescription = document.getElementById("shortDescription");
+      const inputBlogContent = document.getElementById("blogcontent");
+      const submitBtn = document.getElementById("submit-btn");
+      // const myAuthorName = document.getElementById("authorName");
+      // const myAuthorImg = document.getElementById("authorImg");
+
+      // let myAuthorUsername = localStorage.getItem("username");
+      // let myAuthorImage = localStorage.getItem("img");
+
+      // console.log(myAuthorImage);
+      // console.log(myAuthorUsername);
+      // myAuthorName.value = myAuthorUsername;
+      // myAuthorImg.value = myAuthorImage;
+
+      // previewAuthorImg.setAttribute("src", myAuthorImage);
+      // previewAuthorName.innerHTML = myAuthorUsername;
+
+      inputTitle.addEventListener("keyup", () => {
+        console.log(inputTitle.value);
+        previewTitle.innerHTML = inputTitle.value;
+        let preImage = `https://source.unsplash.com/daily/1600x900/?${inputTitle.value}`;
+        previewContentImg.setAttribute("src", preImage);
+        inputUrl.value = preImage;
+      });
+
+      inputUrl.addEventListener("keyup", () => {
+        previewContentImg.setAttribute("src", inputUrl.value);
+      });
+      inputSocialUrl.addEventListener("keyup", () => {
+        previewSocialUrl.setAttribute("href", inputSocialUrl.value);
+      });
+      inputBlogContent.addEventListener("keyup", () => {
+        previewContent.innerHTML = inputBlogContent.value;
+      });
+      
+      let todaysDate = document.getElementById("todaysDate");
+      var date = new Date().getDate();
+      var month = new Date().getMonth() + 1;
+      var year = new Date().getFullYear();
+      todaysDate.setAttribute("value", date + "/" + month + "/" + year);
+      previewDate.innerHTML = date + "/" + month + "/" + year;
+      
+    </script>
+
+
+    </body>
+
+    </html>

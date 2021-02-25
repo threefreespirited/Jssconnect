@@ -1,0 +1,322 @@
+<%- include("header") %>
+  <style>
+    #wave {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40px 0;
+    }
+
+    #contribute {
+      text-align: center;
+    }
+
+    form {
+      /* margin: 145px; */
+      display: block;
+      width: 75%;
+      margin: 0 auto;
+    }
+
+    form input {
+      display: block;
+      margin: 20px 0;
+      /* width: 45%; */
+    }
+
+    form button {
+      margin: 30px 0;
+    }
+
+    .contribute-title {
+      margin-left: -20%;
+      margin-top: -75px;
+      padding: 0 75px;
+      text-align: center;
+    }
+
+    #wave img {
+      width: 75%;
+      margin: 0;
+    }
+
+    @media screen and (max-width: 750px) {
+      #contribute h2 {
+        font-size: 2.7rem;
+      }
+
+      #contribute form {
+        width: 75%;
+        margin: 0 auto;
+      }
+
+      #container {
+        margin-top: 55px;
+      }
+
+      #wave {
+        flex-direction: column;
+        padding-top: 45px;
+      }
+
+      .contribute-title {
+        margin-left: 0%;
+        margin-top: -30px;
+        padding: 0 15px;
+        text-align: center;
+      }
+
+      #wave img {
+        width: 70%;
+        max-width: 360px;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+
+    #contributeSegment {
+      padding: 120px 0;
+      width: 75%;
+      margin: 0 auto;
+    }
+  </style>
+
+  <div id="container">
+
+    <div id="wave">
+      <div>
+        <img src="https://open.edx.org/wp-content/uploads/2018/12/contribute@2x.png" alt="CONTRIBUTE">
+      </div>
+      <div class="contribute-title">
+        <h1 id="e3" style="width: fit-content;margin: 30px auto;">Contribute</h1>
+        <span style="font-size: 1.75rem;line-height: 1.8;" class="myAnnotation">“The smallest of contributions made collectively makes the biggest
+          difference.”</span>
+      </div>
+    </div>
+
+
+    <div class="ui segment" id="contributeSegment">
+      <div class="ui two column very relaxed grid">
+        <div class="column" style="display: flex;justify-content: center;align-items: center;">
+          <!-- support button  -->
+          <a href="https://www.buymeacoffee.com/3freespirited" target="_blank"><img
+              src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=3freespirited&button_colour=5F7FFF&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a>
+        </div>
+        <div class="column" style="display: flex;justify-content: center;align-items: center;">
+          <button onclick="modalTrigger()" class="ui inverted large violet button">Contribute Resources</button>
+        </div>
+      </div>
+      <div class="ui vertical divider">
+        OR
+      </div>
+    </div>
+
+
+    <section style="width: 75%;margin: 150px auto;margin-bottom: 150px;">
+      <h1 style="text-align: center;font-size: 2.5rem;">Recent Contributors</h1>
+      <p style="font-size: 1.5rem;text-align: center;">These people have already contributed,<a
+        onclick="modalTrigger()" style="cursor: pointer;"> Contribute Now</a>.</p>
+
+      <div class="splide" id="splide" style="padding: 45px 0;">
+        <div class="splide__track">
+          <ul class="splide__list">
+
+            <%
+            let carauselItems = ``;
+            for(let i=0; i<contributors.length; i++){
+
+              carauselItems += `
+              <div class="splide__slide card">
+                <div class="image">
+                  <img src="${contributors[i].yourimage}" style="width: 100%;height: 100%;" alt="">
+                </div>
+                <div class="content">
+                  <h1 style="color: #5c4bc1;">${contributors[i].yourname}</h1>
+                  <p style="font-size: 1.3rem;font-weight: 600;">${contributors[i].todaysMonth}</p>
+                  <p style="font-size: 1.2rem;">${contributors[i].type}</p>
+                </div>
+              </div>
+              `;
+              
+            }
+
+            %>
+
+            <%- carauselItems %>
+
+          </ul>
+        </div>
+      </div>
+
+
+    </section>
+
+<!-- Form to contribute -->
+    <div class="ui modal" id="modalContri">
+      <i class="close icon"></i>
+      <div class="header">
+        <h2>Input data details to contribute</h2>
+      </div>
+      <form class="ui form" action="/ucontribute" method="POST" style="margin: 30px auto;">
+        <div class="field">
+          <label>Resource type</label>
+          <select id="resType" name="type" required>
+            <option value="book">Books</option>
+            <option value="note">Notes</option>
+            <!-- <option value="paper">Papers</option> -->
+            <!-- <option value="video">Videos</option> -->
+          </select>
+        </div>
+        <div class="field">
+          <label>Book/Resource name</label>
+          <input type="text" name="resname" placeholder="Enter Book/Resource name" required>
+        </div>
+        <div class="field">
+          <label>Author's name</label>
+          <input type="text" name="authorName" placeholder="Enter Author's name" required>
+        </div>
+        <div class="field">
+          <label>Year</label>
+          <select name="year" required>
+            <option value="1">First Year</option>
+            <option value="2">Second Year</option>
+            <option value="3">Third Year</option>
+            <option value="4">Fourth Year</option>
+          </select>
+        </div>
+        <!-- <input type="number" name="paperYear" placeholder="If papers, enter year , else no need to fill this."> -->
+        <div class="field">
+          <label>Department</label>
+          <select name="department" required>
+            <option value="CS/IT">CS/IT</option>
+            <option value="ECE">ECE</option>
+            <option value="EE">EE</option>
+            <option value="EEE">EEE</option>
+            <option value="ME">ME</option>
+            <option value="CE">CE</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Subject</label>
+          <select name="subject" required>
+            <option value="0" disabled>First Year</option>
+            <option value="PPS">Programming for Problem solving</option>
+            <option value="PE">Professional English</option>
+            <option value="BEE">Basic Electrical Engineering</option>
+            <option value="M1">Maths I</option>
+            <option value="M2">Maths II</option>
+            <option value="P">Physics</option>
+            <option value="C">Chemistry</option>
+
+            <option value="" disabled>Second Year</option>
+            <option value="" disabled>3rd Sem</option>
+            <option value="DS">Data Structures</option>
+            <option value="DSTL">Discrete Structures and Theory of Logic</option>
+            <option value="ES">Engineering Science</option>
+            <option value="COA">Computer Organisation and Architecture</option>
+            <option value="TC">Technical Communication</option>
+            <option value="CSS">Computer System and Security</option>
+            <option value="PP">Python Programming</option>
+            <option value="M4">Maths IV</option>
+            <option value="UHV">Universal Human Values</option>
+            <option value="" disabled>4th Sem</option>
+            <option value="OS">Operating Systems</option>
+            <option value="TAFL">Theory of automata and Formal Languages</option>
+            <option value="FL">Formal Languages</option>
+            <option value="WD">Web Designing</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Link to Resource (i.e. Google Drive pdf)</label>
+          <input type="text" name="link" placeholder="Enter Link" required>
+        </div>
+        
+        <!-- hidden utility information -->
+        <input type="text" name="yourname" value="<%= username %>" hidden required>
+        <input type="text" name="yourimage" value="<%= picture %>" hidden required>
+        <!-- value of todaysMonth is set using js -->
+        <input type="text" name="todaysMonth" id="todaysMonth" value="" hidden required>
+
+        <p style="margin-top: 30px;margin-bottom: 18px;color: #29a19c;">TIP: Please provide exact link to the pdf or
+          other resources and not the link to any website.</p>
+        <p style="margin-bottom: 12px;">Our team will review the uploaded document within a day or
+          two and remove or keep that as per utility.</p>
+
+        <button style="margin-bottom: 20px;" type="submit" class="ui positive right labeled icon button">
+          Yep, let's save
+          <i class="checkmark icon"></i>
+        </button>
+      </form>
+      <div class="actions">
+        <div class="ui black deny button">
+          Nope
+        </div>
+      </div>
+    </div>
+
+
+    <div style="text-align: center;margin: 75px 0;">
+      <p style="font-size: 1.2rem;">Have a look on others contributions as well.</p>
+
+      <a href="/usercontributions" class="ui inverted violet button">See Contributions</a>
+    </div>
+
+  </div>
+
+
+  <%- include("footer") %>
+
+  <!-- divs used for displaying messages passed on to ejs using res.render (rest is done below using jQuery) -->
+<div id="updateMessage" style="display:none"><%= updateMessage %></div>
+
+<script>
+  // jQuery code to display a toast message on recieving message through res.render 
+  if (document.querySelector("#updateMessage").innerHTML != "") {
+    $('#updateMessage')
+      .toast({
+        class: 'success',
+        message: document.querySelector("#updateMessage").innerHTML
+      })
+      ;
+  }
+</script>
+
+<!-- annotation -->
+
+    <script type="module">
+      import { annotate, annotationGroup  } from 'https://unpkg.com/rough-notation?module';
+      const e = document.querySelectorAll('.myAnnotation');
+      setTimeout(() => {
+      for (let i = 0; i < e.length; i++) {
+        const annotation = annotate(e[i], { type: 'underline', multiline: true ,color: '#7510F7' });
+        const a3 = annotate(document.querySelector('#e3'), { type: 'box',color: 'crimson' });
+        const ag = annotationGroup([a3, annotation]);
+        ag.show();
+      }
+      }, 1500);
+    </script>
+
+    <!-- carausel script -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <script>
+      let todaysMonth = document.getElementById("todaysMonth");
+      var month = new Date().getMonth() + 1;
+      var year = new Date().getFullYear();
+      todaysMonth.setAttribute("value", month + "," + year);      
+
+      document.addEventListener('DOMContentLoaded', function () {
+        new Splide('#splide', {
+          type: 'loop',
+          perPage: 3,
+          perMove: 1,
+        }).mount();
+      });
+      function modalTrigger() {
+        $('#modalContri').modal('show');
+      }
+    </script>
+
+    </body>
+
+    </html>
