@@ -19,6 +19,7 @@
     "nodemailer": "^6.4.11",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
-    "passport-local-mongoose": "^6.0.1"
+    "passport-local-mongoose": "^6.0.1",
+    "url": "^0.11.0"
   }
 }
