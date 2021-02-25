@@ -1,0 +1,46 @@
+#wave{
+    display:flex;
+    flex-direction:column;
+    padding:10px 50px;
+    border: 1px solid #7510F7;
+    background: #7510F7;
+    color:white;
+    padding: 40px 50px;
+}
+#wave img{
+    width:50%;
+    height:50%;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+#wave h2{
+    font-size:3.9rem;
+    margin-bottom:30px;
+}
+#wave p{
+    margin-top:60px;
+    font-size:2rem;
+    padding:30px 50px;
+
+}
+.year{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:100px;
+}
+.box1{
+    width:300px;
+    margin-right:100px;
+}
+.box1 img{
+    width:80%;
+}
+.select-form{
+    margin-left:100px;
+    width:500px;
+}
+.field .submit-btn{
+    padding:20px;
+}

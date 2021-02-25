@@ -1,0 +1,318 @@
+.course-container {
+    background-color: #7510f7;
+    padding: 40px;
+    font-family: sans-serif;
+}
+
+.front-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.intro-text {
+    width: 30%;
+    margin-left: 15%;
+}
+
+.intro-text h2 {
+    font-size: 5.5rem;
+    color: white;
+}
+
+.img-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+
+.img-box img {
+    width: 80%;
+}
+
+/* Responsiveness Code For Top Box */
+@media screen and (max-width:768px) {
+    .course-container {
+        padding: 10px 5px;
+    }
+
+    .front-section {
+        padding: 5px;
+    }
+}
+
+/* Course Feature Section */
+.course-feature-container {
+    margin-top: -10px;
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+    color: #7510f7;
+    margin-bottom: 100px;
+}
+
+.course-feature-container h2 {
+    font-size: 4rem;
+    font-family: monospace;
+}
+
+.feature-box {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* reponsiveness handle*/
+.feature-section h3 {
+    width: 40%;
+    color: red;
+    font-size: 2rem;
+}
+
+.feature-section i {
+    font-size: 6rem;
+    color: red;
+    border: 8px solid #7510f7;
+    border-radius: 100%;
+    padding: 20px;
+}
+
+.right-icon {
+    margin-left: 60px;
+}
+
+.left-text {
+    margin-right: 40px;
+}
+
+.left-icon {
+    margin-right: 60px;
+}
+
+.right-text {
+    margin-left: 40px;
+}
+
+/* cta */
+.cta {
+    margin-top: 100px;
+    padding: 20px;
+}
+
+.cta-heading h2 {
+    font-size: 3.4rem;
+    color: #7510f7;
+    font-family: monospace;
+}
+
+.cta-heading h3 {
+    color: red;
+    font-size: 1.2rem;
+}
+
+.cta-step {
+    margin-top: 40px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.step {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: center;
+    border: 4px solid #7510f7;
+}
+
+.mid-line {
+    border-left: 4px dotted red;
+    height: 100px;
+}
+
+.step .left-icon {
+    color: green;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 3px solid gray;
+    font-size: 2.3rem;
+}
+
+.step .right-text {
+    padding: 5px;
+}
+
+.right-text h4 {
+    margin-top: -5px;
+}
+
+/* Specialization */
+.specialization {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    margin-bottom:100px;
+}
+#specialization-heading{
+    font-size:5rem;
+    font-weight: 1000;
+    color:#7510f7;
+    text-align:center;
+    font-family:monospace;
+    margin-top:80px;
+    
+}
+/* Web Development */
+.web {
+    background: #7510f7;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0px 0px 0px;
+    border-bottom-right-radius: 50px;
+}
+
+#web-heading1 {
+    color: black;
+    text-decoration: underline;
+    font-size: 4rem;
+    font-weight: 1000;
+    font-family: 'Lobster', cursive;
+}
+
+#web-heading2 {
+    text-align: center;
+    color: white;
+    font-size: 5.2rem;
+    line-height: 5.8rem;
+    font-weight: 1000;
+    font-family: 'Merienda One', cursive;
+}
+
+#web-heading3 {
+    margin-top:60px;
+    width: 60%;
+    text-align: center;
+    color: yellow;
+    font-size: 2rem;
+    font-family: monospace;
+}
+#web-btn{
+    margin-top:50px;
+    margin-bottom: 60px;
+    font-family:monospace;
+    font-size:2.5rem;
+    padding:15px 50px;
+}
+/* Bottom Strip */
+.web-bottom-strip{
+    background-color: #252525;
+    width:100%; 
+    margin-top:50px;
+    padding:0px 10px;
+    display:flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: center;
+    border-bottom-right-radius: 50px;
+}
+.web-strip-image{
+    width:120px;
+    height:120px;
+    margin-left:10px;
+    margin-right:10px;
+    display:inline-block;
+}
+
+/* Android Development */
+.android{
+    background: #7510f7;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0px 0px 0px;
+    border-bottom-right-radius: 50px;
+}
+
+#android-heading1 {
+    color: black;
+    text-decoration: underline;
+    font-size: 4rem;
+    font-weight: 1000;
+    font-family: 'Lobster', cursive;
+}
+
+#android-heading2 {
+    text-align: center;
+    color: white;
+    font-size: 5.2rem;
+    line-height: 5.8rem;
+    font-weight: 1000;
+    font-family: 'Merienda One', cursive;
+}
+
+#android-heading3 {
+    margin-top:60px;
+    width: 60%;
+    text-align: center;
+    color: yellow;
+    font-size: 2rem;
+    font-family: monospace;
+}
+#android-btn{
+    margin-top:50px;
+    margin-bottom: 60px;
+    font-family:monospace;
+    font-size:2.5rem;
+    padding:15px 50px;
+}
+/* Mobile Devices */
+/* ========================================================================================================*/
+@media screen and (max-width:768px) {
+    /* Specialization */
+    .specialization{
+        padding:10px 5px;
+    }
+    /* Web Tracks */
+    .web {
+        padding: 10px 5px;
+    }
+    #web-heading1 {
+        font-size: 2rem;
+    }
+
+    #web-heading2 {
+        font-size: 3rem;
+    }
+
+    #web-heading3 {
+        width: 95%;
+        font-size: 1.2rem;
+    }
+    .web-bottom-strip{
+        overflow-x:scroll;
+        scroll-behavior: smooth;
+    }
+}

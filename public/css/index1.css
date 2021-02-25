@@ -1,0 +1,368 @@
+body{
+ margin:0;
+ padding:0;
+ /* overflow-x:hidden; */
+ /* background-image: url("public/images/bg-pattern.svg"); */
+  font-family: 'Montserrat', sans-serif;
+} 
+
+h2{
+  font-weight: 450;
+}
+h1{
+    text-align: center;
+    margin-top: 200px;
+    font-size: 8rem;
+    }
+     
+#team{
+            display: flex;
+            padding: 0 10%;
+            /* justify-content: center; */
+            /* align-items: center; */
+        }
+
+ 
+#navbar {
+  letter-spacing: 1px;
+  font-family: 'Cairo', sans-serif;
+  width: 100%;
+  font-weight: 600;
+  position: fixed;
+  top: 0px;
+  z-index: 200;
+  box-shadow: none;
+}
+
+#navbar ul li a:hover {
+  /* color: #c7edee; */
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#myFl{
+  z-index: 100;
+}
+
+.myFloat:hover {
+  filter: saturate(2);
+}
+a {
+  color: black;
+}
+
+#container {
+  margin-top: 55px; 
+}
+
+
+#homeText{
+  
+  position: relative;
+  z-index: 20;
+  padding-top: 110px;
+  /* color:white; */
+  /* top: 180px; */
+  /* left: 28%; */
+  text-align: center;
+    
+}
+
+#test,#section1,#section2{
+  background-image:linear-gradient(to bottom,#2c7873, #2c7873);
+  background-position: left top;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  color: white; 
+  height: 600px;
+}
+
+
+#test:before {
+  content: "";
+  background: url(https://cdn1.byjus.com/byjusweb/img/home/svg/banner_mobile_icon_bg.svg) no-repeat;
+  background-size: 100%;
+  background-position: left top;
+  /* width: 90%; */
+  height: inherit;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  margin: auto;
+  z-index: 10;
+}
+
+#test:after,#section1:after,#section2:after{
+  content: "";
+  display: block;
+  position: absolute;
+  background: url(https://cdn1.byjus.com/byjusweb/img/home/svg/banner_mobile_wave_bottom.svg) no-repeat;
+  background-size: 100%;
+  background-position: left bottom;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: inherit;
+  z-index: 10;
+}
+
+
+@media (min-width: 768px){
+#test:after,#section1:after,#section2:after{
+  background: url(https://cdn1.byjus.com/byjusweb/img/home/svg/banner_wave_bottom.svg) no-repeat;
+  background-size: 100%;
+  background-position: left bottom;
+}
+#test:before{
+background: url(https://cdn1.byjus.com/byjusweb/img/home/svg/banner_icon_bg.svg) no-repeat;
+background-size: 100%;
+background-position: left top;
+}
+
+}
+
+.myRow{
+  /* padding: 0 2%; */
+  text-align:center;
+  display:flex;
+  justify-content: center;
+  /* align-items:center; */
+  margin-top:-150px;
+  position:relative;
+  z-index:30;
+}
+.socials{
+  font-size: 2rem;
+  margin: 10px;
+}
+.socials:hover{
+  filter: saturate(3);
+}
+
+.myBox{
+ /* border:2px solid rgb(216, 197, 197);  */
+  box-shadow:0px 0px 15px 0px gray;
+  border-radius:10px;
+  border-radius: 15px;
+  margin: 2%;
+  text-align:center;
+  width: 270px;
+  height:380px;
+  padding:15px;
+  background-color: white;
+  position:relative;
+}
+.myBox img{
+  width:120px; 
+  height:120px;
+  margin-top:-60px;
+ }
+
+.topBtn{
+  position:absolute;
+  bottom: 30px;
+  left: 64px;
+  width: 135px;
+  padding: 7px;
+  font-size: 1.2rem;
+  border:none;
+  border-radius:12px;
+  color:white;
+}
+
+.topBtn:hover{
+  opacity:0.81;
+  filter:saturate(1.5);
+  cursor:pointer;
+  border-radius:12px;
+  color:white;
+}
+
+
+.connect{
+  display: flex;
+  background-color:white;
+}
+.connect-box{
+  padding: 0 10%;
+}
+
+.connect img{
+  /* height: 270px; */
+  width: 300px;
+  margin-left: 10%;
+}
+
+#section1,#section2,#section3{
+  /* height: 600px;  */
+  margin-top:30px;
+  background-color: #2c7873;
+  display: flex;
+  justify-content: center;
+  font-size:1.2rem;
+  padding:30px;
+}
+
+#section1 img{
+  position:relative;
+  z-index: 60;
+  width:30%;
+  margin-right:10%;
+  margin-top: -100px;
+}
+#section2 img{
+  position:relative;
+  z-index: 60;
+  width:470px;
+  margin-top:15px;
+  margin-left: 30px;
+  height: 270px;
+  margin-right:150px;
+}
+#section3 img{
+  position:relative;
+        z-index: 60;
+        width:270px;
+        margin-top:55px;
+        margin-left: 90px;
+        height: 270px;
+        margin-right:140px;
+}
+@media screen and (max-width:500px){
+  .connect-box{
+    padding:0%;
+  }
+}
+
+.joinBtn{
+  position:relative;
+  z-index:100;
+  cursor: pointer;
+}
+
+#newsBtn{
+  border-radius: 15px;
+  padding: 7px;
+  font-size: 1.2rem;
+  border:2px solid white;
+  cursor: pointer;
+  background-color: #434e52;
+  color: white;
+}
+
+#newsBtn:hover{
+  filter: saturate(10);
+  /* background-color: aqua; */
+}
+
+
+.sections{
+  width: 40%;
+  padding-top: 40px;
+}
+
+#section2 img{
+	position:relative;
+	z-index: 60;
+	width:450px;
+	margin-right: 75px;
+	margin-top:75px;
+	height: 300px;
+	border-radius: 10px;
+}
+
+
+/* Responsiveness */
+
+@media screen and (max-width:1024px){
+
+  #homeText{
+    top: 120px;
+    padding: 10px;
+    font-size: 3.6rem;
+    text-align: center;  
+  }
+
+  .myRow{
+     flex-direction: column;
+  }
+   .myBox{
+     margin: 45px auto;
+   }
+   
+   
+#logoText{
+  display:none;
+
+}
+
+.sections{
+  width: 100%;
+}
+
+#section1 img{
+  width:90%;
+  max-width: 270px;
+  margin: 0 auto;
+  margin-top: -90px;
+  /* margin-left: 12%; */
+}
+
+#section1,#section2,#section3{
+  flex-direction:column;
+  height: 795px;
+  text-align:center;
+  margin: 0 auto;
+}
+
+.connect img{
+  /* height:225px; */
+  max-width: 300px;
+  width: 90%;
+  margin: 30px auto;
+  margin-bottom: 10px;
+}
+
+#section2 img{
+	width: 100%;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: -45px;
+	height: 220px;
+}
+
+#section3 img{
+        width:200px;
+        margin: 0 auto;
+        height: 200px;
+        /* margin-right:140px; */
+}
+
+#section3{
+  height: auto;
+}
+}
+
+
+@media screen and (max-width:768px){
+  .connect{
+    flex-direction: column;
+    text-align: center;
+  }
+  
+}
+
+.myFloatingBtn:hover{
+   transform: rotate(360deg);
+   transition: 0.7s linear all;
+}
+
+
+
+.day{
+  display: none;
+}
+#modal1{
+  display: none;
+}
