@@ -156,9 +156,9 @@ line-height:5rem;
 }
 /* Loader Ends */
 #home{
-  margin: 30px 0;
+  margin: 75px 0;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 
