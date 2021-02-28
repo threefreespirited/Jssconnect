@@ -1,12 +1,12 @@
-https://jssconnect-beta.herokuapp.com/
+https://jssconnect.herokuapp.com/
 <h2 style="text-align:center;font-size:53px;color:red"><span style="color:blue">JSS</span>CONNECT</h2>
 
 <h3 style="text-align:center;color:yellow;font-size:1.8rem;">One Destination for meeting all your educational needs related to college study.</h3>
 <p style="text-align:center;font-size:1.5rem;">Jss Connect is an e-platform for helping engineering students in their academics.</p>
 
-<video width="320" height="240" loop controls>
-  <source src="/public/videos/JssconnectIntroVideo.mp4" type="video/mp4">
-</video>
+<div align="center">
+  <a href="https://vimeo.com/466051937" target="_blank"><img src="/public/images/JssconnectHome.jpg" alt="Jssconnect Introduction"></a>
+</div>
 
 <h1 style="margin-top:40px;">Features</h1>
 <h2>Jss Connect is an e-platform for helping engineering students in their academics.
