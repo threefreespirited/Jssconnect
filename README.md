@@ -5,7 +5,7 @@ https://jssconnect.herokuapp.com/
 <p style="text-align:center;font-size:1.5rem;">Jss Connect is an e-platform for helping engineering students in their academics.</p>
 
 <div align="center">
-  <a href="https://vimeo.com/466051937" target="_blank"><img src="/public/images/JssconnectHome.jpg" alt="Jssconnect Introduction"></a>
+  <a href="https://vimeo.com/466051937" target="_blank"><img src="/public/images/JssconnectIntro.jpg" alt="Jssconnect Introduction"></a>
 </div>
 
 <h1 style="margin-top:40px;">Features</h1>
