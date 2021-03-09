@@ -34,6 +34,15 @@ mongoose.connect(MONGODB_URI, {
   useUnifiedTopology: true,
 });
 mongoose.set("useCreateIndex", true);
+// mongoose.connect("mongodb://localhost/GSSOC1",{
+// 	useNewUrlParser : true,
+// 	useCreateIndex  : true,
+// 	useUnifiedTopology:true
+// }).then(()=>{
+// 	console.log("CONNECTED TO DATABASE - app.js");
+// }).catch(err=>{
+// 	console.log("Error : -app.js ",err.message);
+// });
 const db = mongoose.connection;
 
 db.on("connected", () => {
@@ -607,7 +616,12 @@ app.get("/blogs", (req, res) => {
   userBlog.find({}, (err, data) => {
     if (err) console.log(err);
     else {
-      console.log(data[2].imageurl);
+      // console.log(data[2].imageurl); caused error
+		//corrected code
+		if(data[2]!=undefined && 'imageurl' in data[2])
+     console.log(data[2].imageurl); 
+		else
+			console.log('imageurl not found in data[2] or data[2] is undefined');
       res.render("blogs", { data: data, title: pageTitle, cssName: cssName, username, picture, email });
     }
   });

@@ -233,7 +233,8 @@
     <div class="splide" id="splide" style="padding: 45px 0;">
       <div class="splide__track">
         <ul class="splide__list">
-
+			<!--Resolved Error because undfined value of community was being accesses when database is empty -->
+<%if(community[0]){%>
           <% let carauselItems=``; for(let i=0; i< 10 ; i++) { carauselItems +=` <div class="splide__slide card">
             <div class="image">
               <!-- this will be uncommented after adding image field to joincommunity -->
@@ -251,7 +252,7 @@
 
       %>
 
-      <%- carauselItems %>
+      <%- carauselItems %><%}%>
         </ul>
     </div>
     </div>
