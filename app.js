@@ -167,6 +167,9 @@ const communityUser = mongoose.model("communityUser", communitySchema);
 app.post("/joincommunity", (req, res) => {
   console.log(req.body.email);
   communityUser.find({ email: req.body.email }, (function (err, data) {
+    
+    console.log("Userdata ",data);
+    
     if (err) console.log(err);
     else {
       if (data == "") {
