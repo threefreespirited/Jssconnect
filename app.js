@@ -458,16 +458,16 @@ app.get("/login", (req, res) => {
   res.render("login", { pageTitle: pageTitle, cssName: cssName, username, picture, email });
 });
 // REGISTER PAGE
-app.get("/register", (req, res) => {
-  let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"; let email = "";
-  if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
-  }
-  res.render("register", { username, picture, email });
-});
+// app.get("/register", (req, res) => {
+//   let username = "Guest";
+//   let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"; let email = "";
+//   if (req.isAuthenticated()) {
+//     username = req.user.name;
+//     picture = req.user.picture;
+//     email = req.user.email;
+//   }
+//   res.render("register", { username, picture, email });
+// });
 // RESOURCE PAGE
 app.get("/resources", (req, res) => {
   let username = "Guest";
