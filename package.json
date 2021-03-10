@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,5 +21,8 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-local-mongoose": "^6.0.1",
     "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
