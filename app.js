@@ -74,32 +74,32 @@ passport.deserializeUser(function (id, done) {
 let myEmail = "";
 
 // Userblogs Strategy
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "https://jssconnect.herokuapp.com/auth/google/home",
-      userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
-    },
-    function (accessToken, refreshToken, profile, cb) {
-      console.log(profile);
-      User.findOrCreate(
-        {
-          googleId: profile.id,
-          name: profile.displayName,
-          picture: profile.photos[0].value,
-          email: profile.emails[0].value,
-        },
-        function (err, user) {
-          console.log(user);
-          myEmail = user.email;
-          return cb(err, user);
-        }
-      );
-    }
-  )
-);
+// passport.use(
+//   new GoogleStrategy(
+//     {
+//       clientID: process.env.CLIENT_ID,
+//       clientSecret: process.env.CLIENT_SECRET,
+//       callbackURL: "https://jssconnect.herokuapp.com/auth/google/home",
+//       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
+//     },
+//     function (accessToken, refreshToken, profile, cb) {
+//       console.log(profile);
+//       User.findOrCreate(
+//         {
+//           googleId: profile.id,
+//           name: profile.displayName,
+//           picture: profile.photos[0].value,
+//           email: profile.emails[0].value,
+//         },
+//         function (err, user) {
+//           console.log(user);
+//           myEmail = user.email;
+//           return cb(err, user);
+//         }
+//       );
+//     }
+//   )
+// );
 
 //Now the profile will be updated only when the user is authenticated
 
@@ -610,7 +610,7 @@ app.get("/blogs", (req, res) => {
   userBlog.find({}, (err, data) => {
     if (err) console.log(err);
     else {
-      console.log(data[2].imageurl);
+      // console.log(data[2].imageurl);
       res.render("blogs", { data: data, title: pageTitle, cssName: cssName, username, picture, email });
     }
   });
