@@ -79,7 +79,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/google/home",
+      callbackURL: "https://jssconnect.herokuapp.com/auth/google/home",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
@@ -167,6 +167,9 @@ const communityUser = mongoose.model("communityUser", communitySchema);
 app.post("/joincommunity", (req, res) => {
   console.log(req.body.email);
   communityUser.find({ email: req.body.email }, (function (err, data) {
+    
+    console.log("Userdata ",data);
+    
     if (err) console.log(err);
     else {
       if (data == "") {
@@ -458,16 +461,16 @@ app.get("/login", (req, res) => {
   res.render("login", { pageTitle: pageTitle, cssName: cssName, username, picture, email });
 });
 // REGISTER PAGE
-app.get("/register", (req, res) => {
-  let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"; let email = "";
-  if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
-  }
-  res.render("register", { username, picture, email });
-});
+// app.get("/register", (req, res) => {
+//   let username = "Guest";
+//   let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"; let email = "";
+//   if (req.isAuthenticated()) {
+//     username = req.user.name;
+//     picture = req.user.picture;
+//     email = req.user.email;
+//   }
+//   res.render("register", { username, picture, email });
+// });
 // RESOURCE PAGE
 app.get("/resources", (req, res) => {
   let username = "Guest";
