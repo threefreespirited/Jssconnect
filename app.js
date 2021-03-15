@@ -162,7 +162,11 @@ const communitySchema = new mongoose.Schema({
   todaysDate: String,
 });
 
+
+
 const communityUser = mongoose.model("communityUser", communitySchema);
+
+
 
 app.post("/joincommunity", (req, res) => {
   console.log(req.body.email);
