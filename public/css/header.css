@@ -11,3 +11,8 @@
     padding: 10px 4px !important;
     margin: 0px 6px !important;
 }
+@media(max-width:720px){
+    #userLabel{
+        font-size: 15px;
+    }
+}
