@@ -3,6 +3,12 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
+
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
@@ -26,6 +32,24 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+//set security HTTP headers
+app.use(helmet());
+
+//limit requests from same IP
+const limiter = rateLimit({
+  max: 100,
+  windowMs: 60*60*1000,
+  message: 'To many request from this IP, please try again after an hour!'
+});
+
+app.use('/', limiter);
+
+//data sanitization against noSQL query injection
+app.use(mongoSanitize());
+
+//data sanitization against xss
+app.use(xss());
 
 const MONGODB_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGODB_URI, {
@@ -161,7 +185,11 @@ const communitySchema = new mongoose.Schema({
   todaysDate: String,
 });
 
+
+
 const communityUser = mongoose.model("communityUser", communitySchema);
+
+
 
 app.post("/joincommunity", (req, res) => {
   console.log(req.body.email);
