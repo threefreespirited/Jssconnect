@@ -3,11 +3,12 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
-const bodyParser = require("body-parser");
+
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
+
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
@@ -67,10 +68,10 @@ app.use(express.static("public"));
 // app.use("/views", express.static(__dirname + "/views"));
 app.set("view engine", "ejs");
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 //body-parser
-app.use(bodyParser.json());
+app.use(express.json());
 const userSchema = new mongoose.Schema({
   email: String,
   picture: String,
