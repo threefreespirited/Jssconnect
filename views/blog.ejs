@@ -113,10 +113,14 @@
         1,048
       </a>
     </div>
+    <div class="comment-box">
+      <input type="text" name="comment" value="" placeholder="enter Your Comment" id="comment-input">
+      <button id="save-comment">Submit</button>
+    </div>
    </div>
    
   </div> 
-
+<div id="uniqueId" style="display:none"><%= uniqueId %></div>
 </div>
 <!-- Footer -->
 <%- include("footer") %>
@@ -130,6 +134,40 @@
         annotation.show();
       }
 </script> 
+<script>
+        
+        const saveComment = document.getElementById("save-comment");
+        const lon =456;
+        const lat=350;
+        const data = { lat, lon };
+       
+      saveComment.addEventListener("click",(e)=>{
+         saveCommentFunction();
+      })
+        const uniqueId = document.getElementById("uniqueId").innerHTML;
+        console.log(uniqueId);
+       async function saveCommentFunction(){
+        const commentInput = document.getElementById("comment-input").value;
+          const authorName="Aman";
+          const date = new Date().getDate();
+          console.log(date);
+          console.log("commentInput" + commentInput);
+          const data = { authorName,date,commentInput};
+          const options = {
+          method: 'POST',
+          headers:{
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(data)
+
+       };
+        const res = await fetch('/savecomment',options);
+        console.log(res);
+        const value = await res.json();
+        console.log("after");
+        console.log(value);
+       }
+</script>
 <script src="/blogs.js">
     console.log("Hello");
 </script>

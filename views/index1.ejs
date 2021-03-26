@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Catch all the updates regularly and connect with all your mates within ecosystem of JSSATE Noida.">
+  <meta name="author" content="Jssconnect">
+
+  <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+  <meta property="og:site_name" content="Jssconnect" /> <!-- website name -->
+  <meta property="og:site" content="https://jssconnect.herokuapp.com/" /> <!-- website link -->
+  <meta property="og:title" content="" /> <!-- title shown in the actual shared post -->
+  <meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+  <meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+  <meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+  <meta property="og:type" content="article" />
+  
+<!--   Google ver -->
+<meta name="google-site-verification" content="yQOOYhzcZG79A57m3G9EAneSTazh4D6v9AV1EZvFY2A" />
+
+  <!-- Compiled and minified CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+  <!--Google fonts-->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/index.css"/>
+  <link rel="stylesheet" href="css/profile.css" />
+  <!--Font Awesome-->
+  <script src="https://kit.fontawesome.com/efd71d3ed7.js" crossorigin="anonymous"></script>
+
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <title>JSS Connect</title>
+</head>
+
+<body>
+  <nav id="navbar" style="background-color: #2c7873">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo"><img src="images/logo.png" alt=""
+          style="width: 75px;margin-top: 7px;filter: invert();" /></a>
+      <a href="/" class="brand-logo" id="logoText" style="margin-left: 75px; font-size: 2rem">JSS Connect</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="main-menu" class="right hide-on-med-and-down">
+
+        <li><a href="/blogs">Blogs</a></li>
+        <li><a href="/resources">Resources</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/contribute">Contribute</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li class="tooltip" id="userProfile">
+          <span class="myChip" style="margin: 10px 30px;">
+            <img
+              src="https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg"
+              id="picture" alt="Person" width="96" height="96">
+            <span id="chipName">Guest</span>
+          </span>
+          <span class="tooltiptext">
+            <h6 id="username">Guest</h6>
+            <h6 id="email">guest@guest.com</h6>
+            <a class="waves-effect waves-light btn profBtn" style="margin: 10px auto;" id="logBtn"
+              href="/logout">Logout</a>
+            <a class="waves-effect waves-light btn profBtn" style="margin: 10px auto;" id="regBtn"
+              href="/register">Login/Register</a>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo" style="background-color: #2c7873;">
+    <br />
+    <li class="tooltip" id="userProfile">
+      <span class="myChip" style="margin: 10px 30px;">
+        <img
+          src="https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg"
+          id="picture1" alt="Person" width="96" height="96">
+        <span id="chipName1">Guest</span>
+      </span>
+      <span class="tooltiptext" id="t1">
+        <h6 id="username1">Guest</h6>
+        <h6 id="email1">guest@guest.com</h6>
+        <a class="waves-effect waves-light btn profBtn" style="margin: 10px auto;" id="logBtn1"
+          href="/logout">Logout</a>
+        <a class="waves-effect waves-light btn profBtn" style="margin: 10px auto;" id="regBtn1"
+          href="/register">Login/Register</a>
+      </span>
+    </li>
+    <li><a href="/blogs" style=" color: white;">Blogs</a></li>
+    <li><a href="/resources" style=" color: white;">Resources</a></li>
+    <li><a href="/contribute" style=" color: white;">Contribute</a></li>
+    <li><a href="/community" style=" color: white;">Community</a></li>
+    <li><a href="/contact" style=" color: white;">Contact</a></li>
+  </ul>
+
+  <!-- Main content  -->
+  <div id="container">
+    <div id="test">
+
+      <div id="homeText">
+
+        <h2 style="text-align: center;">Welcome to JSS Connect</h2>
+        <p style="font-size: large;font-weight: 600;">Notes . Blogs . Archive . More</p>
+
+      </div>
+
+    </div>
+
+    <div class="myRow">
+
+
+      <div class="myBox" style="border-bottom:10px solid #086972;">
+        <img src="images/blog-svg.svg" alt="" style="width:150px; height:120px;margin-top:-60px;">
+        <h3>Blogs</h3>
+        <p>Read great blogs by your seniors.</p>
+        <a href="/blogs"><button class="topBtn" style="background-color:#086972;">Read Now</button></a>
+      </div>
+      <div class="myBox" style="border-bottom:10px solid #434e52;">
+        <img src="images/resources.png" alt="" style="width:150px; height:120px;margin-top:-60px;">
+        <h3>Resources</h3>
+        <p>Get help with your study material here</p>
+        <a href="/resources"><button class="topBtn" style="background-color:#434e52;">Explore Now</button></a>
+      </div>
+      <div class="myBox" style="border-bottom:10px solid #7d5e2a;">
+        <img src="images/support.png" alt="">
+        <h3>Support</h3>
+        <p>Wanna share your study material to the whole college.</p>
+        <p>Share it and get the credits as well.</p>
+        <a href="/contribute"><button class="topBtn" style="background-color:#7d5e2a;">Contribute</button></a>
+      </div>
+
+    </div>
+    <div id="section1">
+      <img src="/images/blog-section.svg" alt="fgfh">
+      <div class="sections">
+        <h2>Blogs</h2>
+        <p>A platform where you can find the aids provided by others based on their experiences and knowledge. We
+          provide you with the opportunity to write your own blog for the help of others. Blogs can also be written with
+          the help of Markdown language in way to make them attractive.</p>
+
+        <a href="/blogs" class="waves-effect waves-light btn joinBtn" style="background-color: #557571;">Read Now<i
+            class="material-icons left">chrome_reader_mode</i></a>
+      </div>
+    </div>
+    <!-- Connection -->
+    <div class="connect">
+      <div class="connect-box" style="padding-right: 0;">
+        <h2>Join Our Community</h2>
+        <p>Connect with all your fellows on JSSconnnect</p>
+        <a class="waves-effect waves-light btn joinBtn" href="/joincommunity" style="background-color: #557571;">Join
+          Now<i class="material-icons left">add</i></a>
+      </div>
+
+      <img src="/images/community.jpg">
+
+    </div>
+
+    <div id="section2" style="background-color: #ff1e56;">
+      <img src="/images/Lib1.jpg" alt="fgfh">
+      <div class="sections">
+        <h2>Resources</h2>
+        <p>A platform to provide you with all the study resources including previous year papers and study materials
+          .You can access all the resources after singing in to our site.</p>
+        <a href="/resources" class="waves-effect waves-light btn joinBtn" style="background-color: #557571;">Explore
+          Now<i class="material-icons left">explore</i></a>
+      </div>
+    </div>
+    <div id="section3" style="background-color: white;">
+      <img src="/images/support2.png" alt="fgfh">
+      <div class="sections">
+        <h2 style="font-weight:500;">Support</h2>
+        <p>Another reason to connect with us . You can provide your notes and other study resources for help the of
+          freshers and other juniors. You can save them from the trouble of unavailability of resources that you faced.
+        </p>
+        <a href="/contribute" class="waves-effect waves-light btn joinBtn"
+          style="background-color: #557571;">Contribute<i class="material-icons left">add</i></a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal Trigger -->
+
+  <a href="#modal1" class="modal-trigger" id="clickButton" style="display: none;">Modal</a>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal" style="text-align:center">
+    <div class="modal-content">
+      <a class="modal-close" style="float: right;"><i class="material-icons">close</i></a>
+      <h4><img src="/images/share.png" alt="" style="width: 45px;margin: 0px 10px;" />Jsswire</h4>
+      <p>A platform to connect you with all your fellows and seniors from your ecosystem of JSS.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="https://jsswire.herokuapp.com" class="modal-close waves-effect waves-green btn"
+        style="margin: 0 20px;">Connect with wire</a>
+    </div>
+  </div>
+
+  <!-- Floating button -->
+
+  <div class="fixed-action-btn" id="myFl">
+    <a class="btn-floating btn-large black myFloatingBtn">
+      <img src="/images/logo.png" alt="" style="width: 60px;margin: 10px -1px;filter: invert();" />
+    </a>
+    <ul>
+      <li><a href="/contact#team" class="btn-floating green myFloat">Team</a>
+      </li>
+      <li><a href="https://jsswire.herokuapp.com" class="btn-floating red myFloat">
+
+          <img src="/images/share.png" alt="" style="width: 30px;margin: 6px -1px;filter: invert();" />
+        </a>
+      </li>
+
+      <li style="margin: 12px 0px;">
+
+        <a class="btn-floating btn-large black" id="brightness">
+          <i class="fa fa-moon-o" style="color: white;"></i>
+        </a>
+
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- Footer -->
+
+  <!-- <footer class="page-footer" style="background-color: #1a1a1a;margin-top:36px;"> -->
+  <footer class="page-footer" style="background-color: #323232;margin-top:36px;">
+    <div class="container">
+      <div class="row">
+        <div style="text-align: center;margin: 75px 0;">
+          <h2>Let’s stay connected.</h2>
+          <form action="/newsletter" method="POST" style="margin: 30px 0px;">
+            <input type="email" name="email" required placeholder="Enter your Email"
+              style="width:40%;margin-right: 20px;color: white;" required>
+            <button id="newsBtn" type="submit">Subscribe</button>
+          </form>
+          <p>Sign up to receive our newsletter and exclusive updates.</p>
+          <div style="margin-top: 45px;">
+            <a href="https://www.facebook.com/JssAcademyOfTechnicalEducationnoida/" class="socials"
+              style="color: #1b6ca8;"><i class="fa fa-facebook-official"></i></a>
+            <a href="https://twitter.com/jssatenoida?lang=en" class="socials" style="color: #3282b8;"><i
+                class="fa fa-twitter-square"></i></a>
+          </div>
+        </div>
+        <hr>
+        <div class="col l3 offset-l1 s6">
+          <h5 class="white-text">Quick Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="/blogs">Blogs</a></li>
+            <li><a class="grey-text text-lighten-3" href="/resources">Ebooks</a></li>
+            <li><a class="grey-text text-lighten-3" href="/usercontributions">User Contributions</a></li>
+            <li><a class="grey-text text-lighten-3" href="http://jsswire.herokuapp.com">Connect with wire</a></li>
+            <li><a class="grey-text text-lighten-3" href="/contribute">Contribute</a></li>
+          </ul>
+        </div>
+        <div class="col l3 offset-l1 s6">
+          <h5 class="white-text">Recent Blogs</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="/blogs">What to do when entering a college?</a></li>
+            <li><a class="grey-text text-lighten-3" href="/blogs">What I Learned My Freshman Year of College</a></li>
+            <li><a class="grey-text text-lighten-3" href="/blogs">A glimpse into Async JavaScript</a></li>
+          </ul>
+        </div>
+        <div class="col l3 offset-l1 s6">
+          <h5 class="white-text">Contact</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="/contact">Contact Us</a></li>
+            <li><a class="grey-text text-lighten-3" href="/contact#team">Our Team</a></li>
+            <li><a class="grey-text text-lighten-3" href="/feedback">Feedback</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <span>© &nbsp; jssconnect.herokuapp.com &nbsp; 2020</span>
+        <span style="margin-left: 20%;">JSSconnnect</span>
+        <a class="grey-text text-lighten-4 right" href="/privacy">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // modal js
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems);
+    });
+
+    setTimeout(() => {
+      var button = document.getElementById('clickButton');
+      button.click();
+    }, 10000)
+
+
+    let name = document.getElementById("username");
+    let chipName = document.getElementById("chipName");
+    let mail = document.getElementById("email");
+    let picture = document.getElementById("picture");
+    let name1 = document.getElementById("username1");
+    let chipName1 = document.getElementById("chipName1");
+    let mail1 = document.getElementById("email1");
+    let picture1 = document.getElementById("picture1");
+    let logBtn = document.getElementById("logBtn");
+    let regBtn = document.getElementById("regBtn");
+    logBtn.style.display = "none";
+    let logBtn1 = document.getElementById("logBtn1");
+    let regBtn1 = document.getElementById("regBtn1");
+    logBtn1.style.display = "none";
+
+
+    // const query = window.location.search.substring(1)
+
+    const query = window.location.href.substr(0, window.location.href.indexOf('#'));
+    const token = query.split('email=')[1]
+    console.log(token);
+
+    name.innerHTML = "Guest";
+    mail.innerHTML = "guest@guest.com";
+    picture.setAttribute("src", "https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg");
+
+    loadDoc();
+
+    async function loadDoc() {
+      const res = await fetch(`/profile/${token}`);
+      const data = await res.json();
+
+      console.log(data);
+      console.log(data.length);
+      if (data != "") {
+        let username = data[0].name;
+        let email = data[0].email;
+        let img = data[0].picture;
+        localStorage.setItem("username", username);
+        localStorage.setItem("email", email);
+        localStorage.setItem("img", img);
+
+      }
+      displayProfile();
+    }
+
+    function displayProfile() {
+
+      let myUsername = localStorage.getItem("username")
+      let myEmail = localStorage.getItem("email");
+      let myImg = localStorage.getItem("img");
+
+
+      M.toast({ html: `Welcome ${myUsername} to Jssconnect` });
+      chipName.innerHTML = myUsername;
+      name.innerHTML = "<i class='material-icons' style='display:inline;margin:9px;'>verified_user</i>"
+      name.innerHTML += myUsername;
+      mail.innerHTML = "<i class='material-icons' style='display:inline;margin:9px;'>email</i>"
+      mail.innerHTML += myEmail;
+      picture.setAttribute("src", myImg);
+      logBtn.style.display = "block";
+      logBtn1.style.display = "block";
+      regBtn.style.display = "none";
+      regBtn1.style.display = "none";
+
+      chipName1.innerHTML = myUsername;
+      name1.innerHTML = "<i class='material-icons' style='display:inline;margin:9px;'>verified_user</i>"
+      name1.innerHTML += myUsername;
+      mail1.innerHTML = "<i class='material-icons' style='display:inline;margin:9px;'>email</i>"
+      mail1.innerHTML += myEmail;
+      picture1.setAttribute("src", myImg);
+    }
+
+    // JS for floating buuton
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems);
+    });
+
+    const brightness = document.getElementById('brightness');
+    const test = document.getElementById('test');
+    const foot = document.querySelector("footer");
+    const navbar = document.querySelector("nav");
+    const section1 = document.getElementById('section1');
+    const section2 = document.getElementById('section2');
+    const sidenav = document.querySelector('.sidenav');
+    let count = 0;
+    brightness.addEventListener("click", () => {
+
+      if (count < 1) {
+        count = 1;
+        localStorage.setItem("theme", "dark");
+
+      }
+      else if (count == 1) {
+        count = 0;
+        localStorage.setItem("theme", "light");
+      }
+      setTheme();
+    })
+
+
+    function setTheme() {
+
+      const currentTheme = localStorage.getItem("theme");
+      if (currentTheme == "dark") {
+        test.style.backgroundImage = "linear-gradient(to bottom,#1b262c ,#1b262c)";
+        section1.style.backgroundImage = "linear-gradient(to bottom,#1b262c ,#1b262c)";
+        section2.style.backgroundImage = "linear-gradient(to bottom,#1b262c ,#1b262c)";
+        foot.style.backgroundColor = "#1b262c"
+        navbar.style.backgroundColor = "#1b262c";
+        brightness.innerHTML = "<i class='fa fa-sun-o' style='color: goldenrod;'></i>"
+        sidenav.style.backgroundColor = "#1b262c";
+      }
+      else {
+        foot.style.backgroundColor = "#323232"
+        test.style.backgroundImage = "linear-gradient(to bottom,#2c7873 ,#2c7873)";
+        section1.style.backgroundImage = "linear-gradient(to bottom,#2c7873 ,#2c7873)";
+        section2.style.backgroundImage = "linear-gradient(to bottom,#2c7873 ,#2c7873)";
+        sidenav.style.backgroundColor = "#2c7873";
+        navbar.style.backgroundColor = "#2c7873";
+        brightness.innerHTML = "<i class='fa fa-moon-o' style='color: white;'></i>"
+      }
+    }
+
+  </script>
+
+
+</body>
+
+</html>
