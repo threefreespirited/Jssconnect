@@ -3,12 +3,7 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
-
-const rateLimit = require('express-rate-limit');
-const helmet = require('helmet');
-const mongoSanitize = require('express-mongo-sanitize');
-const xss = require('xss-clean');
-
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
@@ -33,24 +28,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-//set security HTTP headers
-app.use(helmet());
-
-//limit requests from same IP
-const limiter = rateLimit({
-  max: 10000,
-  windowMs: 60*60*1000,
-  message: 'To many request from this IP, please try again after an hour!'
-});
-
-app.use('/', limiter);
-
-//data sanitization against noSQL query injection
-app.use(mongoSanitize());
-
-//data sanitization against xss
-app.use(xss());
-
 const MONGODB_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
@@ -68,10 +45,10 @@ app.use(express.static("public"));
 // app.use("/views", express.static(__dirname + "/views"));
 app.set("view engine", "ejs");
 
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //body-parser
-app.use(express.json());
+app.use(bodyParser.json());
 const userSchema = new mongoose.Schema({
   email: String,
   picture: String,
@@ -102,7 +79,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "https://jssconnect.herokuapp.com/auth/google/home",
+      callbackURL: "http://localhost:3000/auth/google/home",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
@@ -185,18 +162,11 @@ const communitySchema = new mongoose.Schema({
   todaysDate: String,
 });
 
-
-
 const communityUser = mongoose.model("communityUser", communitySchema);
-
-
 
 app.post("/joincommunity", (req, res) => {
   console.log(req.body.email);
   communityUser.find({ email: req.body.email }, (function (err, data) {
-    
-    console.log("Userdata ",data);
-    
     if (err) console.log(err);
     else {
       if (data == "") {
@@ -241,8 +211,31 @@ app.post("/userblog", (req, res) => {
   res.send();
 });
 
+// Comment Schema 
+const commentSchema = new mongoose.Schema({
+  authorName: String,
+  date: String,
+  commentInput: String,
+})
+const userComment = mongoose.model("userComment", commentSchema);
+app.post("/savecomment", (req, res) => {
+  console.log("post happend");
+  console.log(req.body);
+ 
+  if (req.isAuthenticated()) {
+    console.log("U'r Signed Succesffully");
+    console.log(req.user);
+    let myuserComment = new userComment(req.body);
+    myuserComment.save();
+    res.send("Your Comment Save");
+  }
+  else {
+    console.log("Not Signed In");
+    res.send("Please Sign In First");
+  }
+ 
+})
 // Contact
-
 const contactSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -488,16 +481,16 @@ app.get("/login", (req, res) => {
   res.render("login", { pageTitle: pageTitle, cssName: cssName, username, picture, email });
 });
 // REGISTER PAGE
-// app.get("/register", (req, res) => {
-//   let username = "Guest";
-//   let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"; let email = "";
-//   if (req.isAuthenticated()) {
-//     username = req.user.name;
-//     picture = req.user.picture;
-//     email = req.user.email;
-//   }
-//   res.render("register", { username, picture, email });
-// });
+app.get("/register", (req, res) => {
+  let username = "Guest";
+  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"; let email = "";
+  if (req.isAuthenticated()) {
+    username = req.user.name;
+    picture = req.user.picture;
+    email = req.user.email;
+  }
+  res.render("register", { username, picture, email });
+});
 // RESOURCE PAGE
 app.get("/resources", (req, res) => {
   let username = "Guest";
@@ -608,6 +601,8 @@ app.post("/myblog", (req, res) => {
   let pageTitle = "Blogs";
   let cssName = "css/blogs.css";
   let username = "Guest";
+  let like = 0;
+  let uniqueId=uniId;
   let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"; let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -618,7 +613,11 @@ app.post("/myblog", (req, res) => {
     if (err) console.log(err);
     else {
       console.log(data[uniId]);
-      res.render("blog", { blogData: data[uniId], username, picture, email, title: pageTitle, cssName: cssName });
+      console.log("hi am");
+      if (data.link == undefined) {
+        console.log("no record");
+      }
+      res.render("blog", { blogData: data[uniId], username, picture, email, title: pageTitle, cssName: cssName,uniqueId: uniqueId });
     }
   });
 });
@@ -1012,6 +1011,28 @@ app.get("/courselanding", (req, res) => {
    
  
 });
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/* Web Home */
+app.get("/webhome", (req, res) => {
+  let pageTitle = "Web Development";
+  let cssName = "css/course/web/webhome.css";
+  let username = "Guest";
+  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"; let email = "";
+  if (req.isAuthenticated()) {
+    username = req.user.name;
+    picture = req.user.picture;
+    email = req.user.email;
+  }
+  res.render("web/webhome", { title: pageTitle, cssName: cssName, username, picture, email });
+   
+})
+
+
+
+
+
+
 app.listen(port, () => {
   console.log(`Server running at  http://${hostname}:${port}/`);
 });
