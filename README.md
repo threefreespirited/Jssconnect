@@ -1,6 +1,7 @@
 [Visit our website here](https://jssconnect.herokuapp.com/)
-
+<div align="center">
 <h2 style="text-align:center;font-size:53px;color:red"><span style="color:blue">JSS</span>CONNECT</h2>
+</div>
 
 <h3 style="text-align:center;color:yellow;font-size:1.8rem;">One Destination for meeting all your educational needs related to college study.</h3>
 <p style="text-align:center;font-size:1.5rem;">Jss Connect is an e-platform for helping engineering students in their academics.</p>
@@ -153,3 +154,4 @@ show collections
 *Get your client_id and client_secret by creating a new app in google developer console.And enter client_id in CLIENT_ID variable and client_secret in CLIENT_SECRET variable.
 
 ****No need for google sign in in production mode.
+
