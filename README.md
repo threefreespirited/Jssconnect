@@ -1,8 +1,11 @@
-https://jssconnect.herokuapp.com/
+[Visit our website here](https://jssconnect.herokuapp.com/)
+
 <h2 style="text-align:center;font-size:53px;color:red"><span style="color:blue">JSS</span>CONNECT</h2>
 
 <h3 style="text-align:center;color:yellow;font-size:1.8rem;">One Destination for meeting all your educational needs related to college study.</h3>
 <p style="text-align:center;font-size:1.5rem;">Jss Connect is an e-platform for helping engineering students in their academics.</p>
+<p style="text-align:center;font-size:1.5rem;">
+It has all the stuff to satisfy the hunger of today’s engineers.</p>
 
 <div align="center">
   <a href="https://vimeo.com/466051937" target="_blank"><img src="/public/images/JssconnectIntro.jpg" alt="Jssconnect Introduction"></a>
@@ -61,7 +64,7 @@ Engineering students can</h2>
 	</tr>
 </table>
 <h2>You can contribute by following below set of instructions</h2>
-## Environment Setup-
+Environment Setup-
 
 * Drop a :star: on the GitHub repository.
 <br/>
@@ -142,7 +145,7 @@ use db <db name>
 show collections
 <db name> .find()
 ```
-<h3>***Note</h3>
+<h3>*** Note ***</h3>
 *Get connection string from Mongo Atlas by creating a cluster or you can also use your locally installed mongodb<br>
 *You can click here to learn how to connect atlas to you project<br>
 *Create a new file named .env in the Backend folder and copy the format of .env.example file<br>
