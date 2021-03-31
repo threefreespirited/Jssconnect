@@ -79,7 +79,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/google/home",
+      callbackURL: "/auth/google/home",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
@@ -221,7 +221,7 @@ const userComment = mongoose.model("userComment", commentSchema);
 app.post("/savecomment", (req, res) => {
   console.log("post happend");
   console.log(req.body);
- 
+
   if (req.isAuthenticated()) {
     console.log("U'r Signed Succesffully");
     console.log(req.user);
@@ -233,7 +233,7 @@ app.post("/savecomment", (req, res) => {
     console.log("Not Signed In");
     res.send("Please Sign In First");
   }
- 
+
 })
 // Contact
 const contactSchema = new mongoose.Schema({
@@ -501,9 +501,9 @@ app.get("/resources", (req, res) => {
     username = req.user.name;
     picture = req.user.picture;
     email = req.user.email;
-   }
+  }
   res.render("resources", { username, picture, email, pageTitle: pageTitle, cssName: cssName });
- 
+
 });
 app.get("/about", (req, res) => {
   let username = "Guest";
@@ -602,7 +602,7 @@ app.post("/myblog", (req, res) => {
   let cssName = "css/blogs.css";
   let username = "Guest";
   let like = 0;
-  let uniqueId=uniId;
+  let uniqueId = uniId;
   let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"; let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -617,7 +617,7 @@ app.post("/myblog", (req, res) => {
       if (data.link == undefined) {
         console.log("no record");
       }
-      res.render("blog", { blogData: data[uniId], username, picture, email, title: pageTitle, cssName: cssName,uniqueId: uniqueId });
+      res.render("blog", { blogData: data[uniId], username, picture, email, title: pageTitle, cssName: cssName, uniqueId: uniqueId });
     }
   });
 });
@@ -632,7 +632,7 @@ app.get("/blogs", (req, res) => {
     picture = req.user.picture;
     email = req.user.email;
   }
-   
+
   userBlog.find({}, (err, data) => {
     if (err) console.log(err);
     else {
@@ -649,8 +649,8 @@ app.get("/userblog", function (req, res) {
   if (req.isAuthenticated()) {
     let username = req.user.name;
     let picture = req.user.picture;
-     email = req.user.email;
-    res.render("userblog", {pageTitle, cssName, username, picture, email });
+    email = req.user.email;
+    res.render("userblog", { pageTitle, cssName, username, picture, email });
   } else {
     res.redirect("/login");
   }
@@ -1008,8 +1008,8 @@ app.get("/courselanding", (req, res) => {
     email = req.user.email;
   }
   res.render("courselanding", { title: pageTitle, cssName: cssName, username, picture, email });
-   
- 
+
+
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -1025,7 +1025,7 @@ app.get("/webhome", (req, res) => {
     email = req.user.email;
   }
   res.render("web/webhome", { title: pageTitle, cssName: cssName, username, picture, email });
-   
+
 })
 
 
