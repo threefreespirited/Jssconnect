@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="/index.css" />
   <link rel="stylesheet" href="/login.css">
   <link rel="stylesheet" href="/profile.css" />
-  
+
   <!--Font Awesome-->
   <script src="https://kit.fontawesome.com/efd71d3ed7.js" crossorigin="anonymous"></script>
 
@@ -30,7 +30,8 @@
 <body>
   <nav id="navbar" style="background-color: #2c7873">
     <div class="nav-wrapper">
-      <a href="/" class="brand-logo"><img src="public/images/logo.png" alt="" style="width: 75px;margin-top: 7px;filter: invert();" /></a>
+      <a href="/" class="brand-logo"><img src="public/images/logo.png" alt=""
+          style="width: 75px;margin-top: 7px;filter: invert();" /></a>
       <a href="/" class="brand-logo" id="logoText" style="margin-left: 75px; font-size: 2rem">JSS Connect</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="main-menu" class="right hide-on-med-and-down">
@@ -62,12 +63,13 @@
       <img src="public/images/bg.svg">
     </div>
     <div class="login-content">
-        <img src="public/images/avatar.svg">
-        <h2 class="title">Welcome Back</h2>
-        <p style="margin-bottom: 60px;color: #52de97;">Glad to see you again</p>
+      <img src="public/images/avatar.svg">
+      <h2 class="title">Welcome Back</h2>
+      <p style="margin-bottom: 60px;color: #52de97;">Glad to see you again</p>
 
-        <a href="/auth/google"> <button class="btn">Login with Google<i class="fa fa-google-plus" style="margin-left: 15px;"></i></button></a>
-        <a style="text-align:center;" href="/register">New User? Register here</a>
+      <a href="/auth/google"> <button class="btn">Login with Google<i class="fa fa-google-plus"
+            style="margin-left: 15px;"></i></button></a>
+      <a style="text-align:center;" href="/register">New User? Register here</a>
     </div>
 
   </div>
@@ -77,90 +79,101 @@
 
   <!-- Floating button -->
 
-  <div class="fixed-action-btn" id="myFl">
-    <a class="btn-floating btn-large black myFloatingBtn">
-      <img src="public/images/logo.png" alt="" style="width: 60px;margin: 10px -1px;filter: invert();" />
-    </a>
-    <ul>
-      <li><a href="/contact#team" class="btn-floating green myFloat">Team</a>
-      </li>
-      <li><a href="http://jsswire.herokuapp.com" class="btn-floating red myFloat">
-        
-        <img src="public/images/share.png" alt="" style="width: 30px;margin: 6px -1px;filter: invert();" />
-      </a>
-      </li>
+  
 
-      <li style="margin: 12px 0px;">
-
-        <a class="btn-floating btn-large black" id="brightness">
-          <i class="fa fa-moon-o" style="color: white;"></i>
-        </a>
-
-      </li>
-
-    </ul>
-  </div>
-
-   <!-- Footer -->
+  <!-- Footer -->
 
   <!-- <footer class="page-footer" style="background-color: #1a1a1a;margin-top:36px;"> -->
-    <footer class="page-footer" style="background-color: #323232;margin-top:36px;">
+  <footer class="page-footer" style="background-color: #323232;margin-top:36px;">
+    <div class="container">
+      <div class="row">
+        <div style="text-align: center;margin: 75px 0;">
+          <h2>Let’s stay connected.</h2>
+          <form action="/newsletter" method="POST" style="margin: 30px 0px;">
+            <input type="email" name="email" required placeholder="Enter your Email"
+              style="width:40%;margin-right: 20px;color: white;" required>
+            <button id="newsBtn" type="submit">Subscribe</button>
+          </form>
+          <p>Sign up to receive our newsletter and exclusive updates.</p>
+          <div style="margin-top: 45px;">
+            <a href="https://www.facebook.com/JssAcademyOfTechnicalEducationnoida/" class="socials"
+              style="color: #1b6ca8;"><i class="fa fa-facebook-official"></i></a>
+            <a href="https://twitter.com/jssatenoida?lang=en" class="socials" style="color: #3282b8;"><i
+                class="fa fa-twitter-square"></i></a>
+          </div>
+        </div>
+        <hr>
+        <div class="col l3 offset-l1 s6">
+          <h5 class="white-text">Quick Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="/blogs">Blogs</a></li>
+            <li><a class="grey-text text-lighten-3" href="/resources">Ebooks</a></li>
+            <li><a class="grey-text text-lighten-3" href="/usercontributions">User Contributions</a></li>
+            <li><a class="grey-text text-lighten-3" href="http://jsswire.herokuapp.com">Connect with wire</a></li>
+            <li><a class="grey-text text-lighten-3" href="/contribute">Contribute</a></li>
+          </ul>
+        </div>
+        <div class="col l3 offset-l1 s6">
+          <h5 class="white-text">Recent Blogs</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="/blogs">What to do when entering a college?</a></li>
+            <li><a class="grey-text text-lighten-3" href="/blogs">What I Learned My Freshman Year of College</a></li>
+            <li><a class="grey-text text-lighten-3" href="/blogs">A glimpse into Async JavaScript</a></li>
+          </ul>
+        </div>
+        <div class="col l3 offset-l1 s6">
+          <h5 class="white-text">Contact</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="/contact">Contact Us</a></li>
+            <li><a class="grey-text text-lighten-3" href="/contact#team">Our Team</a></li>
+            <li><a class="grey-text text-lighten-3" href="/feedback">Feedback</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="footer-copyright">
       <div class="container">
-        <div class="row">
-          <div style="text-align: center;margin: 75px 0;">
-            <h2>Let’s stay connected.</h2>
-            <form action="/newsletter" method="POST" style="margin: 30px 0px;">
-              <input type="email" name="email" required placeholder="Enter your Email"
-                style="width:40%;margin-right: 20px;color: white;" required>
-              <button id="newsBtn" type="submit">Subscribe</button>
-            </form>
-            <p>Sign up to receive our newsletter and exclusive updates.</p>
-            <div style="margin-top: 45px;">
-              <a href="https://www.facebook.com/JssAcademyOfTechnicalEducationnoida/" class="socials"
-                style="color: #1b6ca8;"><i class="fa fa-facebook-official"></i></a>
-              <a href="https://twitter.com/jssatenoida?lang=en" class="socials" style="color: #3282b8;"><i
-                  class="fa fa-twitter-square"></i></a>
-            </div>
-          </div>
-          <hr>
-          <div class="col l3 offset-l1 s6">
-            <h5 class="white-text">Quick Links</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="/blogs">Blogs</a></li>
-              <li><a class="grey-text text-lighten-3" href="/resources">Ebooks</a></li>
-              <li><a class="grey-text text-lighten-3" href="/usercontributions">User Contributions</a></li>
-              <li><a class="grey-text text-lighten-3" href="http://jsswire.herokuapp.com">Connect with wire</a></li>
-              <li><a class="grey-text text-lighten-3" href="/contribute">Contribute</a></li>
-            </ul>
-          </div>
-          <div class="col l3 offset-l1 s6">
-            <h5 class="white-text">Recent Blogs</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="/blogs">What to do when entering a college?</a></li>
-              <li><a class="grey-text text-lighten-3" href="/blogs">What I Learned My Freshman Year of College</a></li>
-              <li><a class="grey-text text-lighten-3" href="/blogs">A glimpse into Async JavaScript</a></li>
-            </ul>
-          </div>
-          <div class="col l3 offset-l1 s6">
-            <h5 class="white-text">Contact</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="/contact">Contact Us</a></li>
-              <li><a class="grey-text text-lighten-3" href="/contact#team">Our Team</a></li>
-              <li><a class="grey-text text-lighten-3" href="/feedback">Feedback</a></li>
-            </ul>
-          </div>
-  
-        </div>
+        <span>© &nbsp; jssconnect.herokuapp.com &nbsp; 2020</span>
+        <span style="margin-left: 20%;">JSSconnnect</span>
+        <a class="grey-text text-lighten-4 right" href="/privacy">Privacy Policy</a>
       </div>
-      <div class="footer-copyright">
-        <div class="container">
-          <span>© &nbsp; jssconnect.herokuapp.com &nbsp; 2020</span>
-          <span style="margin-left: 20%;">JSSconnnect</span>
-          <a class="grey-text text-lighten-4 right" href="/privacy">Privacy Policy</a>
-        </div>
-      </div>
-    </footer>
-  
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+  <script>
+    function addDarkmodeWidget() {
+      new Darkmode().showWidget();
+    }
+    window.addEventListener('load', addDarkmodeWidget);
+  </script>
+  <script>
+    const options = {
+  bottom: '64px', // default: '32px'
+  right: 'unset', // default: '32px'
+  left: '32px', // default: 'unset'
+  time: '0.5s', // default: '0.3s'
+  mixColor: '#fff', // default: '#fff'
+  backgroundColor: '#fff',  // default: '#fff'
+  buttonColorDark: '#100f2c',  // default: '#100f2c'
+  buttonColorLight: '#fff', // default: '#fff'
+  saveInCookies: false, // default: true,
+  label: '🌓', // default: ''
+  autoMatchOsTheme: true // default: true
+}
+
+const darkmode = new Darkmode(options);
+darkmode.showWidget();
+  </script>
+    <style>
+      #navbar {
+        isolation: isolate;
+      }
+      .btn {
+        isolation: isolate;
+      }
+    </style>
+
 
   <script>
     // JS for floating buuton
@@ -177,15 +190,15 @@
 
     const brightness = document.getElementById('brightness');
     const foot = document.querySelector("footer");
-    const navbar = document.querySelector("nav"); 
-  const sidenav = document.querySelector('.sidenav');
+    const navbar = document.querySelector("nav");
+    const sidenav = document.querySelector('.sidenav');
     let count = 0;
     brightness.addEventListener("click", () => {
 
       if (count < 1) {
         count = 1;
         localStorage.setItem("theme", "dark");
-        
+
       }
       else if (count == 1) {
         count = 0;

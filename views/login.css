@@ -232,12 +232,6 @@ body{
 .socials:hover {
 	filter: saturate(3);
 }
-
-.myFloatingBtn:hover {
-	transform: rotate(360deg);
-	transition: 0.7s linear all;
-}
-
-.day{
+.day {
 	display: none;
-  }
+}

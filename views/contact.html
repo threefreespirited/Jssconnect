@@ -161,9 +161,8 @@
         <li><a href="/contact">Contact</a></li>
         <li class="tooltip" id="userProfile">
           <span class="myChip" style="margin: 10px 30px;">
-            <img
-              src="https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg"
-              id="picture" alt="Person" width="96" height="96">
+            <img src="https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg" id="picture"
+              alt="Person" width="96" height="96">
             <span id="chipName">Guest</span>
           </span>
           <span class="tooltiptext">
@@ -183,9 +182,8 @@
     <br />
     <li class="tooltip" id="userProfile">
       <span class="myChip" style="margin: 10px 30px;">
-        <img
-          src="https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg"
-          id="picture1" alt="Person" width="96" height="96">
+        <img src="https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg" id="picture1"
+          alt="Person" width="96" height="96">
         <span id="chipName1">Guest</span>
       </span>
       <span class="tooltiptext" id="t1">
@@ -234,9 +232,7 @@
           <div class="inner-box">
             <div class="image-box">
               <div class="img">
-                <img
-                  src="https://bit.ly/33Nlfg3"
-                  alt="team" />
+                <img src="https://bit.ly/33Nlfg3" alt="team" />
                 <!-- social icons -->
                 <div class="social-icons">
                   <a href="https://www.linkedin.com/in/harshit-sharma-945i/"><span class="fa fa-linkedin"></span></a>
@@ -257,9 +253,7 @@
           <div class="inner-box">
             <div class="image-box">
               <div class="img">
-                <img
-                  src="https://bit.ly/3mMM37P"
-                  alt="team" />
+                <img src="https://bit.ly/3mMM37P" alt="team" />
                 <!-- social icons -->
                 <div class="social-icons">
                   <a href="https://www.linkedin.com/in/aman-dixit-b371b9190/"><span class="fa fa-linkedin"></span></a>
@@ -341,29 +335,7 @@
 
   <!-- Floating button -->
 
-  <div class="fixed-action-btn" id="myFl">
-    <a class="btn-floating btn-large black myFloatingBtn">
-      <img src="public/images/logo.png" alt="" style="width: 60px;margin: 10px -1px;filter: invert();" />
-    </a>
-    <ul>
-      <li><a href="/contact#team" class="btn-floating green myFloat">Team</a>
-      </li>
-      <li><a href="http://jsswire.herokuapp.com" class="btn-floating red myFloat">
 
-          <img src="public/images/share.png" alt="" style="width: 30px;margin: 6px -1px;filter: invert();" />
-        </a>
-      </li>
-
-      <li style="margin: 12px 0px;">
-
-        <a class="btn-floating btn-large black" id="brightness">
-          <i class="fa fa-moon-o" style="color: white;"></i>
-        </a>
-
-      </li>
-
-    </ul>
-  </div>
 
   <!-- Footer -->
 
@@ -424,6 +396,31 @@
       </div>
     </div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+  <script>
+    function addDarkmodeWidget() {
+      new Darkmode().showWidget();
+    }
+    window.addEventListener('load', addDarkmodeWidget);
+  </script>
+  <script>
+    const options = {
+      bottom: '64px', // default: '32px'
+      right: 'unset', // default: '32px'
+      left: '32px', // default: 'unset'
+      time: '0.5s', // default: '0.3s'
+      mixColor: '#fff', // default: '#fff'
+      backgroundColor: '#fff',  // default: '#fff'
+      buttonColorDark: '#100f2c',  // default: '#100f2c'
+      buttonColorLight: '#fff', // default: '#fff'
+      saveInCookies: false, // default: true,
+      label: '🌓', // default: ''
+      autoMatchOsTheme: true // default: true
+    }
+
+    const darkmode = new Darkmode(options);
+    darkmode.showWidget();
+  </script>
 
 
 
@@ -549,7 +546,7 @@
       logBtn.style.display = "block";
       logBtn1.style.display = "block";
       regBtn.style.display = "none";
-            regBtn1.style.display = "none";
+      regBtn1.style.display = "none";
 
       chipName1.innerHTML = myUsername;
       name1.innerHTML = "<i class='material-icons' style='display:inline;margin:9px;'>verified_user</i>"
