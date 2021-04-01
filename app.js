@@ -172,6 +172,40 @@ app.post("/joincommunity", (req, res) => {
       if (data == "") {
         const myCommunityUser = new communityUser(req.body);
         myCommunityUser.save();
+        //Schema
+        const Schema = mongoose.Schema;
+        const newsletterSchema = new Schema({
+          email: { type: String, required: true },
+        });
+
+        //Model
+        const newsletter = mongoose.model("newsletter", newsletterSchema);
+        let newsletter_email = new newsletter(req.body);
+
+        //Newsletter
+        let transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: process.env.EMAIL,
+            pass: process.env.PASS,
+          },
+        });
+
+        let mailOptions = {
+          from: process.env.EMAIL,
+          to: newsletter_email,
+          subject: "Welcome to JSSConnect Community",
+          text:
+            "Thanks for joining Jssconnect. Now you will get regular emails for every event and update.",
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("Email sent: " + info.response);
+          }
+        });
         res.writeHead(200, { "Content-Type": "text/html" });
         let myResponse = `<img src='http://clipart-library.com/images_k/teamwork-transparent-background/teamwork-transparent-background-15.png' style='margin:60px 42%; width:200px;'><p style='text-align:center;font-size:1.8rem;margin-top:60px;'>Thanks for joining!<br>You can now connect with other JSSATENs on Jssconnect.</p><a href='/community'style='text-align:center;margin-left:42.5%;'><button style='font-size:1.5rem;padding:6px;border-radius:6px;border:2px solid #de4463;background-color:#edc988;cursor:pointer;'>View Community</button></a>`;
         res.write(myResponse);
