@@ -29,18 +29,29 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const MONGODB_URI = process.env.MONGODB_URI;
-mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-mongoose.set("useCreateIndex", true);
+mongoose
+    .connect(MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true, 
+      useCreateIndex: true,
+      useFindAndModify: false,
+    })
+    .catch((err) => {
+      //Error on initial connection
+      console.log("Couldn't connect to mongo db, err: ", err);
+    });
+
 const db = mongoose.connection;
 
 db.on("connected", () => {
   console.log("Mongoose is connected!");
 });
 
-mongoose.set("useCreateIndex", true);
+// To handle errors after initial connection was established
+db.on("error", err => {
+  console.log("Error afer initial connection was established: ", err);
+});
+
 app.use(express.static("public"));
 // app.use("/views", express.static(__dirname + "/views"));
 app.set("view engine", "ejs");
