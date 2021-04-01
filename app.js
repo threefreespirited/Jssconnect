@@ -79,7 +79,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "https://jssconnect.herokuapp.com/auth/google/home",
+      callbackURL: "/auth/google/home",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
@@ -167,14 +167,45 @@ const communityUser = mongoose.model("communityUser", communitySchema);
 app.post("/joincommunity", (req, res) => {
   console.log(req.body.email);
   communityUser.find({ email: req.body.email }, (function (err, data) {
-    
-    console.log("Userdata ",data);
-    
     if (err) console.log(err);
     else {
       if (data == "") {
         const myCommunityUser = new communityUser(req.body);
         myCommunityUser.save();
+        //Schema
+        const Schema = mongoose.Schema;
+        const newsletterSchema = new Schema({
+          email: { type: String, required: true },
+        });
+
+        //Model
+        const newsletter = mongoose.model("newsletter", newsletterSchema);
+        let newsletter_email = new newsletter(req.body);
+
+        //Newsletter
+        let transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: process.env.EMAIL,
+            pass: process.env.PASS,
+          },
+        });
+
+        let mailOptions = {
+          from: process.env.EMAIL,
+          to: newsletter_email,
+          subject: "Welcome to JSSConnect Community",
+          text:
+            "Thanks for joining Jssconnect. Now you will get regular emails for every event and update.",
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("Email sent: " + info.response);
+          }
+        });
         res.writeHead(200, { "Content-Type": "text/html" });
         let myResponse = `<img src='http://clipart-library.com/images_k/teamwork-transparent-background/teamwork-transparent-background-15.png' style='margin:60px 42%; width:200px;'><p style='text-align:center;font-size:1.8rem;margin-top:60px;'>Thanks for joining!<br>You can now connect with other JSSATENs on Jssconnect.</p><a href='/community'style='text-align:center;margin-left:42.5%;'><button style='font-size:1.5rem;padding:6px;border-radius:6px;border:2px solid #de4463;background-color:#edc988;cursor:pointer;'>View Community</button></a>`;
         res.write(myResponse);
@@ -214,8 +245,31 @@ app.post("/userblog", (req, res) => {
   res.send();
 });
 
-// Contact
+// Comment Schema 
+const commentSchema = new mongoose.Schema({
+  authorName: String,
+  date: String,
+  commentInput: String,
+})
+const userComment = mongoose.model("userComment", commentSchema);
+app.post("/savecomment", (req, res) => {
+  console.log("post happend");
+  console.log(req.body);
 
+  if (req.isAuthenticated()) {
+    console.log("U'r Signed Succesffully");
+    console.log(req.user);
+    let myuserComment = new userComment(req.body);
+    myuserComment.save();
+    res.send("Your Comment Save");
+  }
+  else {
+    console.log("Not Signed In");
+    res.send("Please Sign In First");
+  }
+
+})
+// Contact
 const contactSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -461,16 +515,16 @@ app.get("/login", (req, res) => {
   res.render("login", { pageTitle: pageTitle, cssName: cssName, username, picture, email });
 });
 // REGISTER PAGE
-// app.get("/register", (req, res) => {
-//   let username = "Guest";
-//   let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"; let email = "";
-//   if (req.isAuthenticated()) {
-//     username = req.user.name;
-//     picture = req.user.picture;
-//     email = req.user.email;
-//   }
-//   res.render("register", { username, picture, email });
-// });
+app.get("/register", (req, res) => {
+  let username = "Guest";
+  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"; let email = "";
+  if (req.isAuthenticated()) {
+    username = req.user.name;
+    picture = req.user.picture;
+    email = req.user.email;
+  }
+  res.render("register", { username, picture, email });
+});
 // RESOURCE PAGE
 app.get("/resources", (req, res) => {
   let username = "Guest";
@@ -481,9 +535,9 @@ app.get("/resources", (req, res) => {
     username = req.user.name;
     picture = req.user.picture;
     email = req.user.email;
-   }
+  }
   res.render("resources", { username, picture, email, pageTitle: pageTitle, cssName: cssName });
- 
+
 });
 app.get("/about", (req, res) => {
   let username = "Guest";
@@ -581,6 +635,8 @@ app.post("/myblog", (req, res) => {
   let pageTitle = "Blogs";
   let cssName = "css/blogs.css";
   let username = "Guest";
+  let like = 0;
+  let uniqueId = uniId;
   let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"; let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -591,7 +647,11 @@ app.post("/myblog", (req, res) => {
     if (err) console.log(err);
     else {
       console.log(data[uniId]);
-      res.render("blog", { blogData: data[uniId], username, picture, email, title: pageTitle, cssName: cssName });
+      console.log("hi am");
+      if (data.link == undefined) {
+        console.log("no record");
+      }
+      res.render("blog", { blogData: data[uniId], username, picture, email, title: pageTitle, cssName: cssName, uniqueId: uniqueId });
     }
   });
 });
@@ -606,7 +666,7 @@ app.get("/blogs", (req, res) => {
     picture = req.user.picture;
     email = req.user.email;
   }
-   
+
   userBlog.find({}, (err, data) => {
     if (err) console.log(err);
     else {
@@ -623,8 +683,8 @@ app.get("/userblog", function (req, res) {
   if (req.isAuthenticated()) {
     let username = req.user.name;
     let picture = req.user.picture;
-     email = req.user.email;
-    res.render("userblog", {pageTitle, cssName, username, picture, email });
+    email = req.user.email;
+    res.render("userblog", { pageTitle, cssName, username, picture, email });
   } else {
     res.redirect("/login");
   }
@@ -982,9 +1042,31 @@ app.get("/courselanding", (req, res) => {
     email = req.user.email;
   }
   res.render("courselanding", { title: pageTitle, cssName: cssName, username, picture, email });
-   
- 
+
+
 });
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/* Web Home */
+app.get("/webhome", (req, res) => {
+  let pageTitle = "Web Development";
+  let cssName = "css/course/web/webhome.css";
+  let username = "Guest";
+  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"; let email = "";
+  if (req.isAuthenticated()) {
+    username = req.user.name;
+    picture = req.user.picture;
+    email = req.user.email;
+  }
+  res.render("web/webhome", { title: pageTitle, cssName: cssName, username, picture, email });
+
+})
+
+
+
+
+
+
 app.listen(port, () => {
   console.log(`Server running at  http://${hostname}:${port}/`);
 });

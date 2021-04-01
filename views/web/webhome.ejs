@@ -1,0 +1,35 @@
+<%- include("../header") %>
+<style>
+
+</style>
+<div class="main-container">
+    <!-- heading -->
+    <div class="one">
+       <h2 id="one-heading" style="text-align:center;">WEB DEVELOPMENT</h2>
+    </div>
+    <div class="two">
+        <h2 id="two-heading" style="text-align: center;">Elective Course Work</h2>
+    </div>
+</div>
+
+<!-- Footer -->
+<%- include("../footer") %>
+
+<!-- Fomantic Select Box -->
+<script>
+  $('.selection.dropdown')
+    .dropdown();
+</script>
+<!-- annotation -->
+<script type="module">
+  import { annotate } from 'https://unpkg.com/rough-notation?module';
+      const e = document.querySelectorAll('.myAnnotation');
+      for (let i = 0; i < e.length; i++) {
+        const annotation = annotate(e[i], { type: 'underline', color: 'yellow' });
+        annotation.show();
+      }
+</script>
+
+</body>
+
+</html>
