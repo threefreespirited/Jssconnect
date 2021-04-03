@@ -164,38 +164,52 @@
     myImage="https://cdn5.vectorstock.com/i/thumb-large/54/69/male-user-icon-vector-8865469.jpg" ; } if (myGithub=="" )
     { myGithub="https://github.com/" ; } if (myLinkedIn=="" ) { myLinkedIn="https://www.linkedin.com/" ; }
     if(data[i].year=='1st year' ){ myCommunity1 +=` <!-- card starts -->
-    <div
-      style="position: relative;display: flex;align-items: center;width: 100%;padding: 20px 0px 20px 10px;background-color: white;margin: 30px 0;">
+      <div class="community-card"
+      style="position: relative;display: flex;align-items: center;background-color: white;margin: 20px;padding: 30px;width: 300px;height: 300px;text-align: left;">
+<!-- frontCard -->
+      <div class="frontCard" style="width:fit-content;height: fit-content;margin:0 auto;">
 
-      <div class="ui dropdown" style="position: absolute;top: 10px;right: 10px;">
-        <i class="ellipsis vertical icon" style="color: #6e6e6e;margin-left: 10px; margin-right: 0"></i>
 
-        <div class="left menu" style="background-color: #6e6e6e;">
-          <a href="/profile" class="item" style="color: white;">View Profile</a>
-        </div>
-      </div>
-      <!-- Left Side Image Section -->
+       <!-- Left Side Image Section -->
       <div class="left-side" style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
-        <img src="${myImage}" style="width: 120px;height: 120px;margin: auto 0px;" alt="">
+        <img src="${myImage}" style="width: 120px;height: 120px;margin: auto 0px;border-radius: 100%;" alt="">
       </div>
       <!-- Right Side Content Section -->
       <div class="right-side">
         <div style="margin-left: 10px;display:flex;align-items: center;justify-content: center;">
           <div class="content">
             <h3 style="color: #6e6e6e;border-bottom: 2px solid #6e6e6e;width: fit-content;">${data[i].name}</h3>
-            <h4 style="color: black;width: fit-content;text-align: left;margin-top: 10px;">${data[i].about}</h4>
+           
+          </div>
+         
+ 
+
+        </div>
+        <h4 style="color: black;width: fit-content;text-align: left;margin-top: 10px;">${data[i].about}</h4>
             <h4
               style="color: black;width: fit-content;text-align: left;margin-top: 10px;border-bottom: 2px solid #6e6e6e;">
               ${data[i].department}</h4>
-          </div>
-          <!-- Socials Section-->
-          <div id="socials" style="margin-left:80px;display:flex;flex-direction:column;text-align:left;padding:0px;">
+      </div>
+
+</div>
+<!-- backCard -->
+<div class="backCard" style="display: none;height: fit-content;width: fit-content;margin: 0 auto;">
+  
+               <!-- Socials Section-->
+          <div id="socials" style="padding:0px;">
             <a href="${myGithub}" class="ui circular black github icon button">
               <i class="github icon" style="font-size: 1.2rem;"></i>
             </a>
             <a href="${myLinkedIn}" style="margin-top:5px;" class="ui circular linkedin icon button">
               <i class="linkedin icon" style="font-size: 1.2rem;"></i>
             </a>
+          </div>
+          <!-- dropdown -->
+          <div class="ui dropdown" style="position: relative;top: -140px;left: 100px;">
+        <i class="ellipsis vertical icon" style="color: #6e6e6e;margin-left: 10px; margin-right: 0"></i>
+
+        <div class="left menu" style="background-color: #6e6e6e;">
+          <a href="/profile" class="item" style="color: white;">View Profile</a>
           </div>
 
 
@@ -441,5 +455,27 @@
 
 
     </section>
+    <script>
+ let showCards = document.querySelectorAll(".community-card") ;
+ for (let index = 0; index < showCards.length; index++) {
+    showCards[index].addEventListener("mouseover",()=>{
+      let frontCard = showCards[index].children[0];
+      let backCard = showCards[index].children[1];
+
+      frontCard.style.display = 'none';
+      backCard.style.display = 'block';
+    })
+
+        showCards[index].addEventListener("mouseout",()=>{
+      let frontCard = showCards[index].children[0];
+      let backCard = showCards[index].children[1];
+
+      frontCard.style.display = 'block';
+      backCard.style.display = 'none';
+
+    })
+   
+ }
+</script>
 
     <%- include("footer") %>
