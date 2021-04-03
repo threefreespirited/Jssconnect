@@ -236,77 +236,22 @@
         const data = { lat, lon };
         const commentBox = document.getElementById("comment-box");
         let previousLength=0;
-      saveComment.addEventListener("click",(e)=>{
+       saveComment.addEventListener("click",(e)=>{
+        if(document.getElementById("comment-input").value == "") {
+          alert("Enter Some Text");
+        }
+        else{
          saveCommentFunction();
          getNewComment();
+        }
       })
         const uniqueId = document.getElementById("uniqueId").innerHTML;
         console.log(uniqueId);
         const username = document.getElementById("username").innerHTML.trim();
-      const picture = document.getElementById("picture").innerHTML.trim();
-      const email = document.getElementById("email").innerHTML.trim();
+        const picture = document.getElementById("picture").innerHTML.trim();
+        const email = document.getElementById("email").innerHTML.trim();
         // Function To get comments when page loads first time
        // Function To get comments when page loads first time
-      async function getComment() {
-        console.log("function called");
-        let res = await fetch(`/getComment/${uniqueId}`);
-        let comment = await res.json();
-        previousLength = comment.length;
-        for (let i = 0; i < comment.length; i++) {
-          commentBox.innerHTML +=
-            ` <div class="comment">
-        <a class="avatar">
-          <img src="${comment[i].picture || '1234.jpg'}">
-        </a>
-        <div class="content">
-          <a class="author">${comment[i].authorName}</a>
-          <br>
-          <a class="author" style="font-weight: lighter;color: grey;">${comment[i].email}</a>
-          <div class="metadata">
-            <span class="date">${comment[i].date}</span>
-          </div>
-          <div class="text">
-            ${comment[i].commentInput}
-          </div>
-          <!-- <div class="actions">
-            <a class="reply">Reply</a>
-          </div> -->
-        </div>
-      </div>`;
-        }
-      }
-      getComment();
-      // function to get when new comment is updated
-      async function getNewComment() {
-        // console.log(commentBox);
-        console.log(" get new comment function called");
-        let res = await fetch(`/getComment/${uniqueId}`);
-        let comment = await res.json();
-        for (let i = previousLength; i < comment.length; i++) {
-          console.log(i, "i");
-          commentBox.innerHTML +=
-            ` <div class="comment">
-        <a class="avatar">
-          <img src="${comment[i].picture || '1234.jpg'}">
-        </a>
-        <div class="content">
-          <a class="author">${comment[i].authorName}</a>
-          <br>
-          <a class="author" style="font-weight: lighter;color: grey;">${comment[i].email}</a>
-          <div class="metadata">
-            <span class="date">${comment[i].date}</span>
-          </div>
-          <div class="text">
-            ${comment[i].commentInput}
-          </div>
-          <!-- <div class="actions">
-            <a class="reply">Reply</a>
-          </div> -->
-        </div>
-      </div>`;
-
-        }
-      }
         // save comment function to save your comment
        // save comment function to save your comment
        async function saveCommentFunction() {
@@ -343,7 +288,70 @@
       function makeInputNull() {
         document.getElementById("comment-input").value = "";
       }
+      //  get comment when page loads
+      async function getComment() {
+        console.log("function called");
+        let res = await fetch(`/getComment/${uniqueId}`);
+        let comment = await res.json();
+        previousLength = comment.length;
+        for (let i = 0; i < comment.length; i++) {
+          commentBox.innerHTML +=
+            ` <div class="comment">
+        <a class="avatar">
+          <img src="${comment[i].picture || '1234.jpg'}">
+        </a>
+        <div class="content">
+          <a class="author">${comment[i].authorName}</a>
+          <br>
+          <a class="author" style="font-weight: lighter;color: grey;">${comment[i].email}</a>
+          <div class="metadata">
+            <span class="date">${comment[i].date}</span>
+          </div>
+          <div class="text">
+            ${comment[i].commentInput}
+          </div>
+          <!-- <div class="actions">
+            <a class="reply">Reply</a>
+          </div> -->
+        </div>
+      </div>`;
+        }
+      }
+      getComment();
+      // function to get when new comment is updated
+      async function getNewComment() {
+        // console.log(commentBox);
+        console.log(" prev length" +previousLength);
+        console.log(" get new comment function called");
+        let res = await fetch(`/getComment/${uniqueId}`);
+        let comment = await res.json();
+        for (let i = previousLength; i < comment.length; i++) {
+          console.log(i, "i");
+          commentBox.innerHTML +=
+            ` <div class="comment">
+        <a class="avatar">
+          <img src="${comment[i].picture || '1234.jpg'}">
+        </a>
+        <div class="content">
+          <a class="author">${comment[i].authorName}</a>
+          <br>
+          <a class="author" style="font-weight: lighter;color: grey;">${comment[i].email}</a>
+          <div class="metadata">
+            <span class="date">${comment[i].date}</span>
+          </div>
+          <div class="text">
+            ${comment[i].commentInput}
+          </div>
+          <!-- <div class="actions">
+            <a class="reply">Reply</a>
+          </div> -->
+        </div>
+      </div>`;
 
+        }
+       previousLength = comment.length;
+      }
+       
 </script>
 <script src="/blogs.js">
     console.log("Hello");
