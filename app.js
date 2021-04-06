@@ -29,29 +29,18 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const MONGODB_URI = process.env.MONGODB_URI;
-mongoose
-    .connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true, 
-      useCreateIndex: true,
-      useFindAndModify: false,
-    })
-    .catch((err) => {
-      //Error on initial connection
-      console.log("Couldn't connect to mongo db, err: ", err);
-    });
-
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+mongoose.set("useCreateIndex", true);
 const db = mongoose.connection;
 
 db.on("connected", () => {
   console.log("Mongoose is connected!");
 });
 
-// To handle errors after initial connection was established
-db.on("error", err => {
-  console.log("Error afer initial connection was established: ", err);
-});
-
+mongoose.set("useCreateIndex", true);
 app.use(express.static("public"));
 // app.use("/views", express.static(__dirname + "/views"));
 app.set("view engine", "ejs");
@@ -91,7 +80,7 @@ passport.use(
   new GoogleStrategy({
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "https://jssconnect.herokuapp.com/auth/google/home",
+      callbackURL: "http://localhost:3000/auth/google/home",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
@@ -182,61 +171,30 @@ const communitySchema = new mongoose.Schema({
 });
 
 const communityUser = mongoose.model("communityUser", communitySchema);
+
 app.post("/joincommunity", (req, res) => {
   console.log(req.body.email);
-  communityUser.find({ email: req.body.email }, (function (err, data) {
+  communityUser.find({
+    email: req.body.email
+  }, (function (err, data) {
     if (err) console.log(err);
     else {
       if (data == "") {
         const myCommunityUser = new communityUser(req.body);
         myCommunityUser.save();
-        //Schema
-        const Schema = mongoose.Schema;
-        const newsletterSchema = new Schema({
-          email: { type: String, required: true },
+        res.writeHead(200, {
+          "Content-Type": "text/html"
         });
-
-        //Model
-        const newsletter = mongoose.model("newsletter", newsletterSchema);
-        let newsletter_email = new newsletter(req.body);
-
-        //Newsletter
-        let transporter = nodemailer.createTransport({
-          service: "gmail",
-          auth: {
-            user: process.env.EMAIL,
-            pass: process.env.PASS,
-          },
-        });
-
-        let mailOptions = {
-          from: process.env.EMAIL,
-          to: newsletter_email,
-          subject: "Welcome to JSSConnect Community",
-          text:
-            "Thanks for joining Jssconnect. Now you will get regular emails for every event and update.",
-        };
-
-        transporter.sendMail(mailOptions, function (error, info) {
-          if (error) {
-            console.log(error);
-          } else {
-            console.log("Email sent: " + info.response);
-          }
-        });
-        res.writeHead(200, { "Content-Type": "text/html" });
         let myResponse = `<img src='http://clipart-library.com/images_k/teamwork-transparent-background/teamwork-transparent-background-15.png' style='margin:60px 42%; width:200px;'><p style='text-align:center;font-size:1.8rem;margin-top:60px;'>Thanks for joining!<br>You can now connect with other JSSATENs on Jssconnect.</p><a href='/community'style='text-align:center;margin-left:42.5%;'><button style='font-size:1.5rem;padding:6px;border-radius:6px;border:2px solid #de4463;background-color:#edc988;cursor:pointer;'>View Community</button></a>`;
         res.write(myResponse);
         res.send();
-      }
-      else {
+      } else {
         res.send("You are Already a member");
       }
     }
   }))
 
 });
-
 
 // Userblogs
 
@@ -264,6 +222,75 @@ app.post("/userblog", (req, res) => {
   let myResponse = `<img src='https://img2.pngio.com/writing-services-png-picture-889262-writing-services-png-web-content-png-650_519.png' style='margin:60px 42%; width:200px;'><p style='text-align:center;font-size:1.8rem;margin-top:20px;'>Thanks for adding one!<br>We hope your blog is worthy enough to be displayed on our dashboard.<br><br>Our team will look onto it as soon as possible..</p><a href='/'style='text-align:center;margin-left:42.5%;'><button style='font-size:1.3rem;padding:9px;border-radius:10px;border:2px solid #30475e;background-color:#d6e0f0;color:#30475e;cursor:pointer;'>Back to Jssconnect</button></a>`;
   res.write(myResponse);
   res.send();
+});
+// like blog feature
+
+// Like Schema 
+const likeSchema = new mongoose.Schema({
+  uniqueId: String,
+  likes: Array
+});
+const userLikes = mongoose.model("userLikes", likeSchema);
+
+app.post("/savelikes", (req, res) => {
+  console.log(req.body, "likes");
+
+  if (req.isAuthenticated()) {
+
+    var myLikes = [];
+
+    userLikes.find({ uniqueId: req.body.uniqueId }, async (err, data) => {
+      if (err)
+        console.log(err);
+      else if (data == "") {
+        console.log("data empty");
+        myLikes.push(req.body.email);
+        let newuserlikes = new userLikes(
+          {
+            uniqueId: req.body.uniqueId,
+            likes: myLikes
+          }
+        );
+        newuserlikes.save();
+        res.json(JSON.stringify({ likedearlier: true }));
+      }
+      else if (data != "") {
+        myLikes = await data[0].likes;
+        console.log(myLikes, "data[0].likes");
+
+        // check if user already liked the post
+        let likecheck = 0;
+        for (let i = 0; i < myLikes.length; i++) {
+          if (myLikes[i] == req.body.email) {
+            likecheck = 1;
+            break;
+          }
+        }
+        if (likecheck == 1) {
+          res.json(JSON.stringify({ likedearlier: true }));
+        }
+        else if (likecheck == 0) {
+          myLikes.push(req.body.email);
+          console.log(myLikes, "data[0].likes");
+          // update original entry(if exists)
+          userLikes.updateOne({ uniqueId: req.body.uniqueId }, { likes: myLikes }, function (err, result) {
+            if (err) {
+              console.log(err)
+            } else {
+              console.log("Result :", result)
+            }
+          });
+          res.json(JSON.stringify({ likedearlier: false }));
+        }
+
+
+      }
+    });
+  }
+  else {
+    res.send("not authenticated");
+  }
+
 });
 
 // Comment Schema 
@@ -304,6 +331,18 @@ app.get("/getComment/:id", (req, res) => {
       res.send(data);
     }
   })
+})
+// Staus Checking of User
+//@desc; Whether he is authenticated or not
+app.get("/status", (req, res) => {
+  if (req.isAuthenticated()) {
+    console.log("Yeh he is authenticated");
+    res.send("1");
+  }
+  else {
+    console.log("Nope! not authenticated");
+    res.send("0");
+  }
 })
 // Contact
 const contactSchema = new mongoose.Schema({
@@ -1255,6 +1294,126 @@ app.get("/webhome", (req, res) => {
 
 })
 
+// PROFILE SECTION ///////////////////////////////////////////////////////////
+
+app.get("/profile", (req, res) => {
+  let pageTitle = "Profile";
+  let cssName = "css/profile.css";
+  let username = "Guest";
+  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let email = "";
+  let uniqueId = -1;
+  let one = 0;
+  let two = 0;
+  let three = 0;
+  let four = 0;
+  let five = 0;
+  let blogData = "";
+  if (req.isAuthenticated()) {
+    username = req.user.name;
+    picture = req.user.picture;
+    email = req.user.email;
+    /* To Find Liked Posts Data */
+    userLikes.find({}, (err,data) => {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        console.log("data at profile");
+        console.log(data);
+        for (let i = 0; i < data.length; i++) {
+          // Unique Id 0
+          if (data[i].uniqueId == 0) {
+            for (let j = 0; j < data[i].likes.length; j++) {
+              if (data[i].likes[j] == email) {
+                one = 1;
+                break;
+              }
+            }
+          }
+          // Unique Id 1
+          if (data[i].uniqueId == 1) {
+            for (let j = 0; j < data[i].likes.length; j++) {
+              if (data[i].likes[j] == email) {
+                two = 1;
+                break;
+              }
+            }
+          }
+          // Unique Id 2
+          if (data[i].uniqueId == 2) {
+            for (let j = 0; j < data[i].likes.length; j++) {
+              if (data[i].likes[j] == email) {
+                three = 1;
+                break;
+              }
+            }
+          }
+          // Unique Id 3
+          if (data[i].uniqueId == 3) {
+            for (let j = 0; j < data[i].likes.length; j++) {
+              if (data[i].likes[j] == email) {
+                four = 1;
+                break;
+              }
+            }
+          }
+          // Unique Id 4
+          if (data[i].uniqueId == 4) {
+            for (let j = 0; j < data[i].likes.length; j++) {
+              if (data[i].likes[j] == email) {
+                 five = 1;
+                break;
+              }
+            }
+          }
+          // end of outer loop
+        }
+      
+      // end of else 
+      }
+      console.log(data[0].likes[0]);
+      console.log(data[0].uniqueId);
+
+     
+
+    })
+    userBlog.find({}, (err, data) => {
+      if (err) console.log(err);
+      else {
+        console.log(data[2].imageurl);
+        blogData = data;
+      }
+    });
+    setTimeout(() => {
+    console.log("one" + one);
+    console.log("four" + four);
+      console.log("blog data");
+      console.log(blogData);
+    res.render("profile", {
+      title: pageTitle,
+      cssName: cssName,
+      username,
+      picture,
+      email,
+      firstBlog: one,
+      secondBlog: two,
+      thirdBlog: three,
+      fourthBlog: four,
+      fifthBlog: five,
+      data: blogData,
+    });
+    }, 2000);
+    
+  }
+  else {
+    console.log("he is not authenticated");
+    res.redirect("/login");
+  }
+  
+ 
+
+})
 
 
 
