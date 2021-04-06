@@ -1,0 +1,222 @@
+<%- include("header") %>
+<div class="container1">
+  <div class="container2" id="info-box">
+    <div class="user-img">
+        <img id="profile-img" src="<%= picture %>"  alt="profile-img">
+    </div>
+    <div class="user-text">
+        <h2 id="profile-name" style="text-align: center;"><%= username %></h2>
+        <h2 id="profile-name" style="text-align: center;font-size:2.6rem;color:black;"><%= email %></h2>
+    </div>
+  </div>
+  <!-- Posts Liked -->
+  <div class="container3">
+      <h2 id="liked-post-heading">Posts You have <i style="color:red;" class="fa fa-heart-o" aria-hidden="true"></i></h2>
+
+      <!-- Blogs Liked -->
+        <h3 id="blog-heading">BLOGS</h3>
+        <% 
+        let one="";
+        let myBoxes=``; 
+        <!-- First Blog -->
+        if(firstBlog == 1){
+          
+          let length; if(data) { dataLength=data.length; } 
+           if(data[0].permission=="true" ) { myBoxes +=` <style>
+           #myBlogBox${0}::before{
+           background: url('${data[0].imageurl}') center center/cover;
+           }
+           </style>
+     
+           <div class="blogBox" id="myBlogBox0">
+             <div class="one">
+               <p>${data[0].date}</p>
+               <h3 style="margin-top: 135px; font-size: 2.2rem">${data[0].title}</h3>
+               <p style="position: absolute; bottom: 30px">${data[0].authorName}</p>
+             </div>
+             <div class="two">
+               <p style="font-size: 1.1rem;width: 90%;position:absolute;top: 60px;left: 15px;">${data[0].shortDescription}
+               </p>
+               <form action="/myblog" method="post">
+                 <input type="number" value="0" name="uniqueId" style="display: none" />
+                 <button read="5" class="ui inverted violet button btn readBtn"
+                   style="position:absolute;bottom: 40px;left: 30px;" type="submit">
+                   Read More
+                 </button>
+               </form>
+             </div>
+           </div>
+     
+           `; } } 
+     
+        
+        <!--Second Blog -->
+          if(secondBlog == 1){
+          
+             let length; if(data) { dataLength=data.length; } 
+              if(data[1].permission=="true" ) { myBoxes +=` <style>
+              #myBlogBox${1}::before{
+              background: url('${data[1].imageurl}') center center/cover;
+              }
+              </style>
+        
+              <div class="blogBox" id="myBlogBox1">
+                <div class="one">
+                  <p>${data[1].date}</p>
+                  <h3 style="margin-top: 135px; font-size: 2.2rem">${data[1].title}</h3>
+                  <p style="position: absolute; bottom: 30px">${data[1].authorName}</p>
+                </div>
+                <div class="two">
+                  <p style="font-size: 1.1rem;width: 90%;position:absolute;top: 60px;left: 15px;">${data[1].shortDescription}
+                  </p>
+                  <form action="/myblog" method="post">
+                    <input type="number" value="1" name="uniqueId" style="display: none" />
+                    <button read="5" class="ui inverted violet button btn readBtn"
+                      style="position:absolute;bottom: 40px;left: 30px;" type="submit">
+                      Read More
+                    </button>
+                  </form>
+                </div>
+              </div>
+        
+              `; } } 
+        <!-- Third Blog -->
+       
+        if(thirdBlog == 1){
+          
+          let length; if(data) { dataLength=data.length; } 
+           if(data[2].permission=="true" ) { myBoxes +=` <style>
+           #myBlogBox${2}::before{
+           background: url('${data[2].imageurl}') center center/cover;
+           }
+           </style>
+     
+           <div class="blogBox" id="myBlogBox2">
+             <div class="one">
+               <p>${data[2].date}</p>
+               <h3 style="margin-top: 135px; font-size: 2.2rem">${data[2].title}</h3>
+               <p style="position: absolute; bottom: 30px">${data[2].authorName}</p>
+             </div>
+             <div class="two">
+               <p style="font-size: 1.1rem;width: 90%;position:absolute;top: 60px;left: 15px;">${data[2].shortDescription}
+               </p>
+               <form action="/myblog" method="post">
+                 <input type="number" value="2" name="uniqueId" style="display: none" />
+                 <button read="5" class="ui inverted violet button btn readBtn"
+                   style="position:absolute;bottom: 40px;left: 30px;" type="submit">
+                   Read More
+                 </button>
+               </form>
+             </div>
+           </div>
+     
+           `; } } 
+          
+        <!-- Fourth Blog-->
+        if(fourthBlog == 1){
+          
+          let length; if(data) { dataLength=data.length; } 
+           if(data[3].permission=="true" ) { myBoxes +=` <style>
+           #myBlogBox${3}::before{
+           background: url('${data[3].imageurl}') center center/cover;
+           }
+           </style>
+     
+           <div class="blogBox" id="myBlogBox3">
+             <div class="one">
+               <p>${data[3].date}</p>
+               <h3 style="margin-top: 135px; font-size: 2.2rem">${data[3].title}</h3>
+               <p style="position: absolute; bottom: 30px">${data[3].authorName}</p>
+             </div>
+             <div class="two">
+               <p style="font-size: 1.1rem;width: 90%;position:absolute;top: 60px;left: 15px;">${data[3].shortDescription}
+               </p>
+               <form action="/myblog" method="post">
+                 <input type="number" value="3" name="uniqueId" style="display: none" />
+                 <button read="5" class="ui inverted violet button btn readBtn"
+                   style="position:absolute;bottom: 40px;left: 30px;" type="submit">
+                   Read More
+                 </button>
+               </form>
+             </div>
+           </div>
+     
+           `; } } 
+        <!--Fifth Blog -->
+        if(fifthBlog == 1){
+          
+          let length; if(data) { dataLength=data.length; } 
+           if(data[4].permission=="true" ) { myBoxes +=` <style>
+           #myBlogBox${4}::before{
+           background: url('${data[4].imageurl}') center center/cover;
+           }
+           </style>
+     
+           <div class="blogBox" id="myBlogBox4">
+             <div class="one">
+               <p>${data[4].date}</p>
+               <h3 style="margin-top: 135px; font-size: 2.2rem">${data[4].title}</h3>
+               <p style="position: absolute; bottom: 30px">${data[4].authorName}</p>
+             </div>
+             <div class="two">
+               <p style="font-size: 1.1rem;width: 90%;position:absolute;top: 60px;left: 15px;">${data[4].shortDescription}
+               </p>
+               <form action="/myblog" method="post">
+                 <input type="number" value="4" name="uniqueId" style="display: none" />
+                 <button read="5" class="ui inverted violet button btn readBtn"
+                   style="position:absolute;bottom: 40px;left: 30px;" type="submit">
+                   Read More
+                 </button>
+               </form>
+             </div>
+           </div>
+     
+           `; } } 
+     
+        
+         
+        
+          
+        
+        %>
+        
+          <div id="userBlogs">
+           <%- myBoxes %>
+         </div>
+        
+  </div>
+</div>
+
+
+
+
+
+<%- include("footer") %>
+
+<script>
+  let readBtn = document.querySelectorAll(".readBtn");
+
+  for (let i = 0; i < readBtn.length; i++) {
+    readBtn[i].addEventListener("click", () => {
+      let readAtr = readBtn[i].getAttribute("read");
+      localStorage.setItem("readAttribute", readAtr);
+    });
+  }
+  readBtn;
+
+  var one = document.querySelectorAll(".one");
+  var two = document.querySelectorAll(".two");
+  var blogBox = document.querySelectorAll(".blogBox");
+
+  for (let i = 0; i < blogBox.length; i++) {
+    blogBox[i].addEventListener("mouseover", function () {
+      one[i].style.display = "none";
+      two[i].style.display = "block";
+    });
+    blogBox[i].addEventListener("mouseout", function () {
+      one[i].style.display = "block";
+      two[i].style.display = "none";
+    });
+  }
+
+</script>

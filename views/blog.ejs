@@ -3,7 +3,6 @@
     body {
       background: #f1f3f8;
     }
-
     .blog-container {
       background: white;
       color: black;
@@ -12,30 +11,25 @@
       width: 80%;
       padding-bottom: 90px;
     }
-
     .blog-box {
       width: 90%;
       display: block;
       margin: 10px auto;
     }
-
     #headImg {
       width: 100%;
       display: block;
       margin: 0px auto 20px auto;
     }
-
     .top-section {
       padding: 5px 40px;
     }
-
     #blog-heading {
       margin-top: 70px;
       font-size: 2.5rem;
       color: #7510f7;
       font-family: monospace;
     }
-
     /* AUTHOR SECTION */
     .mid-section {
       margin-top: 0px;
@@ -43,50 +37,41 @@
       align-items: center;
       padding: 10px 40px;
     }
-
     .img-box {
       display: flex;
       align-items: center;
       justify-content: center;
     }
-
     #authorImg {
       width: 40px;
       height: 40px;
       margin-top: 10px;
       border-radius: 100%;
     }
-
     #authorName {
       text-transform: capitalize;
     }
-
     #blog-date {
       margin-left: 30px;
     }
-
     /* blog Content */
     .bottom-section {
       margin-top: 30px;
       padding: 20px 40px;
       margin-bottom: 40px;
     }
-
     #contentImg {
       width: 100%;
       display: block;
       margin: 20px auto;
     }
-
     .social-section {
       display: block;
       padding: 20px 40px;
     }
-
     .social-section i {
       font-size: 2rem;
     }
-
     .ctext {
       border: 2px dotted black;
       border-radius: 10px;
@@ -96,7 +81,6 @@
       width: 30%;
       text-align: center;
     }
-
     .ctext h3 {
       font-family: cursive;
     }
@@ -106,12 +90,10 @@
       border-radius: 5px;
       margin-bottom: 10px;
     }
-
     @media screen and (max-width:768px) {
       .blog-conatiner {
         width: 100%;
       }
-
     }
   </style>
   <!--Blog-->
@@ -142,14 +124,14 @@
 
       <!-- Social Section -->
       <div class="social-section">
-        <div class="ui mini right floated labeled button" tabindex="0">
+        <button class="ui labeled button" tabindex="0" id="like-button" style="height: 36px;">
           <div class="ui red button">
             <i class="heart icon"></i> Like
           </div>
-          <a class="ui basic red left pointing label">
-            1,048
+          <a class="ui basic red left pointing label" id="likeCount" style="height: 36px;">
+            0
           </a>
-        </div>
+        </button>
         <div class="comment" style="float: right;margin-right: 1%;">
           <button id="commentButton" style="outline:none;padding:10px;background-color: white;cursor: pointer;"><i
               class="fa fa-comments" aria-hidden="true"></i></button>
@@ -223,12 +205,10 @@
 <script>
          let commentButton = document.getElementById("commentButton");
       commentButton.addEventListener("click", () => {
-
         $('.ui.sidebar.comments')
           .sidebar('setting', 'transition', 'scale down')
           .sidebar('toggle')
           ;
-
       });
         const saveComment = document.getElementById("save-comment");
         const lon =456;
@@ -236,9 +216,35 @@
         const data = { lat, lon };
         const commentBox = document.getElementById("comment-box");
         let previousLength=0;
+        // Checking user authentication 
+       const input = document.getElementById("comment-input");
+       input.addEventListener("keyup",(e)=>{
+         checkStatus();
+       }) 
+       // Check Status of User Function 
+       async function checkStatus(){
+         const res = await fetch("/status");
+         const result =  await res.json();
+         console.log("result is"+ result);
+         if(result==0){
+          $('body')
+            .toast({
+              class: 'warning',
+              message: 'Login to Comment this post!'
+            })
+            ;
+          saveComment.setAttribute("disabled","true");
+         }
+         
+       }
        saveComment.addEventListener("click",(e)=>{
         if(document.getElementById("comment-input").value == "") {
-          alert("Enter Some Text");
+          $('body')
+            .toast({
+              class: 'warning',
+              message: 'Enter Some Text!'
+            })
+            ;
         }
         else{
          saveCommentFunction();
@@ -256,20 +262,15 @@
        // save comment function to save your comment
        async function saveCommentFunction() {
         let commentInput = document.getElementById("comment-input").value;
-
         let authorName = "Guest";
-
         if (username.trim() != "") {
           authorName = username;
         }
-
         // code to get date & time
-
         var todaysDate = new Date().getDate();
         var month = new Date().getMonth() + 1;
         var year = new Date().getFullYear();
         let date = todaysDate + "/" + month + "/" + year;
-
         console.log("commentInput" + commentInput);
         let data = { authorName, date, commentInput, uniqueId, email, picture };
         let options = {
@@ -278,7 +279,6 @@
             'Content-type': 'application/json'
           },
           body: JSON.stringify(data)
-
         };
         let res = await fetch('/savecomment', options);
         console.log(res, "response from backend for save");
@@ -347,11 +347,80 @@
           </div> -->
         </div>
       </div>`;
-
         }
        previousLength = comment.length;
       }
-       
+      // Like Button Code
+
+      let likeButton = document.getElementById("like-button");
+      let likeCount = document.getElementById("likeCount");
+      let myLikes = [];
+      async function likeCheck() {
+        fetch(`/getlikes?uniqueId=${uniqueId}`)
+          .then(res => res.json())
+          .then(res => {
+            // console.log(res, "how's the response?"); // this is the console.log stated before
+            myLikes = JSON.parse(res);
+            likeCount.innerHTML = myLikes.length;
+            if ((username != "") && (email != "")) {
+              console.log(myLikes);
+              for (let i = 0; i < myLikes.length; i++) {
+                if (myLikes[i] == email) {
+                  document.querySelector("#like-button>div").classList.add("basic");
+                  document.querySelector("#like-button").setAttribute("disabled", "true");
+                  document.querySelector("#like-button>div").innerHTML = `<i class="heart icon"></i> Liked`;
+                  break;
+                }
+              }
+            }
+            else {
+              document.querySelector("#like-button>div").classList.remove("basic");
+              document.querySelector("#like-button").removeAttribute("disabled", "true");
+              document.querySelector("#like-button>div").innerHTML = `<i class="heart icon"></i> Like`;
+            }
+          });
+      }
+      likeCheck();
+      likeButton.addEventListener("click", () => {
+        console.log("like button clicked");
+        if ((username != "") && (email != "")) {
+          updateLikesFunction();
+          document.querySelector("#like-button>div").classList.add("basic");
+          document.querySelector("#like-button").setAttribute("disabled", "true");
+          document.querySelector("#like-button>a").innerHTML = Number(document.querySelector("#like-button>a").innerHTML.trim()) + 1;
+          document.querySelector("#like-button>div").innerHTML = `<i class="heart icon"></i> Liked`;
+        }
+        else {
+          document.querySelector("#like-button>div").classList.remove("basic");
+          document.querySelector("#like-button").setAttribute("disabled", "false");
+          document.querySelector("#like-button>div").innerHTML = `<i class="heart icon"></i> Like`;
+          $('body')
+            .toast({
+              class: 'warning',
+              message: 'Login to like this post!'
+            })
+            ;
+        }
+      });
+      // save comment function to save your comment
+      async function updateLikesFunction() {
+        let authorName = "Guest";
+        if (username.trim() != "") {
+          authorName = username;
+        }
+        let data = { authorName, uniqueId, email };
+        let options = {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        };
+        let res = await fetch('/savelikes', options);
+        console.log(res.json());
+      }
+      // like button code ends
+
 </script>
 <script src="/blogs.js">
     console.log("Hello");
