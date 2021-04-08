@@ -106,6 +106,9 @@
     color:#7510f7;
     margin-bottom: 50px;
   }
+  #email-name{
+    font-size:2.6rem;
+  }
   /* Liked Posts Section */
   .container3{
     margin-top:40px;
@@ -121,7 +124,33 @@
 
 
 
+/* Responsiveness Code */
+@media screen and (max-width:768px){
+  .container1{
+    width:100%;
+    border:none;
+  }
+  .container2{
+    width:100%;
+  }
+  .container3{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    overflow-x:hidden;
+  }
+  #email-name{
+    font-size:2rem;
+  }
+}
 
+@media screen and (max-width:350px){
+  #email-name{
+    font-size:1.6rem;
+  }
+}
 
 
 
@@ -187,7 +216,9 @@ overflow-x: scroll;
 #userBlogs {
   grid-template-columns: repeat(2, 1fr);
   padding: 0 10%;
+  overflow-x: hidden;
 }
+
 }
 
 
