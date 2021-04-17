@@ -80,7 +80,7 @@ passport.use(
   new GoogleStrategy({
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "https://jssconnect.herokuapp.com/auth/google/home",
+      callbackURL: "http://localhost:3000/auth/google/home",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
@@ -154,6 +154,70 @@ app.get("/logout", function (req, res) {
   req.logOut();
   res.redirect("/");
 });
+
+
+// Admin page
+
+const adminSchema = new mongoose.Schema({
+  username: String
+});
+
+const Admin = new mongoose.model("Admin", adminSchema);
+
+app.get('/admin', (req, res) => {
+  let pageTitle = "JSS Connect | Admin";
+  let cssName = "css/login.css";
+  let username = "Guest";
+  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let email = "";
+  if (req.isAuthenticated()) {
+    username = req.user.name;
+    picture = req.user.picture;
+    email = req.user.email;
+  }
+  let message = "";
+  if (req.query.message != "") {
+      message = req.query.message;
+  }
+
+  if (req.isAuthenticated()) {
+      let allAdmins;
+      Admin.find({}, (err, admins) => {
+          if (err)
+              console.log(err);
+          else {
+              allAdmins = admins;
+
+              for (let i = 0; i < allAdmins.length; i++) {
+
+                  if (req.user.email == allAdmins[i].username) {
+
+                      let myUser = req.user;
+                      res.render("admin", { message, pageTitle , cssName , username, picture , email});
+                      break; 
+                      // this exits the for loop
+                  }
+                  else if ((req.user.username != allAdmins[i].username)) {
+                      res.redirect(url.format({
+                          pathname: `/login`,
+                          query: {
+                              message: "Your are not allowed to visit the admin page. If you are admin login using admin details."
+                          }
+                      }));
+                      break;
+                      // this exits the for loop
+                  }
+              }
+          }
+      });
+  }
+  else {
+      res.redirect("/login");
+  }
+});
+
+
+
 
 // Community
 
@@ -600,11 +664,15 @@ app.get("/contact", (req, res) => {
 
 // LOGIN PAGE
 app.get("/login", (req, res) => {
-  let pageTitle = "JSS Connect";
+  let pageTitle = "JSS Connect | Login";
   let cssName = "css/login.css";
   let username = "Guest";
   let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
+  let message = "";
+  if (req.query.message != "") {
+      message = req.query.message;
+  }
   if (req.isAuthenticated()) {
     username = req.user.name;
     picture = req.user.picture;
@@ -615,7 +683,8 @@ app.get("/login", (req, res) => {
     cssName: cssName,
     username,
     picture,
-    email
+    email,
+    message
   });
 });
 // REGISTER PAGE
@@ -775,6 +844,19 @@ app.get("/dataupload", (req, res) => {
     username,
     picture,
     email
+  });
+});
+
+app.get("/getlikes", (req, res) => {
+  console.log(req.query.uniqueId, "req.query.uniqueId");
+  let myLikes = [];
+  userLikes.find({ uniqueId: req.query.uniqueId }, async (err, likedata) => {
+    if (err)
+      console.log(err);
+    else if (likedata) {
+      myLikes = JSON.stringify(await likedata[0].likes);
+      res.json(myLikes);
+    }
   });
 });
 
