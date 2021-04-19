@@ -80,7 +80,7 @@ passport.use(
   new GoogleStrategy({
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "https://jssconnect.herokuapp.com/auth/google/home",
+      callbackURL: "http://localhost:3000/auth/google/home",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
@@ -766,6 +766,7 @@ app.get("/contribute", async (req, res) => {
     message = req.query.message;
   }
   let cssName = "css/index.css";
+  let pageTitle = "Contribute | Jssconnect";
   let contributors = "";
   await contributionRecord.find({}, async (err, data) => {
     if (err) {
@@ -783,6 +784,7 @@ app.get("/contribute", async (req, res) => {
     res.render("contribute", {
       updateMessage: message,
       cssName,
+      pageTitle,
       username,
       picture,
       email,
@@ -831,6 +833,64 @@ app.get("/feedback", (req, res) => {
   });
 });
 
+
+// Card
+app.get("/getComment/:id", (req, res) => {
+  console.log("get request made");
+  console.log(req.params.id);
+  userComment.find({uniqueId: req.params.id}, (err, data) => {
+    if (err) console.log(err);
+    else {
+      console.log("00000000000000000000000");
+      console.log(data);
+      res.send(data);
+    }
+  })
+})
+
+app.get("/users/:requestedEmail", (req, res) => {
+  let pageTitle = `Profile | Jssconnect`;
+  let cssName = "css/index.css";
+  let message = "";
+  let username = "Guest";
+  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let email = "";
+  if (req.isAuthenticated()) {
+    username = req.user.name;
+    picture = req.user.picture;
+    email = req.user.email;
+  }
+
+  let dataReqUser = "";
+  let commData = "";
+  User.find({email: req.params.requestedEmail},(err,data)=>{
+    if (err) console.log(err);
+    else {
+      dataReqUser = data[0];
+
+      communityUser.find({email: req.params.requestedEmail},(err,commdata)=>{
+        if (err) console.log(err);
+        else {
+             commData = commdata;
+             console.log(commData ,"commData");
+             
+             res.render("users", {
+               cssName,
+               pageTitle,
+               username,
+               picture,
+               email,
+               message,
+               dataReqUser,
+               commData,
+              });
+              
+            }
+          });
+    }
+  });
+    });
+    
 app.get("/dataupload", (req, res) => {
   let username = "Guest";
   let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
@@ -863,7 +923,7 @@ app.get("/getlikes", (req, res) => {
 app.post("/myblog", (req, res) => {
   console.log(req.body.uniqueId);
   let uniId = req.body.uniqueId;
-  let pageTitle = "Blogs";
+  let pageTitle = "Blog | Jssconnect";
   let cssName = "css/blogs.css";
   let username = "Guest";
   let like = 0;
@@ -888,16 +948,16 @@ app.post("/myblog", (req, res) => {
         username,
         picture,
         email,
-        title: pageTitle,
-        cssName: cssName,
-        uniqueId: uniqueId
+        pageTitle,
+        cssName,
+        uniqueId
       });
     }
   });
 });
 
 app.get("/blogs", (req, res) => {
-  let pageTitle = "Blogs";
+  let pageTitle = "Blogs | Jssconnect";
   let cssName = "css/blogs.css";
   let username = "Guest";
   let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
@@ -914,7 +974,7 @@ app.get("/blogs", (req, res) => {
       console.log(data[2].imageurl);
       res.render("blogs", {
         data: data,
-        title: pageTitle,
+        pageTitle,
         cssName: cssName,
         username,
         picture,
@@ -949,25 +1009,8 @@ app.get("/userblog", function (req, res) {
 // Community
 
 app.get("/community", async (req, res) => {
-  let commData = [];
   let cssName = "css/index.css";
-
-  await User.find({}, async (error, found) => {
-    if (error) {
-      console.log(error);
-      console.log("myImg");
-    } else {
-      // console.log(found[0].picture);
-      for (var j = 0; j < found.length; j++) {
-        var dataToPush = {
-          picture: found[j].picture,
-          email: found[j].email
-        };
-        await commData.push(dataToPush);
-      }
-    }
-  });
-
+  let pageTitle = "Community | JSSConnect"
   await communityUser.find({}, (err, data) => {
     if (err) {
       console.log(err);
@@ -980,7 +1023,13 @@ app.get("/community", async (req, res) => {
       res.send();
     } else {
       console.log(data);
-      console.log(commData);
+      for(let i=0; i<data.length; i++){
+        if(data[i].picture.includes("s96-c") || data[i].picture.includes("s88") || data[i].picture.includes("s80") ){
+          data[i].picture = data[i].picture.replace('s96-c','s500-c');
+          data[i].picture = data[i].picture.replace('s88','s500');
+          data[i].picture = data[i].picture.replace('s80','s500');
+        }
+      }
 
       let username = "Guest";
       let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
@@ -993,8 +1042,8 @@ app.get("/community", async (req, res) => {
 
       res.render("community", {
         data: data,
-        commData: commData,
         cssName,
+        pageTitle,
         username,
         picture,
         email
@@ -1473,7 +1522,7 @@ app.get("/profile", (req, res) => {
       console.log("blog data");
       console.log(blogData);
     res.render("profile", {
-      title: pageTitle,
+      pageTitle,
       cssName: cssName,
       username,
       picture,

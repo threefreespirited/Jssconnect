@@ -1,23 +1,6 @@
 <%- include("header") %>
 
-<style>
-  @media only screen and (max-width: 768px) {
-  .year{
-    flex-direction: column;
-  }
 
-  .form{
-    width: 60%;
-    min-width: 80px;
-    padding-right: 110px;
-  }
-.box1 img{
-  /* margin: 0 auto; */
-  padding-left: 110px;
-  /* text-align: center; */
-}
-}
-</style>
 <div id="container">
   <div id="wave">
     <h2 style="text-align:center;font-weight:1000;">E-RESOURCES</h2>
@@ -31,7 +14,7 @@
     resources as per
     your need</h3>
   
-  <div style="border-left:14px dotted #7510f7;border-right:14px dotted #7510f7;">
+  <div>
   <!-- First Year -->
   <div class="year">
     <div class="box1">
@@ -71,7 +54,7 @@
     </form>
   </div>
   </div>
-  <div style="border-left:14px dotted #7510f7;border-right:14px dotted #7510f7;">
+  <div>
 <!-- Second Year -->
 <div class="year">
   <div class="box1">
@@ -176,8 +159,10 @@
 </div>
 
 <div style="display:block;width:50%;padding:10px;text-align: center;margin: 75px auto;margin-top: 120px;">
-  <p style="font-size:1.8rem;font-family:cursive;font-weight:1000;color:#5e6f64">Have a look on others contributions as well.</p>
-  <a href="/usercontributions" class="ui right labeled icon button" style="font-size:1.2rem;text-align:center;">SEE CONTRIBUTION<i class="fa fa-eye" style="margin-left:10px;" aria-hidden="true"></i></a>
+  <p style="font-size:1.5rem;color:#5e6f64">Have a look on others contributions as well.</p>
+  <a href="/usercontributions" class="ui right labeled icon button" style="font-size:1.2rem;text-align:center;">See Contributions
+    <i class="eye icon"></i>
+  </a>
 </div>
 <!-- Footer -->
 <%- include("footer") %>
