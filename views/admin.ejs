@@ -1,30 +1,51 @@
 <%- include("header") %>
 
+  <style>
 
+    #dottedBox {
+      border: 2px dotted;
+      margin: 30px auto;
+      margin-top: 45px;
+      padding: 30px 20px;
+      padding-bottom: 60px;
+      width: 75%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
+    @media screen and (max-width: 1000px) {
 
-<img class="wave" src="/images/wave.png">
-<div id="container">
-  <div class="img">
-    <img src="/images/bg.svg">
-  </div>
-  <div class="login-content">
-      <img src="/images/avatar.svg">
-      <h2 class="title">Welcome Back</h2>
-      <p style="margin-bottom: 60px;font-size: 1.3rem;">Glad to see you again</p>
-  <a href="/auth/google"><button class="ui inverted huge violet button" id="login-btn"><i class="fa fa-google-plus"></i> Join for free</button></a>
+      #dottedBox {
+        flex-direction: column;
+        padding: 70px 20px;
+        width: 90%;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+ 
+  <div id="dottedBox">
       
-      <!-- <a style="text-align:center" href="/register">New User? Register here</a> -->
+    
+
   </div>
 
-</div>
 
   <!-- divs used for displaying messages passed on to ejs using res.render (rest is done below using jQuery) -->
   <div id="updateMessage" style="display:none"><%= message %></div>
 
+  <!-- footer -->
   <%- include("footer") %>
-  
+
+
+
   <script>
+
      // jQuery code to display a toast message on recieving message through res.render 
      if (document.querySelector("#updateMessage").innerHTML != "") {
         $('#updateMessage')
@@ -35,9 +56,8 @@
           })
           ;
       }
+
   </script>
-
-
 
 </body>
 

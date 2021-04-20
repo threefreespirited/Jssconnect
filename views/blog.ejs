@@ -3,121 +3,223 @@
   body {
     background: #f1f3f8;
   }
-  .blog-container{
-    background:white;
-    color:black;
-    display:block;
-    margin:150px auto;
-    width:80%;
-    padding-bottom:90px;
+
+  .blog-container {
+    background: white;
+    color: black;
+    display: block;
+    /* margin: 150px auto; */
+    /* width: 80%; */
+    padding-bottom: 200px;
   }
-  .blog-box{
-    width:90%;
-    display:block;
-    margin:10px auto;
+
+  .blog-box {
+    width: 85%;
+    display: block;
+    margin: 10px auto;
   }
-  #headImg{
+
+  #headImg {
     width: 100%;
-    display:block;
+    display: block;
     margin: 0px auto 20px auto;
   }
-  .top-section{
-    padding:5px 40px;
+
+  .top-section {
+    padding: 5px 40px;
   }
-  #blog-heading{
-    margin-top:70px;
-    font-size:2.5rem;
-    color:#7510f7;
+
+  #blog-heading {
+    margin-top: 70px;
+    font-size: 2.5rem;
+    color: #7510f7;
     font-family: monospace;
   }
+
   /* AUTHOR SECTION */
-  .mid-section{
-    margin-top:0px;
-    display:flex;
+  .mid-section {
+    margin-top: 0px;
+    display: flex;
     align-items: center;
-    padding:10px 40px;
+    padding: 10px 40px;
   }
-  .img-box{
-    display:flex;
+
+  .img-box {
+    display: flex;
     align-items: center;
     justify-content: center;
-    }
-  #authorImg{
-    width:40px;
-    height:40px;
-    margin-top:10px;
-    border-radius:100%;
   }
-  #authorName{
+
+  #authorImg {
+    width: 40px;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 100%;
+  }
+
+  #authorName {
     text-transform: capitalize;
   }
-  #blog-date{
-    margin-left:30px;
+
+  #blog-date {
+    margin-left: 30px;
   }
+
   /* blog Content */
-  .bottom-section{
-    margin-top:30px;
-    padding:20px 40px;
+  .bottom-section {
+    margin-top: 30px;
+    padding: 20px 40px;
     margin-bottom: 40px;
   }
-  #contentImg{
+
+  #contentImg {
     width: 100%;
-    display:block;
+    display: block;
     margin: 20px auto;
   }
-  .social-section{
-    display:block;
-    padding:20px 40px;
+
+  .social-section {
+    display: block;
+    padding: 20px 40px;
   }
-  .social-section i{
-    font-size:2rem;
+
+  /* .social-section i {
+    font-size: 2rem;
+  } */
+
+  .ctext {
+    border: 2px dotted black;
+    border-radius: 10px;
+    font-size: 2rem;
+    color: black;
+    padding: 10px 20px;
+    width: 30%;
+    text-align: center;
   }
- 
+
+  .ctext h3 {
+    font-family: cursive;
+  }
+
+  #comment-input{
+      width:80%;
+      padding:10px;
+      border: 1px solid gray;
+      outline: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
 
   @media screen and (max-width:768px) {
-    .blog-conatiner{
-      width:100%;
+    .blog-conatiner {
+      width: 100%;
     }
-   
+
   }
 </style>
-<!--Blog-->
-<div class="blog-container">
-  <img id="headImg" src="<%= blogData.imageurl %>" alt="headImg">
-  <div class="blog-box">
-   <div class="top-section">
-     <h2 style="text-align:left;" id="blog-heading"><%=blogData.title %> </h2>
-   </div>
-   <div class="mid-section">
-      <div class="img-box" style="display:flex;">
-        <img src="<%= blogData.authorImg%>" id="authorImg" alt="Contact Person">
-        <h2 id="authorName"><%= blogData.authorName %></h2>
+  <!--Blog-->
+  <div class="blog-container">
+    <img id="headImg" src="<%= blogData.imageurl %>" alt="headImg">
+    <div class="blog-box">
+      <div class="top-section">
+        <h1 style="text-align:left;" id="blog-heading">
+          <%=blogData.title %>
+        </h1>
       </div>
-      <h2 style="color:blue;" id="blog-date">29-12-2020</h2>
-   </div>
-   <!-- Bottom Section -->
-   <div class="bottom-section">
-    <p style="font-size: 1.5rem;" id="content">
-      <%- blogData.blogcontent %>
-    </p>
-   </div>
-   <!--End of Bottom Section -->
+      <div class="mid-section">
+        <a class="ui image big label" href="<%=blogData.socialurl%>" target="_blank" style="margin-right: auto;">
+          <img src="<%= blogData.authorImg%>">
+          <%= blogData.authorName %>
+        </a>
 
-   <!-- Social Section -->
-   <div class="social-section">
-    <div class="ui mini right floated labeled button" tabindex="0">
-      <div class="ui red button">
-        <i class="heart icon"></i> Like
+        <div class="ui big label">
+          <i class="calendar alternate outline icon"></i>
+          <%= blogData.date %>
+        </div>
+
+        <h2 style="color:blue;"></h2>
       </div>
-      <a class="ui basic red left pointing label">
-        1,048
-      </a>
+      <!-- Bottom Section -->
+      <div class="bottom-section">
+        <p style="font-size: 1.5rem;" id="content">
+          <%- blogData.blogcontent %>
+        </p>
+      </div>
+      <!--End of Bottom Section -->
+
+      <!-- Social Section -->
+      <div class="social-section">
+        <button class="ui labeled button" tabindex="0" id="like-button" style="height: 36px;">
+          <div class="ui red button">
+            <i class="heart icon"></i> Like
+          </div>
+          <a class="ui basic red left pointing label" id="likeCount" style="height: 36px;">
+            0
+          </a>
+        </button>
+        
+        <div class="comment" style="float: right;margin-right: 1%;">
+          <div id="commentButton" class="ui compact large labeled icon button" style="cursor: pointer;">
+            <i class="comments icon"></i>
+            <span id="commentCount">
+              0
+            </span>
+          </div>
+        </div>
+
+      </div>
+
     </div>
-   </div>
-   
-  </div> 
+    <div id="uniqueId" style="display:none"><%= uniqueId %></div>
+    <div id="username" style="display:none">
+      <%= username %>
+    </div>
+    <div id="picture" style="display:none">
+      <%= picture %>
+    </div>
+    <div id="email" style="display:none">
+      <%= email %>
+    </div>
 
-</div>
+    <!-- Comment Section -->
+    <!-- <div class="comment-box">
+  <input type="text" name="comment" value="" placeholder="enter Your Comment" id="comment-input">
+  <button id="save-comment">Submit</button>
+</div> -->
+
+    <!-- Comment Box to show various comments -->
+    <!-- <div id="comment-box" style="margin-top:100px;display:flex;flex-direction: column;align-items: flex-end;justify-content: center;">
+</div> -->
+    <!-- End of Comment Section -->
+
+
+  </div>
+
+  <!-- Comment box fomantic -->
+
+  <div class="ui sidebar comments right vertical wide menu" style="padding: 0 25px !important;">
+
+    <div class="ui threaded comments"  style="margin: 20px auto;">
+      <h3 class="ui dividing header">Responses</h3>
+
+     
+        <div class="field">
+          <input type="text" name="comment" value="" placeholder="enter Your Comment" id="comment-input">
+        </div>
+        <button id="save-comment" class="ui blue labeled icon button">
+          <i class="icon edit"></i> Respond
+        </button>
+        <div id="comment-box" style="margin: 20px auto;">
+        </div>
+
+    </div>
+
+
+  </div>
+
+
+
+
 <!-- Footer -->
 <%- include("footer") %>
 
@@ -130,8 +232,229 @@
         annotation.show();
       }
 </script> 
-<script src="/blogs.js">
-    console.log("Hello");
+<script>
+         let commentButton = document.getElementById("commentButton");
+      commentButton.addEventListener("click", () => {
+        $('.ui.sidebar.comments')
+          .sidebar('setting', 'transition', 'scale down')
+          .sidebar('toggle')
+          ;
+      });
+        const saveComment = document.getElementById("save-comment");
+        const lon =456;
+        const lat=350;
+        const data = { lat, lon };
+        const commentBox = document.getElementById("comment-box");
+        let previousLength=0;
+        // Checking user authentication 
+       const input = document.getElementById("comment-input");
+       input.addEventListener("keyup",(e)=>{
+         checkStatus();
+       }) 
+       // Check Status of User Function 
+       async function checkStatus(){
+         const res = await fetch("/status");
+         const result =  await res.json();
+         console.log("result is"+ result);
+         if(result==0){
+          $('body')
+            .toast({
+              class: 'warning',
+              message: 'Login to Comment this post!'
+            })
+            ;
+          saveComment.setAttribute("disabled","true");
+         }
+         
+       }
+       saveComment.addEventListener("click",(e)=>{
+        if(document.getElementById("comment-input").value == "") {
+          $('body')
+            .toast({
+              class: 'warning',
+              message: 'Enter Some Text!'
+            })
+            ;
+        }
+        else{
+         saveCommentFunction();
+         getNewComment();
+        }
+      })
+      const uniqueId = document.getElementById("uniqueId").innerHTML;
+        console.log(uniqueId);
+        const username = document.getElementById("username").innerHTML.trim();
+        const picture = document.getElementById("picture").innerHTML.trim();
+        const email = document.getElementById("email").innerHTML.trim();
+        let commentCount = document.getElementById("commentCount");
+
+        // Function To get comments when page loads first time
+       // save comment function to save your comment
+       async function saveCommentFunction() {
+        let commentInput = document.getElementById("comment-input").value;
+        let authorName = "Guest";
+        if (username.trim() != "") {
+          authorName = username;
+        }
+        // code to get date & time
+        var todaysDate = new Date().getDate();
+        var month = new Date().getMonth() + 1;
+        var year = new Date().getFullYear();
+        let date = todaysDate + "/" + month + "/" + year;
+        console.log("commentInput" + commentInput);
+        let data = { authorName, date, commentInput, uniqueId, email, picture };
+        let options = {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        };
+        let res = await fetch('/savecomment', options);
+        console.log(res, "response from backend for save");
+        console.log("comment saved");
+        makeInputNull();
+      }
+      function makeInputNull() {
+        document.getElementById("comment-input").value = "";
+      }
+      //  get comment when page loads
+      async function getComment() {
+        console.log("function called");
+        let res = await fetch(`/getComment/${uniqueId}`);
+        let comment = await res.json();
+        previousLength = comment.length;
+        commentCount.innerHTML = previousLength;
+        for (let i = 0; i < comment.length; i++) {
+          commentBox.innerHTML +=
+            ` <div class="comment">
+        <a class="avatar">
+          <img src="${comment[i].picture || '1234.jpg'}">
+        </a>
+        <div class="content">
+          <a class="author">${comment[i].authorName}</a>
+          <br>
+          <a class="author" style="font-weight: lighter;color: grey;">${comment[i].email}</a>
+          <div class="metadata">
+            <span class="date">${comment[i].date}</span>
+          </div>
+          <div class="text">
+            ${comment[i].commentInput}
+          </div>
+          <!-- <div class="actions">
+            <a class="reply">Reply</a>
+          </div> -->
+        </div>
+      </div>`;
+        }
+      }
+      getComment();
+      // function to get when new comment is updated
+      async function getNewComment() {
+        // console.log(commentBox);
+        console.log(" prev length" +previousLength);
+        console.log(" get new comment function called");
+        let res = await fetch(`/getComment/${uniqueId}`);
+        let comment = await res.json();
+        for (let i = previousLength; i < comment.length; i++) {
+          console.log(i, "i");
+          commentBox.innerHTML +=
+            ` <div class="comment">
+        <a class="avatar">
+          <img src="${comment[i].picture || '1234.jpg'}">
+        </a>
+        <div class="content">
+          <a class="author">${comment[i].authorName}</a>
+          <br>
+          <a class="author" style="font-weight: lighter;color: grey;">${comment[i].email}</a>
+          <div class="metadata">
+            <span class="date">${comment[i].date}</span>
+          </div>
+          <div class="text">
+            ${comment[i].commentInput}
+          </div>
+          <!-- <div class="actions">
+            <a class="reply">Reply</a>
+          </div> -->
+        </div>
+      </div>`;
+        }
+       previousLength = comment.length;
+       commentCount.innerHTML = previousLength;
+      }
+      // Like Button Code
+
+      let likeButton = document.getElementById("like-button");
+      let likeCount = document.getElementById("likeCount");
+      let myLikes = [];
+      async function likeCheck() {
+        fetch(`/getlikes?uniqueId=${uniqueId}`)
+        .then(res => res.json())
+          .then(res => {
+            // console.log(res, "how's the response?"); // this is the console.log stated before
+            myLikes = JSON.parse(res);
+            likeCount.innerHTML = myLikes.length;
+            if ((username != "") && (email != "")) {
+              console.log(myLikes);
+              for (let i = 0; i < myLikes.length; i++) {
+                if (myLikes[i] == email) {
+                  document.querySelector("#like-button>div").classList.add("basic");
+                  document.querySelector("#like-button").setAttribute("disabled", "true");
+                  document.querySelector("#like-button>div").innerHTML = `<i class="heart icon"></i> Liked`;
+                  break;
+                }
+              }
+            }
+            else {
+              document.querySelector("#like-button>div").classList.remove("basic");
+              document.querySelector("#like-button").removeAttribute("disabled", "true");
+              document.querySelector("#like-button>div").innerHTML = `<i class="heart icon"></i> Like`;
+            }
+          });
+        }
+      likeCheck();
+      likeButton.addEventListener("click", () => {
+        console.log("like button clicked");
+        if ((username != "") && (email != "")) {
+          updateLikesFunction();
+          document.querySelector("#like-button>div").classList.add("basic");
+          document.querySelector("#like-button").setAttribute("disabled", "true");
+          document.querySelector("#like-button>a").innerHTML = Number(document.querySelector("#like-button>a").innerHTML.trim()) + 1;
+          document.querySelector("#like-button>div").innerHTML = `<i class="heart icon"></i> Liked`;
+        }
+        else {
+          document.querySelector("#like-button>div").classList.remove("basic");
+          document.querySelector("#like-button").setAttribute("disabled", "false");
+          document.querySelector("#like-button>div").innerHTML = `<i class="heart icon"></i> Like`;
+          $('body')
+          .toast({
+              class: 'warning',
+              message: 'Login to like this post!'
+            })
+            ;
+          }
+        });
+        
+        
+        // save comment function to save your comment
+        async function updateLikesFunction() {
+          let authorName = "Guest";
+          if (username.trim() != "") {
+            authorName = username;
+          }
+          let data = { authorName, uniqueId, email };
+          let options = {
+            method: 'POST',
+            headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        };
+        let res = await fetch('/savelikes', options);
+        console.log(res.json());
+      }
+      // like button code ends
+
 </script>
 </body>
 

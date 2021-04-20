@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <!-- Compiled and minified CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+  <!--Google fonts-->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/index.css" />
+  <link rel="stylesheet" href="/login.css">
+  <link rel="stylesheet" href="/profile.css" />
+  
+  <!--Font Awesome-->
+  <script src="https://kit.fontawesome.com/efd71d3ed7.js" crossorigin="anonymous"></script>
+
+  <link rel="icon" href="public/images/favicon.ico" type="image/x-icon">
+  <title>JSS Connect|Register</title>
+</head>
+
+<body>
+  <nav id="navbar" style="background-color: #2c7873">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo"><img src="public/images/logo.png" alt="" style="width: 75px;margin-top: 7px;filter: invert();" /></a>
+      <a href="/" class="brand-logo" id="logoText" style="margin-left: 75px; font-size: 2rem">JSS Connect</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="main-menu" class="right hide-on-med-and-down">
+        <li><a href="/blogs">Blogs</a></li>
+        <li><a href="/resources">Resources</a></li>
+        <li><a href="/contribute">Contribute</a></li>
+        <li><a href="/community">Community</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/login">Login</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo" style="background-color: #2c7873;">
+    <br />
+    <li><a href="/blogs" style=" color: white;">Blogs</a></li>
+    <li><a href="/resources" style=" color: white;">Resources</a></li>
+    <li><a href="/contribute" style=" color: white;">Contribute</a></li>
+    <li><a href="/community" style=" color: white;">Community</a></li>
+    <li><a href="/contact" style=" color: white;">Contact</a></li>
+    <li><a href="/login" style=" color: white;">Login</a></li>
+  </ul>
+
+
+
+
+  <img class="wave" src="public/images/wave.png">
+  <div id="container">
+    <div class="img">
+      <img src="public/images/bg.svg">
+    </div>
+    <div class="login-content">
+        <img src="public/images/avatar.svg">
+        <h2 class="title">Welcome</h2>
+        <!-- <p style="margin-bottom: 60px;">Glad to see you again</p> -->
+
+
+        <a href="/auth/google"> <button class="btn">Register with Google<i class="fa fa-google-plus" style="margin-left: 15px;"></i></button></a>
+        <a style="text-align:center;margin-top:30px;" href="/login">Existing User? Login here</a>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Floating button -->
+
+  <div class="fixed-action-btn" id="myFl">
+    <a class="btn-floating btn-large black myFloatingBtn">
+      <img src="public/images/logo.png" alt="" style="width: 60px;margin: 10px -1px;filter: invert();" />
+    </a>
+    <ul>
+      <li><a href="/contact#team" class="btn-floating green myFloat">Team</a>
+      </li>
+      <li><a href="http://jsswire.herokuapp.com" class="btn-floating red myFloat">
+        
+        <img src="public/images/share.png" alt="" style="width: 30px;margin: 6px -1px;filter: invert();" />
+      </a>
+      </li>
+
+      <li style="margin: 12px 0px;">
+
+        <a class="btn-floating btn-large black" id="brightness">
+          <i class="fa fa-moon-o" style="color: white;"></i>
+        </a>
+
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- Footer -->
+
+  <!-- <footer class="page-footer" style="background-color: #1a1a1a;margin-top:36px;"> -->
+  <footer class="page-footer" style="background-color: #323232;margin-top:36px;">
+    <div class="container">
+      <div class="row">
+        <div style="text-align: center;margin: 75px 0;">
+          <h2>Let’s stay connected.</h2>
+          <form action="/newsletter" method="POST" style="margin: 30px 0px;">
+            <input type="email" name="email" required placeholder="Enter your Email"
+              style="width:40%;margin-right: 20px;color: white;" required>
+            <button id="newsBtn" type="submit">Subscribe</button>
+          </form>
+          <p>Sign up to receive our newsletter and exclusive updates.</p>
+          <div style="margin-top: 45px;">
+            <a href="https://www.facebook.com/JssAcademyOfTechnicalEducationnoida/" class="socials"
+              style="color: #1b6ca8;"><i class="fa fa-facebook-official"></i></a>
+            <a href="https://twitter.com/jssatenoida?lang=en" class="socials" style="color: #3282b8;"><i
+                class="fa fa-twitter-square"></i></a>
+          </div>
+        </div>
+        <hr>
+        <div class="col l3 offset-l1 s6">
+          <h5 class="white-text">Quick Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="/blogs">Blogs</a></li>
+            <li><a class="grey-text text-lighten-3" href="/resources">Ebooks</a></li>
+            <li><a class="grey-text text-lighten-3" href="/usercontributions">User Contributions</a></li>
+            <li><a class="grey-text text-lighten-3" href="http://jsswire.herokuapp.com">Connect with wire</a></li>
+            <li><a class="grey-text text-lighten-3" href="/contribute">Contribute</a></li>
+          </ul>
+        </div>
+        <div class="col l3 offset-l1 s6">
+          <h5 class="white-text">Recent Blogs</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="/blogs">What to do when entering a college?</a></li>
+            <li><a class="grey-text text-lighten-3" href="/blogs">What I Learned My Freshman Year of College</a></li>
+            <li><a class="grey-text text-lighten-3" href="/blogs">A glimpse into Async JavaScript</a></li>
+          </ul>
+        </div>
+        <div class="col l3 offset-l1 s6">
+          <h5 class="white-text">Contact</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="/contact">Contact Us</a></li>
+            <li><a class="grey-text text-lighten-3" href="/contact#team">Our Team</a></li>
+            <li><a class="grey-text text-lighten-3" href="/feedback">Feedback</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <span>© &nbsp; jssconnect.herokuapp.com &nbsp; 2020</span>
+        <span style="margin-left: 20%;">JSSconnnect</span>
+        <a class="grey-text text-lighten-4 right" href="/privacy">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // JS for floating buuton
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems);
+    });
+
+    const brightness = document.getElementById('brightness');
+    const foot = document.querySelector("footer");
+    const navbar = document.querySelector("nav"); 
+  const sidenav = document.querySelector('.sidenav');
+    let count = 0;
+    brightness.addEventListener("click", () => {
+
+      if (count < 1) {
+        count = 1;
+        localStorage.setItem("theme", "dark");
+        
+      }
+      else if (count == 1) {
+        count = 0;
+        localStorage.setItem("theme", "light");
+      }
+      setTheme();
+    })
+
+
+    function setTheme() {
+
+      const currentTheme = localStorage.getItem("theme");
+      if (currentTheme == "dark") {
+        foot.style.backgroundColor = "#1b262c"
+        navbar.style.backgroundColor = "#1b262c";
+        brightness.innerHTML = "<i class='fa fa-sun-o' style='color: goldenrod;'></i>"
+        sidenav.style.backgroundColor = "#1b262c";
+      }
+      else {
+        foot.style.backgroundColor = "#323232"
+        sidenav.style.backgroundColor = "#2c7873";
+         navbar.style.backgroundColor = "#2c7873";
+        brightness.innerHTML = "<i class='fa fa-moon-o' style='color: white;'></i>"
+       }
+     }
+
+    const inputs = document.querySelectorAll(".input");
+
+
+    function addcl() {
+      let parent = this.parentNode.parentNode;
+      parent.classList.add("focus");
+    }
+
+    function remcl() {
+      let parent = this.parentNode.parentNode;
+      if (this.value == "") {
+        parent.classList.remove("focus");
+      }
+    }
+
+    inputs.forEach(input => {
+      input.addEventListener("focus", addcl);
+      input.addEventListener("blur", remcl);
+    });
+
+
+
+  </script>
+
+
+</body>
+
+</html>

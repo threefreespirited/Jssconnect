@@ -44,7 +44,9 @@ app.use(express.static("public"));
 // app.use("/views", express.static(__dirname + "/views"));
 app.set("view engine", "ejs");
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 //body-parser
 app.use(bodyParser.json());
@@ -69,17 +71,15 @@ let myEmail = "";
 
 // Userblogs Strategy
 passport.use(
-  new GoogleStrategy(
-    {
+  new GoogleStrategy({
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "https://jssconnect.herokuapp.com/auth/google/home",
+      callbackURL: "http://localhost:3000/auth/google/home",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
       console.log(profile);
-      User.findOrCreate(
-        {
+      User.findOrCreate({
           googleId: profile.id,
           name: profile.displayName,
           picture: profile.photos[0].value,
@@ -137,12 +137,16 @@ const profileRoutes = require("./routes/profile");
 app.use("/profile",profileRoutes);
 
 app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile', "email"] })
+  passport.authenticate('google', {
+    scope: ['profile', "email"]
+  })
 );
 
 app.get(
   "/auth/google/home",
-  passport.authenticate("google", { failureRedirect: "/login" }),
+  passport.authenticate("google", {
+    failureRedirect: "/login"
+  }),
   function (req, res) {
     // Successful authentication, redirect home.
     res.redirect(`/`);
@@ -182,7 +186,6 @@ const newsletterRoutes = require("./routes/newsletter");
 app.use("/newsletter",newsletterRoutes);
 
 
-
 // const firstyearVideos = mongoose.model("firstyearVideos", firstyearSchema)
 
 // app.post("/contribute", (req, res) => {
@@ -218,21 +221,25 @@ const homeRoutes = require("./routes/home");
 app.use("/",homeRoutes);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 // LOGIN PAGE
 const loginRoutes = require("./routes/login");
 app.use("/login",loginRoutes);
 // REGISTER PAGE
-// app.get("/register", (req, res) => {
-//   let username = "Guest";
-//   let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"; let email = "";
-//   if (req.isAuthenticated()) {
-//     username = req.user.name;
-//     picture = req.user.picture;
-//     email = req.user.email;
-//   }
-//   res.render("register", { username, picture, email });
-// });
+app.get("/register", (req, res) => {
+  let username = "Guest";
+  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let email = "";
+  if (req.isAuthenticated()) {
+    username = req.user.name;
+    picture = req.user.picture;
+    email = req.user.email;
+  }
+  res.render("register", {
+    username,
+    picture,
+    email
+  });
+});
 // RESOURCE PAGE
 const resourcesRoutes = require("./routes/resources");
 app.use("/resources",resourcesRoutes);
@@ -281,6 +288,7 @@ app.use("/ucontribute",ucontributeRoutes);
 
 
 // FirstYear Resources
+
 const firstyearRoutes = require("./routes/firstyear");
 app.use("/firstyear",firstyearRoutes);
 
