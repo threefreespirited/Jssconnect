@@ -80,7 +80,7 @@ passport.use(
   new GoogleStrategy({
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "/auth/google/home",
+      callbackURL: "https://jssconnect.herokuapp.com/auth/google/home",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
@@ -166,7 +166,7 @@ const Admin = new mongoose.model("Admin", adminSchema);
 
 app.get('/admin', (req, res) => {
   let pageTitle = "JSS Connect | Admin";
-  let cssName = "css/login.css";
+  let cssName = "css/admin.css";
   let username = "Guest";
   let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
@@ -179,34 +179,43 @@ app.get('/admin', (req, res) => {
   if (req.query.message != "") {
       message = req.query.message;
   }
-
+  let communityData;
   if (req.isAuthenticated()) {
-      let allAdmins;
+     let allAdmins=[];
       Admin.find({}, (err, admins) => {
           if (err)
               console.log(err);
           else {
               allAdmins = admins;
-
+            console.log("allAdmins" + allAdmins+allAdmins.length);
+            let count = 0;
               for (let i = 0; i < allAdmins.length; i++) {
-
+                count += 1;
+                console.log(allAdmins[i].username);
                   if (req.user.email == allAdmins[i].username) {
 
-                      let myUser = req.user;
-                      res.render("admin", { message, pageTitle , cssName , username, picture , email});
-                      break; 
+                    let myUser = req.user;
+                    setTimeout(() => {
+
+                      res.render("admin", { message, pageTitle, cssName, username, picture, email });
+                     
+                    }, 1000);
+                    break;
                       // this exits the for loop
                   }
-                  else if ((req.user.username != allAdmins[i].username)) {
+                  else if (count==3) {
                       res.redirect(url.format({
                           pathname: `/login`,
                           query: {
                               message: "Your are not allowed to visit the admin page. If you are admin login using admin details."
                           }
                       }));
-                      break;
+                    break;
                       // this exits the for loop
-                  }
+                }
+                else{
+                    continue;
+                }
               }
           }
       });
@@ -215,6 +224,17 @@ app.get('/admin', (req, res) => {
       res.redirect("/login");
   }
 });
+// Admin Page Get Request
+app.get("/communityData", (req, res) => {
+  console.log("get request made");
+  communityUser.find({}, (err, data) => {
+    if (err) console.log(err);
+    else {
+      console.log(data);
+      res.send(data);
+    }
+  })
+})
 
 
 
