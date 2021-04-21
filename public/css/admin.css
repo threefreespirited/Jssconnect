@@ -1,0 +1,165 @@
+
+ #dottedBox {
+    border: 2px dotted;
+    margin: 30px auto;
+    margin-top: 45px;
+    padding: 30px 20px;
+    padding-bottom: 60px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 1000px) {
+    #dottedBox {
+      flex-direction: column;
+      padding: 70px 20px;
+      width: 90%;
+    }
+}
+
+.first-section{
+    border:2px solid #5401f7;
+    width:100%;
+    font-family:monospace;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+/* Community Section */
+.one{
+    border:2px solid black;
+    width:50%;
+    text-align:center;
+    padding:5px;
+    
+}
+.two{
+    border:2px solid black;
+    width:50%;
+    text-align:center;
+    padding:5px;
+}
+.top-section{
+    background: black;
+    color:white;
+    height:50px;
+    margin-bottom:20px;
+}
+#section-heading{
+    font-family: cursive;
+    font-size:3rem;
+    color:white;
+    font-weight:1000;
+}
+/* Mid Section Community */
+.c1{
+    background-color: #5401f7;
+    color:yellow;
+    display: block;
+    margin:40px auto;
+    padding:20px;
+    width:50%;
+}
+.c1 h3{
+    font-size:1.8rem;
+}
+.c2{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* Circles */
+.circle{
+    width:60px;
+    height:60px;
+    outline:none;
+    border:none;
+    cursor:pointer;
+    border-radius: 100%;
+    font-size:2rem;
+    font-family: cursive;
+    margin:5px 0px;
+    background:#5401f7;
+    box-shadow:4px 2px -4px 2px yellow;
+    color:white;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.description{
+    margin-left:30px;
+    border:2px solid black;
+    display:flex !important;
+    flex-direction:row;
+    border-right:none;
+    border-top: none;
+    border-bottom: none;
+}
+.number-circle{
+    width:80px;
+    height:80px;
+    border:4px solid red;
+    border-radius:100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family:cursive;
+    font-size:2.3rem;
+
+}
+#desc-two{
+    border:4px solid black;
+    margin:auto auto;
+    margin-left:70px;
+    width:450px;
+    height:250px;
+}
+.image-box{
+    overflow: auto;
+}
+.img-circle{
+    width:60px;
+    height:60px;
+    border-radius: 100%;
+    border:2px solid #5401f7;
+    margin-left:10px;
+}
+.actions{
+    display:flex !important;
+    align-items:center;
+    justify-content: center;
+}
+.name-feed{
+   padding:20px;
+   text-align:center;
+}
+.name{
+    font-size:1rem;
+    margin-left:10px;
+    margin-top:10px;
+    font-family:monospace;
+    color:black;
+    
+}
+/* Bottom Section */
+.c3{
+    border:2px solid black;
+    background: black;
+    color:white;
+    padding:2px 5px;
+}
+.c3 h2{
+    font-size:1.5rem;
+    font-family:monospace;
+}
+#department{
+    color:yellow;
+}
+#year{
+    color:red;
+    font-family:cursive;
+}
