@@ -1,6 +1,14 @@
 [Visit our website here](https://jssconnect.herokuapp.com/)
 <div align="center">
-<h2 style="text-align:center;font-size:53px;color:red"><span style="color:blue">JSS</span>CONNECT</h2>
+<h2 style="text-align:center;font-size:53px;color:red"><span style="color:blue">JSS</span>CONNECT
+
+![Issues](https://img.shields.io/github/issues/threefreespirited/Jssconnect)
+![Pull Requests](https://img.shields.io/github/issues-pr/threefreespirited/Jssconnect)
+![Forks](https://img.shields.io/github/forks/threefreespirited/Jssconnect)
+![Stars](https://img.shields.io/github/stars/threefreespirited/Jssconnect)
+![](https://img.shields.io/github/repo-size/threefreespirited/Jssconnect.svg?label=Repo%20size&style=flat-square)&nbsp;
+
+</h2>
 </div>
 
 <h3 style="text-align:center;color:yellow;font-size:1.8rem;">One Destination for meeting all your educational needs related to college study.</h3>
