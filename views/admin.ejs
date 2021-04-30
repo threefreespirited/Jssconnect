@@ -52,14 +52,24 @@
         <!-- Bottom Section -->
        </div>
      </div>
-     <div class="second-section"></div>
-     <!--User Resources-->
      <!--User Blogs--> 
-    
-
+     <div class="second-section">
+       <!-- Top Section -->
+      <div class="top-section">
+        <h2 id="section-heading">BLOG SECTION</h2>
+      </div>
+      <!-- Mid Section -->
+      
+      <div class="blog-mid-section">
+        <h2 id="user-blog-heading">User Blogs</h2>
+        <!-- Blog Box -->
+        <div class="blog-box"></div>
+      </div>
+     </div>
   </div>
   <!--Modal -->
-  <div class="ui modal">
+  <!-- Community section-->
+  <div class="ui modal community-modal">
     <i class="close icon"></i>
     <div class="header">
       Profile Picture
@@ -96,6 +106,31 @@
       </div>
     -->
      <div class="name-feed"></div>
+    </div>
+  </div>
+  <!--Modal -->
+  <!-- Blog Section -->
+  <!--Modal -->
+  <!-- Community section-->
+  <div class="ui modal blog-modal">
+    <i class="close icon"></i>
+    <div class="header" id="blog-header">
+      
+    </div>
+    <div class="blog-section" style="display:flex;flex-direction:column;border:3px solid">
+      <div id="blog-image">
+        
+      </div>
+    </div>
+    
+    <div class="actions">
+      <div class="ui black deny button">
+        Nope
+      </div>
+      <div class="ui positive right labeled icon button">
+        Yep, that's me
+        <i class="checkmark icon"></i>
+      </div>
     </div>
   </div>
   <!-- divs used for displaying messages passed on to ejs using res.render (rest is done below using jQuery) -->
@@ -231,8 +266,10 @@
     const year=["First Year","Second Year","Third Year","Fourth Year"];
     for(let i=0;i<circleButton.length;i++){
      circleButton[i].addEventListener("click",(e)=>{
-      $('.ui.modal')
+    
+      $('.ui.modal.community-modal')
       .modal('show');
+     
       header.innerHTML=year[i];
       if(i==0){
         totalNumber.innerHTML=firstYear;
@@ -289,6 +326,44 @@
       }
      })
   }
+  /* ========================================================================================= */
+  /* Blog Section Code */
+  /* Blog Box */
+  const blogBox = document.querySelector(".blog-box");
+  
+  async function blogData(){
+    const res = await fetch("/blogData");
+    const bData = await res.json();
+    console.log(bData);
+   for(let i=0;i<bData.length;i++){
+    blogBox.innerHTML+=`<div class="blog-table">
+        <h2 class="blog-title">${bData[i].title}</h2>
+        <img src="${bData[i].imageurl}" class="blog-image">
+        <p class="blog-short-description">${bData[i].shortDescription}</p>
+        <button class="read" type="button">Read More</button>
+       </div>
+    `
+  /* Trigger Modal on read More Button Click */
+  const readMoreBtn = document.querySelectorAll(".read");
+  /* Blog Modal */
+  const blogHeader= document.getElementById("blog-header");
+  const blogImg = document.getElementById("blog-image")
+  for(let i=0;i<readMoreBtn.length;i++){
+    console.log("loop runs");
+    readMoreBtn[i].addEventListener("click",(e)=>{
+      $('.ui.modal.blog-modal')
+      .modal('show');
+      blogHeader.innerHTML=bData[i].title;
+      blogImg.innerHTML=`<img src="${bData[i].imageurl}" class="b-img">`;
+    });
+  }
+   
+   }
+  }
+  /* Calling blogData Function */
+  blogData();
+  
+
   </script>
 
 </body>
