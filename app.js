@@ -236,6 +236,16 @@ app.get("/communityData", (req, res) => {
   })
 })
 
+app.get("/blogData", (req, res) => {
+  console.log("get rquest made to blog section");
+  userBlog.find({}, (err, data) => {
+    if (err) console.log(err);
+    else {
+      console.log("blogdata" + data);
+      res.send(data);
+    }
+  })
+})
 
 
 
