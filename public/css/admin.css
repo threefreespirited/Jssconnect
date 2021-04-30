@@ -7,6 +7,7 @@
     padding-bottom: 60px;
     position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
@@ -162,4 +163,89 @@
 #year{
     color:red;
     font-family:cursive;
+}
+
+/* Second Section */
+.second-section{
+    border:2px solid #5401f7;
+    border-top: none;
+    margin-top:20px;
+    width:100%;
+    font-family:monospace;
+}
+.second-section .top-section{
+    width:100%;
+    text-align:center;
+}
+.blog-mid-section{
+    display:flex;
+    flex-direction:column;
+}
+#user-blog-heading{
+    font-size:2.5rem;
+    font-family: cursive;
+    font-weight: 1000;
+    color: #5401f7;
+    text-align:center;
+}
+.blog-box{
+    border:3px solid black;
+    display: flex;
+    width:1200px;
+    padding:20px;
+    margin:30px auto;
+    overflow-x:auto;
+}
+.blog-table{
+    border:4px solid purple;
+    border-radius:5px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:500px;
+    height:540px;
+    margin:20px;
+    padding:20px 30px;
+}
+.blog-title{
+    font-size:1.5rem;
+    color:black;
+    font-family: monospace;
+    height:100px;
+    margin-bottom:10px;
+}
+.blog-image{
+    width:220px;
+}
+.blog-short-description{
+    font-size:1rem;
+    color:black;
+    font-family:monospace;
+    margin-top:50px;
+    height:200px;
+}
+.read{
+    margin-left:100px;
+    padding:10px;
+    border:2px solid black;
+    color:white;
+    background-color: black;
+    font-family:cursive;
+    cursor:pointer;
+    border-radius: 10px 20px;
+    text-decoration: none;
+    outline:none;
+}
+/* Blog Modal */
+.blog-image{
+  display:flex;
+  flex-direction: column;
+}
+.b-img{
+    display:block;
+    margin-bottom:50px;
+    width:300px;
+    height:250px;
+    margin-left:auto;
+    margin-right:auto;
 }
