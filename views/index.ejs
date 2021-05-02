@@ -9,14 +9,12 @@
       width: 80%;
       margin: 0 auto;
     }
-
     form input,
     form select {
       display: block;
       margin: 10px 0 !important;
       /* width: 45%; */
     }
-
     form button {
       margin: 20px 0 !important;
     }
@@ -64,8 +62,8 @@
         </select>
       </div>
       <div class="field">
-        <label>Your Bio (a word or two describing you)</label>
-        <input type="text" name="about" placeholder="Enter a short intro" required maxlength="30">
+        <label>Your Bio (nearly 70 characters)</label>
+        <input type="text" name="about" placeholder="Enter a short intro" required maxlength="70">
       </div>
       <div class="field">
         <label>Github Handle</label>
@@ -98,181 +96,176 @@
 
 
   <!-- Loading Box -->
-  <div id="loading" style="height: 100vh;width: 100vw;">
+  <div id="loading">
     <div id="loading-header" style="text-align:center;">
-      <!-- <h4 id="quotes"> QUOTES|JSSCONNECT</h4> -->
+      <h4 id="quotes"><i class="fa fa-bars" aria-hidden="true"></i>QUOTES|JSSCONNECT</h4>
       <h3 style="text-align:left;">Always walk through life as if you have something new to learn and you will.</h3>
-      <h4 id="author-name" style="float: right;">-Shri Aman Dixit</h4>
-      <!-- <h6 id="final-word">Final Words________________________<i class="fa fa-play-circle"
-          style="color:orange;margin-left:10px;" aria-hidden="true"></i></h6> -->
-
-
-      <div class="snippet" data-title=".dot-flashing" style="border:none;">
-        <div class="stage" style="border:none;">
-          <div class="dot-flashing" style="border:none;"></div>
+      <h2 id="author-name">Aman Dixit</h2>
+      <h6 id="final-word">Final Words________________________<i class="fa fa-play-circle" style="color:orange;margin-left:10px;" aria-hidden="true"></i></h6>
+      
+    
+        <div class="snippet" data-title=".dot-flashing" style="border:none;">
+          <div class="stage" style="border:none;">
+            <div class="dot-flashing" style="border:none;"></div>
+          </div>
         </div>
-      </div>
-
+      
     </div>
   </div>
 
   <!-- After-Loading Screen -->
   <div id="after-loading" style="display:none;">
-    
-    <div id="home">
+  <div id="home">
 
-      <div id="homeText">
+    <div id="homeText" >
 
-        <h2 style="font-size: 3.3rem;font-weight: 600;"> <span style="text-align: left;font-size: 3.6rem;">Your station
-            for </span>
-          <br>
-          <span>Notes</span>,
-          <span>Blogs</span>,
-          <span> <br> Archives</span>
-          <br> and More
-        </h2>
+      <!-- <h2 style="font-size: 3.3rem;font-weight: 600;"> <span style="text-align: left;font-size: 3.6rem;">Your station
+          for </span>
+        <br>
+        <span>Notes</span>,
+        <span>Blogs</span>,
+        <span> <br> Archives</span>
+        <br> and More
+      </h2> -->
+      <h2 style="font-size: 3.3rem;font-weight: 600;"> <span style="text-align: left;font-size: 3.6rem;">Your station
+        for </span>
+      <span>Notes</span>,
+      <span>Blogs</span>,
+      <span>Archives</span> and More
+    </h2>
 
-        <p style="font-size: 1.5rem;">Build skill-set with courses, resources and <br> quality blogs and connect with
-          community.</p>
-        <a href="/login"> <button class="ui inverted huge violet button">Join for free</button></a>
+      <p style="font-size: 1.5rem;">Build skill-set with courses, resources and quality blogs and connect with
+        community.</p>
+      <a href="/login"> <button class="ui inverted huge violet button">Join for free</button></a>
 
 
-      </div>
-      <div style="width: 45%;">
-        <img src="images/jssconnectTop.png" style="width: 120%;" alt="top-img">
-      </div>
     </div>
-
-
-    <div id="section1" class="Box">
-      <img src="/images/blog-section.svg" alt="fgfh">
-      <div class="sections">
-        <h1>Blogs</h1>
-        <p style="font-size: 1.3rem;margin-bottom: 30px;">A platform where you can find the aids provided by others
-          based
-          on their experiences and knowledge. We
-          provide you with the opportunity to write your own blog for the help of others. Blogs can also be written with
-          the help of Markdown language in way to make them attractive.</p>
-
-        <a href="/userblog" class="ui violet button joinBtn">Write for Free</a>
-        <a href="/blogs" class="ui inverted violet button joinBtn">Read Now</a>
-      </div>
+    <div id="homeImg">
+      <img src="images/topImg.png" style="width: 100%;" alt="top-img">
     </div>
-
-    <div id="topBox" style="display:flex;flex-direction: column;align-items:center;justify-content:center;">
-
-      <h1 style="text-align: center;font-size: 2.4rem;font-weight: 600;">Upskill yourself with custom tracks</h1>
-      <p style="text-align: center;font-size: 1.5rem;margin-bottom: 90px;">Follow the footsteps or get an idea of how to
-        go towards certain fields</p>
-      <!-- Get Started Btn -->
-      <div class="ui violet inverted large animated fade button" tabindex="0" class="course-btn"
-        style="margin-top:0px;width:25%;padding:10px;text-align:center;font-size:1.8rem;">
-        <div class="visible content">Get-Started >>>>></div>
-        <div class="hidden content">
-          Great Keep UP!!!
-        </div>
-      </div>
-    </div>
-
-    <div id="section2" class="Box">
-      <img src="images/Lib4.png" alt="fgfh">
-      <div class="sections">
-        <h1>Resources</h1>
-        <p style="font-size: 1.3rem;margin-bottom: 30px;">A platform to provide you with all the study resources
-          including
-          previous year papers and study materials
-          .You can access all the resources after singing in to our site.</p>
-
-        <a href="/resources" class="ui violet button joinBtn">Study for Free</a>
-        <a href="/contribute" class="ui inverted violet button joinBtn">Contribute Some</a>
-      </div>
-    </div>
-
-    <!-- features sections starts -->
-
-    <section id="feature1">
-      <!-- <img style="margin-right: 100px;" src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera_assets.s3.amazonaws.com/front-page-rebrand/value-props/accessible.svg?auto=format%2Ccompress&dpr=1&w=518&h=501&q=40" alt=""> -->
-      <div style="margin-right: 100px;" id="stats">
-        <div class="ui statistics">
-          <div class="statistic" style="border: 2px dotted blue;">
-            <div class="value">
-              <span class="toInc">300</span>+
-            </div>
-            <div class="label">
-              Books
-            </div>
-          </div>
-          <div class="statistic" style="border: 2px dotted gold;">
-            <div class="value">
-              <span class="toInc">400</span>+
-            </div>
-            <div class="label">
-              Notes
-            </div>
-          </div>
-          <div class="statistic" style="border: 2px dotted orange;">
-            <div class="value">
-              <span class="toInc">60</span>+
-            </div>
-            <div class="label">
-              Papers
-            </div>
-          </div>
-        </div>
-      </div>
-      <div style="width: 30%;">
-        <h3 style="color: #5c4bc1;">Ease of access</h3>
-        <h1 style="margin-bottom: 20px;">Free, Flexible <br> 100% online for all</h1>
-        <p style="font-size: 1.3rem;">Provided are many options to choose from, all free for all. Learn at your own
-          pace,
-          100% online.</p>
-      </div>
-    </section>
-
-    <!-- features sections ends -->
-
-
-    <section id="community" style="width: 75%;margin: 0 auto;margin-bottom: 150px;">
-      <h1 style="text-align: center;font-size: 2.5rem;">From our community</h1>
-      <p style="font-size: 1.5rem;text-align: center;">These people have already joined our
-        community,<a style="cursor: pointer;" onclick="modalTrigger();"> Join Now</a>.</p>
-
-      <div class="splide" id="splide" style="padding: 45px 0;">
-        <div class="splide__track">
-          <ul class="splide__list">
-
-            <% let carauselItems=``; for(let i=0; i< 10 ; i++) { carauselItems +=` <div class="splide__slide card">
-              <div class="image">
-                <!-- this will be uncommented after adding image field to joincommunity -->
-                <img src="${community[i].picture}" style="width: 100%;height: 100%;" alt="">
-              </div>
-              <div class="content">
-                <h1 style="color: #5c4bc1;">${community[i].name}</h1>
-                <p style="font-size: 1.3rem;font-weight: 600;">${community[i].department}</p>
-                <p style="font-size: 1.2rem;">${community[i].year}</p>
-              </div>
-        </div>
-        `;
-
-        }
-
-        %>
-
-        <%- carauselItems %>
-          </ul>
-      </div>
   </div>
+
+  <div id="section1" class="Box">
+      <img src="/images/blog-section.svg" alt="fgfh">
+    <div class="sections">
+      <h1>Blogs</h1>
+      <p style="font-size: 1.3rem;margin-bottom: 30px;">A platform where you can find the aids provided by others based
+        on their experiences and knowledge. We
+        provide you with the opportunity to write your own blog for the help of others. Blogs can also be written with
+        the help of Markdown language in way to make them attractive.</p>
+
+      <a href="/userblog" class="ui violet button joinBtn">Write for Free</a>
+      <a href="/blogs" class="ui inverted violet button joinBtn">Read Now</a>
+    </div>
+  </div>
+
+  <div id="topBox" style="display:flex;flex-direction: column;align-items:center;justify-content:center;">
+
+    <h1 style="text-align: center;font-size: 2.4rem;font-weight: 600;">Upskill yourself with custom tracks</h1>
+    <p style="text-align: center;font-size: 1.5rem;margin-bottom: 90px;">Follow the footsteps or get an idea of how to
+      go towards certain fields</p>
+    <!-- Get Started Btn -->
+    <div class="ui violet inverted large animated fade button" tabindex="0" class="course-btn" style="margin-top:0px;width:280px;padding:10px;text-align:center;font-size:1.8rem;">
+      <div class="visible content">Get-Started >>>>></div>
+      <div class="hidden content">
+        Great Keep UP!!!
+      </div>
+    </div>
+  </div>
+
+  <div id="section2" class="Box">
+    <img src="images/Lib4.png" alt="fgfh">
+    <div class="sections">
+      <h1>Resources</h1>
+      <p style="font-size: 1.3rem;margin-bottom: 30px;">A platform to provide you with all the study resources including
+        previous year papers and study materials
+        .You can access all the resources after singing in to our site.</p>
+
+      <a href="/resources" class="ui violet button joinBtn">Study for Free</a>
+      <a href="/contribute" class="ui inverted violet button joinBtn">Contribute Some</a>
+    </div>
+  </div>
+
+  <!-- features sections starts -->
+
+  <section id="feature1">
+    <!-- <img style="margin-right: 100px;" src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera_assets.s3.amazonaws.com/front-page-rebrand/value-props/accessible.svg?auto=format%2Ccompress&dpr=1&w=518&h=501&q=40" alt=""> -->
+    <div  id="stats">
+      <div class="ui statistics" id="stat-circle">
+        <div class="statistic" style="border: 2px dotted blue;">
+          <div class="value">
+            <span class="toInc">300</span>+
+          </div>
+          <div class="label">
+            Books
+          </div>
+        </div>
+        <div class="statistic" style="border: 2px dotted gold;">
+          <div class="value">
+            <span class="toInc">400</span>+
+          </div>
+          <div class="label">
+            Notes
+          </div>
+        </div>
+        <div class="statistic" style="border: 2px dotted orange;">
+          <div class="value">
+            <span class="toInc">60</span>+
+          </div>
+          <div class="label">
+            Papers
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="stats-text">
+      <h3 style="color: #5c4bc1;">Ease of access</h3>
+      <h1 style="margin-bottom: 20px;">Free, Flexible 100% online for all</h1>
+      <p style="font-size: 1.3rem;">Provided are many options to choose from, all free for all. Learn at your own pace,
+        100% online.</p>
+    </div>
+  </section>
+
+  <!-- features sections ends -->
+
+
+  <section  id="community" style="width: 75%;margin: 0 auto;margin-bottom: 150px;">
+    <h1 style="text-align: center;font-size: 2.5rem;">From our community</h1>
+    <p style="font-size: 1.5rem;text-align: center;">These people have already joined our
+      community,<a style="cursor: pointer;" onclick="modalTrigger();"> Join Now</a>.</p>
+
+    <div class="splide" id="splide" style="padding: 45px 0;">
+      <div class="splide__track">
+        <ul class="splide__list">
+
+          <% let carauselItems=``; for(let i=0; i< 10 ; i++) { carauselItems +=` <div class="splide__slide card">
+            <div class="image">
+              <!-- this will be uncommented after adding image field to joincommunity -->
+              <img src="${community[i].picture}" style="width: 100%;height: 100%;" alt="">
+            </div>
+            <div class="content">
+              <h1 style="color: #5c4bc1;">${community[i].name}</h1>
+              <p style="font-size: 1.3rem;font-weight: 600;">${community[i].department}</p>
+              <p style="font-size: 1.2rem;">${community[i].year}</p>
+            </div>
+      </div>
+      `;
+      }
+      %>
+
+      <%- carauselItems %>
+        </ul>
+    </div>
+    </div>
 
   </section>
 
   <p id="member" hidden>
     <%= member %>
   </p>
-  <!-- divs used for displaying messages passed on to ejs using res.render (rest is done below using jQuery) -->
-  <div id="updateMessage" style="display:none"></div>
 
   <%- include("footer") %>
-    </div>
+</div>
     <!-- carausel script -->
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
     <script>
@@ -281,6 +274,14 @@
           type: 'loop',
           perPage: 3,
           perMove: 1,
+          breakpoints: {
+            950: {
+              perPage: 2,
+            },
+            680:{
+              perPage: 1,
+            }
+		      }
         }).mount();
       });
     </script>
@@ -332,39 +333,27 @@
           document.getElementById("followingMenu").style.display = "none";
         }
       }
-
-      // jQuery code to display a toast message on recieving message through res.render 
-      if (document.querySelector("#updateMessage").innerHTML != "") {
-        $('#updateMessage')
-          .toast({
-            class: 'success',
-            message: document.querySelector("#updateMessage").innerHTML,
-            closeIcon: true,
-          })
-          ;
-      }
-
       let todaysDate = document.getElementById("todaysDate");
       var date = new Date().getDate();
       var month = new Date().getMonth() + 1;
       var year = new Date().getFullYear();
       todaysDate.setAttribute("value", date + "/" + month + "/" + year);
-
       // check if the current user is already a community member
       let member = document.getElementById("member").innerHTML.trim();
-
       function modalTrigger() {
         if (member == "false")
           $('#modalJoin').modal('show');
-        else if (member == "") {
-          $('#member').
-            toast({
-              class: 'warning',
-              displayTime: 3000,
-              message: 'You must Login First!'
-            });
+        else if (member == "")
+        {
+        $('#member').
+          toast({
+            class: 'warning',
+            displayTime: 3000,
+            message: 'You must Login First!'
+          });
         }
-        else if (member == "true") {
+        else if(member == "true")
+        {
           $('#member').
             toast({
               class: 'warning',
@@ -373,25 +362,24 @@
             });
         }
       }
-
       if (member == "false") {
         $('#modalJoin').modal('show');
       }
-
+     
       /* Loading */
       let loading = document.getElementById("loading");
       let home = document.getElementById("home");
       let afterLoading = document.getElementById("after-loading");
       let topMenu = document.getElementById("topMenu");
-      topMenu.style.display = "none";
-      setTimeout(() => {
-        loading.style.display = "none";
-        home.classList.add('magictime', 'swap');
-        home.style.display = "flex";
-        afterLoading.style.display = "block";
-        topMenu.style.display = "flex";
-        topMenu.classList.add('magictime', 'swap');
-      }, 3000);
+      topMenu.style.display="none";
+      setTimeout(()=>{
+        loading.style.display="none";
+        home.classList.add('magictime', 'swap'); 
+        home.style.display="flex";
+        afterLoading.style.display="block";
+        topMenu.style.display="flex";
+        topMenu.classList.add('magictime', 'swap'); 
+     },3000); 
     </script>
     </body>
 

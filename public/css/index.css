@@ -1,7 +1,6 @@
 /* #topMenu , #followingMenu{
     padding: 4px 0%;
 }
-
 /* #followingMenu .item{
     color: white !important;
 } */
@@ -47,8 +46,6 @@
  
 }
 /**
-
-
 * ==============================================
  * Dot Flashing
  * ==============================================
@@ -158,10 +155,17 @@ line-height:5rem;
 #home{
   margin: 60px 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
-
+#homeText{
+  margin-left:-60px;
+  width:30%;
+}
+#homeImg{
+  width:40%;
+  margin-left:140px;
+}
 .Box{
   background-color: #ebf3ff;
   /* height: 400px; */
@@ -311,11 +315,24 @@ line-height:5rem;
   #home,#section1,#section2{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     text-align: center;
   }
+  #homeText{
+    width:100%;
+    margin-left: 0px;
+  }
+  #homeImg{
+    margin-left:0px;
+    margin-top: 30px;
+  }
   #home div img{
     width: 100%;
+  }
+  #homeImg{
+    width:100%;
   }
   #section1 img{
     display: block;
@@ -378,4 +395,3 @@ line-height:5rem;
     margin-right: 0;
   }
 }
-

@@ -1,16 +1,25 @@
 <%- include("header") %>
+<style>
 
+</style>
 
 <div id="container">
   <div id="wave">
     <h2 style="text-align:center;font-weight:1000;">E-RESOURCES</h2>
-    <img src="https://jssaten.ac.in/Lib/img/LibraryPics/Lib2.jpg" alt="">
+    <!-- <img src="https://jssaten.ac.in/Lib/img/LibraryPics/Lib2.jpg" alt=""> -->
+    <div class="resources-cover" style="">
+    <img class="cover-img" src="./images/resources-cover-img.png" alt="resource-cover-image">
     <p>An e-library exclusively for JSS
-      students, where all your academic's will be fulfilled. Here you will find all the books, materials,
-      notes and question papers shared ever by any of the student or professor. You will also find certain
-      filters to be applied in way to find the materials of a particular department and year easily.</p>
+    students, where all your academic need will be fulfilled. 
+    <br>
+  
+    &nbsp;&nbsp;<strong>👉Get Notes,Previous year papers and books in a click</strong><br>
+    &nbsp;&nbsp;<strong>👉Filters to help you access resources at ease.</strong>
+      </p>
+    </div>
+    
   </div>
-  <h3 style="margin-left: 17.1%;font-size:4rem;margin-top:55px;margin-bottom: 60px;color: #5e6f64;">Filter the
+  <h3 style="text-align:center;font-size:3rem;margin-top:55px;margin-bottom: 60px;color: #5e6f64;">Filter the
     resources as per
     your need</h3>
   
@@ -18,13 +27,13 @@
   <!-- First Year -->
   <div class="year">
     <div class="box1">
-      <img
+      <!-- <img
         src="https://www.une.edu/sites/default/files/styles/full_width/public/shared/first-year-plan_0.png?itok=975IQe8r"
+        alt="FIRST YEAR"> -->
+      <img
+        src="./images/first-yr-img.jpg"
         alt="FIRST YEAR">
-
-    </div>
-    <!-- First Year Form -->
-    <form action="/firstyear" method="POST" class="ui form select-form">
+        <form action="/firstyear" method="POST" class="ui form select-form">
       <div class="field">
         <select name="department" id="department">
           <option value="CS/IT" disabled>Choose department</option>
@@ -39,7 +48,7 @@
           <option value="CS/IT" disabled>First year</option>
           <option value="PPS">Programming for Problem Solving</option>
           <option value="PE">Professional English</option>
-          <option value="BEE">Basic Electrical Engineering</option>
+         {} <option value="BEE">Basic Electrical Engineering</option>
           <option value="M1">Maths I</option>
           <option value="M2">Maths II</option>
           <option value="P">Physics</option>
@@ -52,16 +61,18 @@
         </button>
       </div>
     </form>
+    </div>
+    <!-- First Year Form -->
+    
   </div>
-  </div>
-  <div>
+ 
 <!-- Second Year -->
 <div class="year">
   <div class="box1">
-    <img src="https://www.une.edu/sites/default/files/shared/second-year-plan_1.png" alt="SECOND YEAR">
-  </div>
-  <!-- Second Year Form -->
-  <form action="/secondyear" method="POST" class="ui form select-form">
+    <!-- <img src="https://www.une.edu/sites/default/files/shared/second-year-plan_1.png" alt="SECOND YEAR"> -->
+    <img src="./images/second-yr-img.jpg" alt="SECOND YEAR">
+
+    <form action="/secondyear" method="POST" class="ui form select-form">
     <div class="field">
       <select name="department" id="department">
         <option value="CS/IT" disabled>Choose department</option>
@@ -96,9 +107,11 @@
       </button>
     </div>
   </form>
+  </div>
+  <!-- Second Year Form -->
+  
 </div>
-</div>
-</div>
+
 <br/>
 <br/>
 <br/>

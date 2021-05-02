@@ -77,15 +77,17 @@ let myEmail = "";
 
 // Userblogs Strategy
 passport.use(
-  new GoogleStrategy({
+  new GoogleStrategy(
+    {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "/auth/google/home",
+      callbackURL: "https://jssconnect.herokuapp.com/auth/google",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
       console.log(profile);
-      User.findOrCreate({
+      User.findOrCreate(
+        {
           googleId: profile.id,
           name: profile.displayName,
           picture: profile.photos[0].value,
@@ -1263,7 +1265,8 @@ app.post("/firstyear", async (req, res) => {
     Books: books1,
     Notes: notes1,
     Papers: papers1,
-    cssName
+    cssName,
+    pageTitle
   });
 });
 
@@ -1325,7 +1328,8 @@ app.post("/secondyear", async (req, res) => {
     Books: books2,
     Notes: notes2,
     Papers: papers2,
-    cssName
+    cssName,
+    pageTitle
   });
 });
 

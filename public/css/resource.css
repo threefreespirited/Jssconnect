@@ -1,18 +1,16 @@
 #wave{
     display:flex;
     flex-direction:column;
-    padding:10px 50px;
-    border: 1px solid #7510F7;
-    background: #7510F7;
-    color:white;
+    /* border: 1px solid #7510F7; */
+    /* background: #7510F7; */
+    color:black;
     padding: 40px 50px;
 }
-#wave img{
+.resources-cover{
+    display:flex;border:1px dotted black;padding:1rem;margin-top: 30px;
+ }
+.cover-img{
     width:50%;
-    height:50%;
-    display:block;
-    margin-left:auto;
-    margin-right:auto;
 }
 #wave h2{
     font-size:3.9rem;
@@ -20,9 +18,8 @@
 }
 #wave p{
     margin-top:60px;
-    font-size:2rem;
+    font-size:1.6rem;
     padding:30px 50px;
-
 }
 .year{
     display:flex;
@@ -30,17 +27,65 @@
     justify-content:center;
     margin-top:100px;
 }
+
+
 .box1{
-    width:300px;
-    margin-right:100px;
+    display:flex;
+    justify-content:center;
+    align-items: center;
 }
+
 .box1 img{
-    width:80%;
+    margin-right:100px;
+    width:18%
 }
 .select-form{
-    margin-left:100px;
     width:500px;
 }
-.field .submit-btn{
-    padding:20px;
+
+
+
+
+  @media only screen and (max-width: 768px) {
+
+
+    #wave{
+        padding:10px 5px
+    }
+    #wave p{
+    margin-top:0px;
+    font-size:1.4rem;
+    padding:30px 50px;
+}
+    .cover-img{
+      width:100%;
+    }
+    .resources-cover{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+    }
+  .year{
+    flex-direction: column;
+  }
+  .box1{
+      display:flex !important;
+      flex-direction: column;
+      align-items: center !important;
+      justify-content:center !important;
+  }
+  .form{
+       width: 80%;
+       min-width: 80px;
+    
+    /* padding-right: 110px; */
+  }
+.box1 img{
+  /* margin: 0 auto; */
+   width:40%;
+margin-right:0px;
+margin-bottom:50px;
+  /* text-align: center; */
+}
 }
