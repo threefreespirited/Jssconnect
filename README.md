@@ -11,7 +11,7 @@
 </h2>
 </div>
 
-<h3 style="text-align:center;color:yellow;font-size:1.8rem;">One Destination for meeting all your educational needs related to college study.</h3>
+<h3 style="text-align:center;color:yellow;font-size:1.8rem;">One Destination for meeting all your educational needs that is related to college study.</h3>
 <p style="text-align:center;font-size:1.5rem;">Jss Connect is an e-platform for helping engineering students in their academics.</p>
 
 <div align="center">
@@ -59,7 +59,7 @@ Engineering students can</h2>
 <br />
 
 ## Our Contributors  !! ✨
-### Thanks go to these wonderfull peoples: ✨
+### Thanks to these wonderful people: ✨
 
 <table>
 	<tr>
@@ -85,7 +85,7 @@ Environment Setup-
 * Download [Node Js and npm(Node package manager)](https://nodejs.org/en/) (when you download Node, npm also gets installed by default)
 <br/>
 
-* Mongo DB community editition is free and a great software in order to work with MongoDB applications. [Download Mongo DB community editition](https://docs.mongodb.com/manual/administration/install-community/)
+* Mongo DB community edition is free & a great software in order to work with MongoDB applications. [Download Mongo DB community editition](https://docs.mongodb.com/manual/administration/install-community/)
 <br/>
 
 * Robo 3T is a desktop graphical user interface (GUI) for Mongo DB. It can help to skip running all the Mongo DB commands manually every time we want to access the data. [Download Robo 3T](https://robomongo.org/download) **(optional)**
