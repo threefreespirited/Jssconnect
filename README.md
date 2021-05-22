@@ -91,14 +91,16 @@ Environment Setup-
 * Robo 3T is a desktop graphical user interface (GUI) for Mongo DB. It can help to skip running all the Mongo DB commands manually every time we want to access the data. [Download Robo 3T](https://robomongo.org/download) **(optional)**
 <br/>
 
+* Fork the repository by cliking the "Fork" which is present in top right corner.
+
 * Clone the repository by running command
 ```
-git clone https://github.com/ <your user-name> /threefreespirited/jssconnect.git
+git clone https://github.com/ <your user-name> /jssconnect.git
 ```
 in your git bash.
 <br/>
 
-* Run command `cd threefreespirited/heckfree`.
+* Run command `cd jssconnect`.
 <br/>
 
 * Run this command to install all dependencies for the project.
