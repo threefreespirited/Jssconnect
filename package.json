@@ -1,7 +1,7 @@
 {
   "name": "jss_connect-master",
   "version": "1.0.0",
-  "description": "",
+  "description": "[Visit our website here](https://jssconnect.herokuapp.com/) <div align=\"center\"> <h2 style=\"text-align:center;font-size:53px;color:red\"><span style=\"color:blue\">JSS</span>CONNECT",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,5 +22,14 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-local-mongoose": "^6.0.1",
     "url": "^0.11.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SUCHITRAGIRI/Jssconnect.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SUCHITRAGIRI/Jssconnect/issues"
+  },
+  "homepage": "https://github.com/SUCHITRAGIRI/Jssconnect#readme"
 }
