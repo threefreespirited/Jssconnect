@@ -68,7 +68,7 @@
         <div class="two">
           <p style="font-size: 1.1rem;width: 90%;position:absolute;top: 60px;left: 15px;">${data[i].shortDescription}
           </p>
-          <form action="/myblog" method="post">
+          <form action="/blogs/blog" method="post">
             <input type="number" value="${i}" name="uniqueId" style="display: none" />
             <button read="5" class="ui inverted violet button btn readBtn"
               style="position:absolute;bottom: 40px;left: 30px;" type="submit">
@@ -87,7 +87,7 @@
       <div style="text-align: center; font-size: 1.5rem; margin-top: 60px;margin-bottom:80px;">
         <p style="color: #7510F7">Want to see more.</p>
         <p style="color: #393e46">Why don't write one?</p>
-        <a href="/userblog"><button class="ui big inverted violet button" type="submit" name="action">
+        <a href="blogs/userblog"><button class="ui big inverted violet button" type="submit" name="action">
             Add one &nbsp;&nbsp;&nbsp;
             <i class="fa fa-plus"></i>
           </button></a>

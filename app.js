@@ -51,6 +51,14 @@ app.use(bodyParser.urlencoded({
 
 //body-parser
 app.use(bodyParser.json());
+//===========================  API ROUTES ==================================
+// Auth Routes 
+const authRoute = require('./routes/auth')
+app.use('/',authRoute);
+//Blog Routes
+const blogRoute = require('./routes/blog')
+app.use('/blogs',blogRoute);
+
 const userSchema = new mongoose.Schema({
   email: String,
   picture: String,
@@ -143,7 +151,6 @@ app.get(
 );
 
 
-
 // app.get("/contribute", function (req, res) {
 // if (req.isAuthenticated()) {
 //   res.render("contribute");
@@ -152,10 +159,7 @@ app.get(
 // }
 // });
 
-app.get("/logout", function (req, res) {
-  req.logOut();
-  res.redirect("/");
-});
+
 
 
 // Admin page
@@ -238,16 +242,7 @@ app.get("/communityData", (req, res) => {
   })
 })
 
-app.get("/blogData", (req, res) => {
-  console.log("get rquest made to blog section");
-  userBlog.find({}, (err, data) => {
-    if (err) console.log(err);
-    else {
-      console.log("blogdata" + data);
-      res.send(data);
-    }
-  })
-})
+
 
 
 
@@ -292,33 +287,7 @@ app.post("/joincommunity", (req, res) => {
 
 });
 
-// Userblogs
 
-const userBlogSchema = new mongoose.Schema({
-  title: String,
-  imageurl: String,
-  socialurl: String,
-  permission: String,
-  date: String,
-  shortDescription: String,
-  blogcontent: String,
-  authorName: String,
-  authorImg: String,
-});
-
-const userBlog = mongoose.model("userBlog", userBlogSchema);
-
-app.post("/userblog", (req, res) => {
-  let myuserBlog = new userBlog(req.body);
-  myuserBlog.save();
-
-  res.writeHead(200, {
-    "Content-Type": "text/html"
-  });
-  let myResponse = `<img src='https://img2.pngio.com/writing-services-png-picture-889262-writing-services-png-web-content-png-650_519.png' style='margin:60px 42%; width:200px;'><p style='text-align:center;font-size:1.8rem;margin-top:20px;'>Thanks for adding one!<br>We hope your blog is worthy enough to be displayed on our dashboard.<br><br>Our team will look onto it as soon as possible..</p><a href='/'style='text-align:center;margin-left:42.5%;'><button style='font-size:1.3rem;padding:9px;border-radius:10px;border:2px solid #30475e;background-color:#d6e0f0;color:#30475e;cursor:pointer;'>Back to Jssconnect</button></a>`;
-  res.write(myResponse);
-  res.send();
-});
 // like blog feature
 
 // Like Schema 
@@ -422,6 +391,7 @@ app.get("/getComment/:id", (req, res) => {
   userComment.find({uniqueId: req.params.id}, (err, data) => {
     if (err) console.log(err);
     else {
+ 
       console.log("00000000000000000000000");
       console.log(data);
       res.send(data);
@@ -694,47 +664,7 @@ app.get("/contact", (req, res) => {
   });
 });
 
-// LOGIN PAGE
-app.get("/login", (req, res) => {
-  let pageTitle = "JSS Connect | Login";
-  let cssName = "css/login.css";
-  let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
-  let email = "";
-  let message = "";
-  if (req.query.message != "") {
-      message = req.query.message;
-  }
-  if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
-  }
-  res.render("login", {
-    pageTitle: pageTitle,
-    cssName: cssName,
-    username,
-    picture,
-    email,
-    message
-  });
-});
-// REGISTER PAGE
-app.get("/register", (req, res) => {
-  let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
-  let email = "";
-  if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
-  }
-  res.render("register", {
-    username,
-    picture,
-    email
-  });
-});
+ 
 // RESOURCE PAGE
 app.get("/resources", (req, res) => {
   let username = "Guest";
@@ -951,92 +881,6 @@ app.get("/getlikes", (req, res) => {
     }
   });
 });
-
-app.post("/myblog", (req, res) => {
-  console.log(req.body.uniqueId);
-  let uniId = req.body.uniqueId;
-  let pageTitle = "Blog | Jssconnect";
-  let cssName = "css/blogs.css";
-  let username = "Guest";
-  let like = 0;
-  let uniqueId = uniId;
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
-  let email = "";
-  if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
-  }
-  userBlog.find({}, (err, data) => {
-    if (err) console.log(err);
-    else {
-      console.log(data[uniId]);
-      console.log("hi am");
-      if (data.link == undefined) {
-        console.log("no record");
-      }
-      res.render("blog", {
-        blogData: data[uniId],
-        username,
-        picture,
-        email,
-        pageTitle,
-        cssName,
-        uniqueId
-      });
-    }
-  });
-});
-
-app.get("/blogs", (req, res) => {
-  let pageTitle = "Blogs | Jssconnect";
-  let cssName = "css/blogs.css";
-  let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
-  let email = "";
-  if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
-  }
-
-  userBlog.find({}, (err, data) => {
-    if (err) console.log(err);
-    else {
-      console.log(data[2].imageurl);
-      res.render("blogs", {
-        data: data,
-        pageTitle,
-        cssName: cssName,
-        username,
-        picture,
-        email
-      });
-    }
-  });
-});
-
-app.get("/userblog", function (req, res) {
-  let pageTitle = "Your Blog";
-  let cssName = "css/blogs.css";
-
-  if (req.isAuthenticated()) {
-    let username = req.user.name;
-    let picture = req.user.picture;
-    email = req.user.email;
-    res.render("userblog", {
-      pageTitle,
-      cssName,
-      username,
-      picture,
-      email
-    });
-  } else {
-    res.redirect("/login");
-  }
-});
-
-
 
 // Community
 
