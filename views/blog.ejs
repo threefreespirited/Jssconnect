@@ -310,7 +310,7 @@
           },
           body: JSON.stringify(data)
         };
-        let res = await fetch('/savecomment', options);
+        let res = await fetch('/comments/savecomment', options);
         console.log(res, "response from backend for save");
         console.log("comment saved");
         makeInputNull();
@@ -321,7 +321,7 @@
       //  get comment when page loads
       async function getComment() {
         console.log("function called");
-        let res = await fetch(`/getComment/${uniqueId}`);
+        let res = await fetch(`/comments/getComment/${uniqueId}`);
         let comment = await res.json();
         previousLength = comment.length;
         commentCount.innerHTML = previousLength;
@@ -354,7 +354,7 @@
         // console.log(commentBox);
         console.log(" prev length" +previousLength);
         console.log(" get new comment function called");
-        let res = await fetch(`/getComment/${uniqueId}`);
+        let res = await fetch(`/comments/getComment/${uniqueId}`);
         let comment = await res.json();
         for (let i = previousLength; i < comment.length; i++) {
           console.log(i, "i");
@@ -388,7 +388,7 @@
       let likeCount = document.getElementById("likeCount");
       let myLikes = [];
       async function likeCheck() {
-        fetch(`/getlikes?uniqueId=${uniqueId}`)
+        fetch(`/likes/getlikes?uniqueId=${uniqueId}`)
         .then(res => res.json())
           .then(res => {
             // console.log(res, "how's the response?"); // this is the console.log stated before
@@ -450,7 +450,7 @@
           },
           body: JSON.stringify(data)
         };
-        let res = await fetch('/savelikes', options);
+        let res = await fetch('/likes/savelikes', options);
         console.log(res.json());
       }
       // like button code ends

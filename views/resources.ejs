@@ -6,9 +6,9 @@
 <div id="container">
   <div id="wave">
     <h2 style="text-align:center;font-weight:1000;">E-RESOURCES</h2>
-    <!-- <img src="https://jssaten.ac.in/Lib/img/LibraryPics/Lib2.jpg" alt=""> -->
-    <div class="resources-cover" style="">
-    <img class="cover-img" src="./images/resources-cover-img.png" alt="resource-cover-image">
+     
+    <div class="resources-cover">
+    <img class="cover-img" src="../images/resources-cover-img.png" alt="resource-cover-image">
     <p>An e-library exclusively for JSS
     students, where all your academic need will be fulfilled. 
     <br>
@@ -27,13 +27,11 @@
   <!-- First Year -->
   <div class="year">
     <div class="box1">
-      <!-- <img
-        src="https://www.une.edu/sites/default/files/styles/full_width/public/shared/first-year-plan_0.png?itok=975IQe8r"
-        alt="FIRST YEAR"> -->
+    
       <img
-        src="./images/first-yr-img.jpg"
+        src="../images/first-yr-img.jpg"
         alt="FIRST YEAR">
-        <form action="/firstyear" method="POST" class="ui form select-form">
+        <form action="/resources/firstyear" method="POST" class="ui form select-form">
       <div class="field">
         <select name="department" id="department">
           <option value="CS/IT" disabled>Choose department</option>
@@ -48,7 +46,7 @@
           <option value="CS/IT" disabled>First year</option>
           <option value="PPS">Programming for Problem Solving</option>
           <option value="PE">Professional English</option>
-         {} <option value="BEE">Basic Electrical Engineering</option>
+           <option value="BEE">Basic Electrical Engineering</option>
           <option value="M1">Maths I</option>
           <option value="M2">Maths II</option>
           <option value="P">Physics</option>
@@ -69,10 +67,10 @@
 <!-- Second Year -->
 <div class="year">
   <div class="box1">
-    <!-- <img src="https://www.une.edu/sites/default/files/shared/second-year-plan_1.png" alt="SECOND YEAR"> -->
-    <img src="./images/second-yr-img.jpg" alt="SECOND YEAR">
+    
+    <img src="../images/second-yr-img.jpg" alt="SECOND YEAR">
 
-    <form action="/secondyear" method="POST" class="ui form select-form">
+    <form action="/resources/secondyear" method="POST" class="ui form select-form">
     <div class="field">
       <select name="department" id="department">
         <option value="CS/IT" disabled>Choose department</option>
@@ -170,13 +168,7 @@
           </div>
       </div> -->
 </div>
-
-<div style="display:block;width:50%;padding:10px;text-align: center;margin: 75px auto;margin-top: 120px;">
-  <p style="font-size:1.5rem;color:#5e6f64">Have a look on others contributions as well.</p>
-  <a href="/usercontributions" class="ui right labeled icon button" style="font-size:1.2rem;text-align:center;">See Contributions
-    <i class="eye icon"></i>
-  </a>
-</div>
+ 
 <!-- Footer -->
 <%- include("footer") %>
 

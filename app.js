@@ -58,6 +58,20 @@ app.use('/',authRoute);
 //Blog Routes
 const blogRoute = require('./routes/blog')
 app.use('/blogs',blogRoute);
+// Likes Routes
+const likesRoute = require('./routes/likes')
+app.use('/likes', likesRoute);
+// Comment Routes
+
+const commentsRoute = require('./routes/comments')
+app.use('/comments', commentsRoute);
+
+// Resources Routes
+const resourcesRoute = require('./routes/resources')
+app.use("/resources", resourcesRoute)
+
+ 
+
 
 const userSchema = new mongoose.Schema({
   email: String,
@@ -288,116 +302,11 @@ app.post("/joincommunity", (req, res) => {
 });
 
 
-// like blog feature
-
-// Like Schema 
-const likeSchema = new mongoose.Schema({
-  uniqueId: String,
-  likes: Array
-});
-const userLikes = mongoose.model("userLikes", likeSchema);
-
-app.post("/savelikes", (req, res) => {
-  console.log(req.body, "likes");
-
-  if (req.isAuthenticated()) {
-
-    var myLikes = [];
-
-    userLikes.find({ uniqueId: req.body.uniqueId }, async (err, data) => {
-      if (err)
-        console.log(err);
-      else if (data == "") {
-        console.log("data empty");
-        myLikes.push(req.body.email);
-        let newuserlikes = new userLikes(
-          {
-            uniqueId: req.body.uniqueId,
-            likes: myLikes
-          }
-        );
-        newuserlikes.save();
-        res.json(JSON.stringify({ likedearlier: true }));
-      }
-      else if (data != "") {
-        myLikes = await data[0].likes;
-        console.log(myLikes, "data[0].likes");
-
-        // check if user already liked the post
-        let likecheck = 0;
-        for (let i = 0; i < myLikes.length; i++) {
-          if (myLikes[i] == req.body.email) {
-            likecheck = 1;
-            break;
-          }
-        }
-        if (likecheck == 1) {
-          res.json(JSON.stringify({ likedearlier: true }));
-        }
-        else if (likecheck == 0) {
-          myLikes.push(req.body.email);
-          console.log(myLikes, "data[0].likes");
-          // update original entry(if exists)
-          userLikes.updateOne({ uniqueId: req.body.uniqueId }, { likes: myLikes }, function (err, result) {
-            if (err) {
-              console.log(err)
-            } else {
-              console.log("Result :", result)
-            }
-          });
-          res.json(JSON.stringify({ likedearlier: false }));
-        }
-
-
-      }
-    });
-  }
-  else {
-    res.send("not authenticated");
-  }
-
-});
-
-// Comment Schema 
-const commentSchema = new mongoose.Schema({
-  authorName: String,
-  date: String,
-  commentInput: String,
-  uniqueId: String,
-  email: String,
-  picture: String,
-})
-const userComment = mongoose.model("userComment", commentSchema);
-app.post("/savecomment", (req, res) => {
-  console.log("post happend");
-  console.log(req.body);
-
-  if (req.isAuthenticated()) {
-    console.log("U'r Signed Succesffully");
-    console.log(req.user);
-    let myuserComment = new userComment(req.body);
-    myuserComment.save();
-    res.send("Your Comment Save");
-  } else {
-    console.log("Not Signed In");
-    res.send("Please Sign In First");
-  }
-
-})
-// find all comments
-app.get("/getComment/:id", (req, res) => {
-  console.log("get request made");
-  console.log(req.params.id);
-  userComment.find({uniqueId: req.params.id}, (err, data) => {
-    if (err) console.log(err);
-    else {
  
-      console.log("00000000000000000000000");
-      console.log(data);
-      res.send(data);
-    }
-  })
-})
+
+
+
+
 // Staus Checking of User
 //@desc; Whether he is authenticated or not
 app.get("/status", (req, res) => {
@@ -508,44 +417,8 @@ app.post("/newsletter", (req, res) => {
   res.end();
 });
 
-//first year Schema
-const firstyearSchema = new mongoose.Schema({
-  resname: String,
-  authorName: String,
-  year: String,
-  department: String,
-  subject: String,
-  link: String,
-  yourname: String,
-  yourimage: String,
-  todaysMonth: String,
-});
-const firstyearPaperSchema = new mongoose.Schema({
-  resname: String,
-  year: Number,
-  department: String,
-  subject: String,
-  link: String,
-});
-//second year Schema
-const secondyearSchema = new mongoose.Schema({
-  resname: String,
-  authorName: String,
-  year: String,
-  department: String,
-  subject: String,
-  link: String,
-  yourname: String,
-  yourimage: String,
-  todaysMonth: String,
-});
-const secondyearPaperSchema = new mongoose.Schema({
-  resname: String,
-  year: Number,
-  department: String,
-  subject: String,
-  link: String,
-});
+ 
+
 
 // contribution record Schema
 const contributionRecordSchema = new mongoose.Schema({
@@ -556,10 +429,7 @@ const contributionRecordSchema = new mongoose.Schema({
 });
 const contributionRecord = mongoose.model("contributionRecord", contributionRecordSchema);
 
-//firstYear Model
-const firstyearBook = mongoose.model("firstyearBook", firstyearSchema);
-const firstyearNote = mongoose.model("firstyearNote", firstyearSchema);
-const firstyearPapers = mongoose.model("firstyearPapers", firstyearPaperSchema);
+
 // const firstyearVideos = mongoose.model("firstyearVideos", firstyearSchema)
 
 // app.post("/contribute", (req, res) => {
@@ -575,14 +445,6 @@ const firstyearPapers = mongoose.model("firstyearPapers", firstyearPaperSchema);
 
 // })
 
-// secondYear model
-
-const secondyearBook = mongoose.model("secondyearBook", secondyearSchema);
-const secondyearNote = mongoose.model("secondyearNote", secondyearSchema);
-const secondyearPapers = mongoose.model(
-  "secondyearPapers",
-  secondyearPaperSchema
-);
 // const secondyearVideos = mongoose.model("secondyearVideos", secondyearSchema)
 
 // app.post("/contribute", (req, res) => {
@@ -665,27 +527,7 @@ app.get("/contact", (req, res) => {
 });
 
  
-// RESOURCE PAGE
-app.get("/resources", (req, res) => {
-  let username = "Guest";
-  let cssName = "css/resource.css";
-  let pageTitle = "JSS Connect|Resources";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
-  let email = "";
-  if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
-  }
-  res.render("resources", {
-    username,
-    picture,
-    email,
-    pageTitle: pageTitle,
-    cssName: cssName
-  });
 
-});
 app.get("/about", (req, res) => {
   let username = "Guest";
   let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
@@ -797,18 +639,18 @@ app.get("/feedback", (req, res) => {
 
 
 // Card
-app.get("/getComment/:id", (req, res) => {
-  console.log("get request made");
-  console.log(req.params.id);
-  userComment.find({uniqueId: req.params.id}, (err, data) => {
-    if (err) console.log(err);
-    else {
-      console.log("00000000000000000000000");
-      console.log(data);
-      res.send(data);
-    }
-  })
-})
+// app.get("/getComment/:id", (req, res) => {
+//   console.log("get request made");
+//   console.log(req.params.id);
+//   userComment.find({uniqueId: req.params.id}, (err, data) => {
+//     if (err) console.log(err);
+//     else {
+//       console.log("00000000000000000000000");
+//       console.log(data);
+//       res.send(data);
+//     }
+//   })
+// })
 
 app.get("/users/:requestedEmail", (req, res) => {
   let pageTitle = `Profile | Jssconnect`;
@@ -869,18 +711,7 @@ app.get("/dataupload", (req, res) => {
   });
 });
 
-app.get("/getlikes", (req, res) => {
-  console.log(req.query.uniqueId, "req.query.uniqueId");
-  let myLikes = [];
-  userLikes.find({ uniqueId: req.query.uniqueId }, async (err, likedata) => {
-    if (err)
-      console.log(err);
-    else if (likedata) {
-      myLikes = JSON.stringify(await likedata[0].likes);
-      res.json(myLikes);
-    }
-  });
-});
+
 
 // Community
 
@@ -990,21 +821,8 @@ app.post("/CommunityFilter", (req, res) => {
   );
 });
 
-// userContributions
 
-//firstYear Model
-const ufirstyearBook = mongoose.model("ufirstyearBook", firstyearSchema);
-const ufirstyearNote = mongoose.model("ufirstyearNote", firstyearSchema);
-const ufirstyearPapers = mongoose.model("ufirstyearPapers", firstyearPaperSchema);
 
-// secondYear model
-
-const usecondyearBook = mongoose.model("usecondyearBook", secondyearSchema);
-const usecondyearNote = mongoose.model("usecondyearNote", secondyearSchema);
-const usecondyearPapers = mongoose.model(
-  "usecondyearPapers",
-  secondyearPaperSchema
-);
 // const secondyearVideos = mongoose.model("secondyearVideos", secondyearSchema)
 
 app.post("/ucontribute", (req, res) => {
@@ -1056,205 +874,14 @@ app.post("/ucontribute", (req, res) => {
 });
 
 
-// FirstYear Resources
-app.post("/firstyear", async (req, res) => {
-  let pageTitle = "FirstYear|Resources";
-  let cssName = "css/firstyearresource.css";
-  let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
-  let email = "";
-  const department = req.body.department;
-  const subject = req.body.subject;
-  const year = "First Year";
-  let books1 = "";
-  if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
-  }
-  await firstyearBook.find({
-    subject: subject
-  }, function (err, foundBooks) {
-    if (err) {
-      console.log(err);
-    } else {
-      books1 = foundBooks;
-    }
-  });
-  let notes1 = [];
-  await firstyearNote.find({
-    subject: subject
-  }, function (err, foundNotes) {
-    if (err) {
-      console.log(err);
-    } else {
-      notes1 = foundNotes;
-    }
-  });
-  let papers1 = [];
-  await firstyearPapers.find({
-    subject: subject
-  }, function (err, foundPapers) {
-    if (err) {
-      console.log(err);
-    } else {
-      papers1 = foundPapers;
-    }
-  });
-  res.render("firstyear", {
-    username: username,
-    email: email,
-    picture: picture,
-    year: year,
-    Books: books1,
-    Notes: notes1,
-    Papers: papers1,
-    cssName,
-    pageTitle
-  });
-});
 
-// SecondYear Resources
-app.post("/secondyear", async (req, res) => {
-  let pageTitle = "SecondYear|Resources";
-  let cssName = "css/firstyearresource.css";
-  let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
-  let email = "";
-  const department = req.body.department;
-  const subject = req.body.subject;
-  const year = "Second Year";
-  let books2 = "";
-  if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
-  }
-  await secondyearBook.find({
-      department: department,
-      subject: subject
-    },
-    function (err, foundBooks) {
-      if (err) {
-        console.log(err);
-      } else {
-        books2 = foundBooks;
-      }
-    }
-  );
-  let notes2 = "";
-  await secondyearNote.find({
-    subject: subject
-  }, function (err, foundNotes) {
-    if (err) {
-      console.log(err);
-    } else {
-      notes2 = foundNotes;
-    }
-  });
-  let papers2 = "";
-  await secondyearPapers.find({
-      subject: subject
-    },
-    function (err, foundPapers) {
-      if (err) {
-        console.log(err);
-      } else {
-        papers2 = foundPapers;
-      }
-    }
-  );
-  res.render("secondyear", {
-    username: username,
-    email: email,
-    picture: picture,
-    year: year,
-    Books: books2,
-    Notes: notes2,
-    Papers: papers2,
-    cssName,
-    pageTitle
-  });
-});
+
 
 /* User Contribution Page */
 // FirstYear userResources
-app.post("/ufirstyear", async (req, res) => {
-  const department = req.body.department;
-  const subject = req.body.subject;
-  let year = "First Year";
-  let books1 = "";
-  await ufirstyearBook.find({
-    subject: subject
-  }, function (err, foundBooks) {
-    if (err) {
-      console.log(err);
-    } else {
-      books1 = foundBooks;
-      console.log(books1);
-    }
-  });
-  let notes1 = "";
-  await ufirstyearNote.find({
-    subject: subject
-  }, function (err, foundNotes) {
-    if (err) {
-      console.log(err);
-    } else {
-      notes1 = foundNotes;
-      console.log(notes1);
-    }
-
-  });
-  let papers1 = "";
-  res.render("firstyear", {
-    year: year,
-    Books: books1,
-    Notes: notes1,
-    Papers: papers1
-  });
-});
-
-// SecondYear Resources
-app.post("/usecondyear", async (req, res) => {
 
 
-  const department = req.body.department;
-  const subject = req.body.subject;
-  const year = "Second Year";
-  let books2 = "";
-  await usecondyearBook.find({
-      department: department,
-      subject: subject
-    },
-    function (err, foundBooks) {
-      if (err) {
-        console.log(err);
-      } else {
-        books2 = foundBooks;
-      }
-    }
-  );
-  let notes1 = "";
-  await usecondyearNote.find({
-    subject: subject
-  }, function (err, foundNotes) {
-    if (err) {
-      console.log(err);
-    } else {
-      notes2 = foundNotes;
-    }
 
-
-  });
-  let papers2 = "";
-  res.render("secondyear", {
-    year: year,
-    Books: books2,
-    Notes: notes2,
-    Papers: papers2
-  });
-});
 ////////////////////////////////////////////////////////////////////////////////////////
 /* Course Section */
 // Course Section Landing Page
