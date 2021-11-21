@@ -6,12 +6,12 @@
     padding: 20px;
 }
 #year-heading{
-    font-size:5rem;
+    font-size:4rem;
     margin-top:15px;
     margin-bottom:0px;
     text-align: center;
-    color: red;
-    font-family: monospace;
+    color: gray;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .booksBox,
   .notesBox {

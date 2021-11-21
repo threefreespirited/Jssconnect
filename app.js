@@ -81,7 +81,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "https://jssconnect.herokuapp.com/auth/google/home",
+      callbackURL: "http://localhost:3000/auth/google/home",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
@@ -309,6 +309,8 @@ const userBlogSchema = new mongoose.Schema({
 const userBlog = mongoose.model("userBlog", userBlogSchema);
 
 app.post("/userblog", (req, res) => {
+  console.log("here");
+  console.log(req.body)
   let myuserBlog = new userBlog(req.body);
   myuserBlog.save();
 

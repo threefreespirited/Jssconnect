@@ -156,9 +156,9 @@
           </button>
 
           <!-- hidden useful inputs -->
-          <input type="text" name="permission" value="false" id="permission" required style="display:none;" />
-          <input type="text" name="authorName" value="" id="authorName" required style="display:none;" />
-          <input type="text" name="authorImg" value="" id="authorImg" required style="display:none;" />
+          <input type="text" name="permission" value="false" id="permission"  style="display:none;" />
+          <input type="text" name="authorName" value="<%= username %>" id="authorName"  style="display:none;" />
+          <input type="text" name="authorImg" value="<%= picture %>" id="authorImg"  style="display:none;" />
 
         </form>
       </div>
@@ -251,6 +251,10 @@
       todaysDate.setAttribute("value", date + "/" + month + "/" + year);
       previewDate.innerHTML = date + "/" + month + "/" + year;
       
+      // const submitBtn = document.getElementById('submit-btn');
+      // submitBtn.addEventListener('click',(e)=>{
+      //   alert("clicked")
+      // })
     </script>
 
 
