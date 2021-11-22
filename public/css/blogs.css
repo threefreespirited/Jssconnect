@@ -38,7 +38,7 @@
         grid-template-columns: repeat(3, 1fr);
         padding: 0 10%;
         margin-top: 90px;
-         margin-bottom: 200px;
+          
       }
 
       @media screen and (max-width: 1100px) {
