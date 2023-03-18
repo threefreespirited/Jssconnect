@@ -163,12 +163,12 @@
       </div>
     </div>
 
-    <div id="topBox" style="display:flex;flex-direction: column;align-items:center;justify-content:center;">
+    <!-- <div id="topBox" style="display:flex;flex-direction: column;align-items:center;justify-content:center;">
 
       <h1 style="text-align: center;font-size: 2.4rem;font-weight: 600;">Upskill yourself with custom tracks</h1>
       <p style="text-align: center;font-size: 1.5rem;margin-bottom: 90px;">Follow the footsteps or get an idea of how to
         go towards certain fields</p>
-      <!-- Get Started Btn -->
+      Get Started Btn
       <div class="ui violet inverted large animated fade button" tabindex="0" class="course-btn"
         style="margin-top:0px;width:280px;padding:10px;text-align:center;font-size:1.8rem;">
         <div class="visible content">Get-Started >>>>></div>
@@ -176,21 +176,7 @@
           Great Keep UP!!!
         </div>
       </div>
-    </div>
-
-    <div id="section2" class="Box">
-      <img src="images/Lib4.png" alt="fgfh">
-      <div class="sections">
-        <h1>Resources</h1>
-        <p style="font-size: 1.3rem;margin-bottom: 30px;">A platform to provide you with all the study resources
-          including
-          previous year papers and study materials
-          .You can access all the resources after singing in to our site.</p>
-
-        <a href="/resources" class="ui violet button joinBtn">Study for Free</a>
-        <a href="/contribute" class="ui inverted violet button joinBtn">Contribute Some</a>
-      </div>
-    </div>
+    </div> -->
 
     <!-- features sections starts -->
 
@@ -234,6 +220,22 @@
     </section>
 
     <!-- features sections ends -->
+
+    <div id="section2" class="Box">
+      <img src="images/Lib4.png" alt="fgfh">
+      <div class="sections">
+        <h1>Resources</h1>
+        <p style="font-size: 1.3rem;margin-bottom: 30px;">A platform to provide you with all the study resources
+          including
+          previous year papers and study materials
+          .You can access all the resources after singing in to our site.</p>
+
+        <a href="/resources" class="ui violet button joinBtn">Study for Free</a>
+        <a href="/contribute" class="ui inverted violet button joinBtn">Contribute Some</a>
+      </div>
+    </div>
+
+
 
 
     <section id="community" style="width: 75%;margin: 0 auto;margin-bottom: 150px;">
@@ -386,6 +388,26 @@
       //   topMenu.classList.add('magictime', 'swap');
       // }, 3000);
     </script>
-    </body>
 
-    </html>
+    <!-- divs used for displaying messages passed on to ejs using res.render (rest is done below using jQuery) -->
+    <div id="updateMessage" style="display:none">
+      <%= message %>
+    </div>
+
+    <%- include("footer") %>
+
+      <script>
+        // jQuery code to display a toast message on recieving message through res.render 
+        if (document.querySelector("#updateMessage").innerHTML.trim() != "") {
+          $('#updateMessage')
+            .toast({
+              class: 'success',
+              message: document.querySelector("#updateMessage").innerHTML,
+              closeIcon: true,
+            })
+            ;
+        }
+      </script>
+      </body>
+
+      </html>

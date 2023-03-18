@@ -81,7 +81,8 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "https://jssconnect.herokuapp.com/auth/google/home",
+      // callbackURL: "https://jssconnect.cyclic.app/auth/google/home",
+      callbackURL: "http://localhost:3000/auth/google/home",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
@@ -637,6 +638,10 @@ app.get("/", (req, res) => {
   let email = "";
   let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let member = "";
+  let message = "";
+  if (req.query.message != "") {
+      message = req.query.message;
+  }
   if (req.isAuthenticated()) {
     username = req.user.name;
     picture = req.user.picture;
@@ -668,7 +673,8 @@ app.get("/", (req, res) => {
         picture,
         email,
         community,
-        member
+        member,
+        message
       });
     }
   });
@@ -711,15 +717,22 @@ app.get("/login", (req, res) => {
     username = req.user.name;
     picture = req.user.picture;
     email = req.user.email;
+    res.redirect(url.format({
+      pathname: `/`,
+      query: {
+        message: "You are already logged in!"
+      }
+    }));
   }
-  res.render("login", {
-    pageTitle: pageTitle,
-    cssName: cssName,
-    username,
-    picture,
-    email,
-    message
-  });
+  else 
+    res.render("login", {
+      pageTitle: pageTitle,
+      cssName: cssName,
+      username,
+      picture,
+      email,
+      message
+    });
 });
 // REGISTER PAGE
 app.get("/register", (req, res) => {
@@ -1476,6 +1489,7 @@ app.get("/profile", (req, res) => {
   let four = 0;
   let five = 0;
   let blogData = "";
+  let communityData = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
     picture = req.user.picture;
@@ -1552,11 +1566,18 @@ app.get("/profile", (req, res) => {
         blogData = data;
       }
     });
+    communityUser.find({email : email}, (err, commData) => {
+      if (err) console.log(err);
+      else {
+        console.log(commData, "commDataaaaaaaaaaaa");
+        communityData = commData[0];
+      }
+    })
     setTimeout(() => {
     console.log("one" + one);
     console.log("four" + four);
-      console.log("blog data");
-      console.log(blogData);
+      // console.log("blog data");
+      // console.log(blogData);
     res.render("profile", {
       pageTitle,
       cssName: cssName,
@@ -1569,12 +1590,13 @@ app.get("/profile", (req, res) => {
       fourthBlog: four,
       fifthBlog: five,
       data: blogData,
+      commData: communityData,
     });
     }, 2000);
     
   }
   else {
-    console.log("he is not authenticated");
+    console.log("Not authenticated !");
     res.redirect("/login");
   }
   
