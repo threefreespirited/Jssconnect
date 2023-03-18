@@ -11,7 +11,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 const ejs = require("ejs");
-var url = require('url');
+var url = require("url");
 const hostname = "127.0.0.1";
 const port = process.env.PORT || "3000";
 
@@ -45,9 +45,11 @@ app.use(express.static("public"));
 // app.use("/views", express.static(__dirname + "/views"));
 app.set("view engine", "ejs");
 
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 //body-parser
 app.use(bodyParser.json());
@@ -81,8 +83,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      // callbackURL: "https://jssconnect.cyclic.app/auth/google/home",
-      callbackURL: "http://localhost:3000/auth/google/home",
+      callbackURL: "https://jssconnect.cyclic.app/auth/google/home",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
@@ -111,39 +112,41 @@ app.get(`/profile/:token`, (req, res) => {
   console.log("token1");
   console.log(token1);
   passport.authenticate("google", {
-    failureRedirect: "/login"
+    failureRedirect: "/login",
   });
   if (req.isAuthenticated()) {
-    User.find({
-      email: token1
-    }, (err, user) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send(user);
+    User.find(
+      {
+        email: token1,
+      },
+      (err, user) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(user);
+        }
       }
-    });
+    );
   }
 });
 
-app.get('/auth/google',
-  passport.authenticate('google', {
-    scope: ['profile', "email"]
+app.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
   })
 );
 
 app.get(
   "/auth/google/home",
   passport.authenticate("google", {
-    failureRedirect: "/login"
+    failureRedirect: "/login",
   }),
   function (req, res) {
     // Successful authentication, redirect home.
     res.redirect(`/`);
   }
 );
-
-
 
 // app.get("/contribute", function (req, res) {
 // if (req.isAuthenticated()) {
@@ -158,20 +161,20 @@ app.get("/logout", function (req, res) {
   res.redirect("/");
 });
 
-
 // Admin page
 
 const adminSchema = new mongoose.Schema({
-  username: String
+  username: String,
 });
 
 const Admin = new mongoose.model("Admin", adminSchema);
 
-app.get('/admin', (req, res) => {
+app.get("/admin", (req, res) => {
   let pageTitle = "JSS Connect | Admin";
   let cssName = "css/admin.css";
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -180,51 +183,54 @@ app.get('/admin', (req, res) => {
   }
   let message = "";
   if (req.query.message != "") {
-      message = req.query.message;
+    message = req.query.message;
   }
   let communityData;
   if (req.isAuthenticated()) {
-     let allAdmins=[];
-      Admin.find({}, (err, admins) => {
-          if (err)
-              console.log(err);
-          else {
-              allAdmins = admins;
-            console.log("allAdmins" + allAdmins+allAdmins.length);
-            let count = 0;
-              for (let i = 0; i < allAdmins.length; i++) {
-                count += 1;
-                console.log(allAdmins[i].username);
-                  if (req.user.email == allAdmins[i].username) {
-
-                    let myUser = req.user;
-                    setTimeout(() => {
-
-                      res.render("admin", { message, pageTitle, cssName, username, picture, email });
-                     
-                    }, 1000);
-                    break;
-                      // this exits the for loop
-                  }
-                  else if (count==3) {
-                      res.redirect(url.format({
-                          pathname: `/login`,
-                          query: {
-                              message: "Your are not allowed to visit the admin page. If you are admin login using admin details."
-                          }
-                      }));
-                    break;
-                      // this exits the for loop
-                }
-                else{
-                    continue;
-                }
-              }
+    let allAdmins = [];
+    Admin.find({}, (err, admins) => {
+      if (err) console.log(err);
+      else {
+        allAdmins = admins;
+        console.log("allAdmins" + allAdmins + allAdmins.length);
+        let count = 0;
+        for (let i = 0; i < allAdmins.length; i++) {
+          count += 1;
+          console.log(allAdmins[i].username);
+          if (req.user.email == allAdmins[i].username) {
+            let myUser = req.user;
+            setTimeout(() => {
+              res.render("admin", {
+                message,
+                pageTitle,
+                cssName,
+                username,
+                picture,
+                email,
+              });
+            }, 1000);
+            break;
+            // this exits the for loop
+          } else if (count == 3) {
+            res.redirect(
+              url.format({
+                pathname: `/login`,
+                query: {
+                  message:
+                    "Your are not allowed to visit the admin page. If you are admin login using admin details.",
+                },
+              })
+            );
+            break;
+            // this exits the for loop
+          } else {
+            continue;
           }
-      });
-  }
-  else {
-      res.redirect("/login");
+        }
+      }
+    });
+  } else {
+    res.redirect("/login");
   }
 });
 // Admin Page Get Request
@@ -236,8 +242,8 @@ app.get("/communityData", (req, res) => {
       console.log(data);
       res.send(data);
     }
-  })
-})
+  });
+});
 
 app.get("/blogData", (req, res) => {
   console.log("get rquest made to blog section");
@@ -247,10 +253,8 @@ app.get("/blogData", (req, res) => {
       console.log("blogdata" + data);
       res.send(data);
     }
-  })
-})
-
-
+  });
+});
 
 // Community
 
@@ -271,26 +275,28 @@ const communityUser = mongoose.model("communityUser", communitySchema);
 
 app.post("/joincommunity", (req, res) => {
   console.log(req.body.email);
-  communityUser.find({
-    email: req.body.email
-  }, (function (err, data) {
-    if (err) console.log(err);
-    else {
-      if (data == "") {
-        const myCommunityUser = new communityUser(req.body);
-        myCommunityUser.save();
-        res.writeHead(200, {
-          "Content-Type": "text/html"
-        });
-        let myResponse = `<img src='http://clipart-library.com/images_k/teamwork-transparent-background/teamwork-transparent-background-15.png' style='margin:60px 42%; width:200px;'><p style='text-align:center;font-size:1.8rem;margin-top:60px;'>Thanks for joining!<br>You can now connect with other JSSATENs on Jssconnect.</p><a href='/community'style='text-align:center;margin-left:42.5%;'><button style='font-size:1.5rem;padding:6px;border-radius:6px;border:2px solid #de4463;background-color:#edc988;cursor:pointer;'>View Community</button></a>`;
-        res.write(myResponse);
-        res.send();
-      } else {
-        res.send("You are Already a member");
+  communityUser.find(
+    {
+      email: req.body.email,
+    },
+    function (err, data) {
+      if (err) console.log(err);
+      else {
+        if (data == "") {
+          const myCommunityUser = new communityUser(req.body);
+          myCommunityUser.save();
+          res.writeHead(200, {
+            "Content-Type": "text/html",
+          });
+          let myResponse = `<img src='http://clipart-library.com/images_k/teamwork-transparent-background/teamwork-transparent-background-15.png' style='margin:60px 42%; width:200px;'><p style='text-align:center;font-size:1.8rem;margin-top:60px;'>Thanks for joining!<br>You can now connect with other JSSATENs on Jssconnect.</p><a href='/community'style='text-align:center;margin-left:42.5%;'><button style='font-size:1.5rem;padding:6px;border-radius:6px;border:2px solid #de4463;background-color:#edc988;cursor:pointer;'>View Community</button></a>`;
+          res.write(myResponse);
+          res.send();
+        } else {
+          res.send("You are Already a member");
+        }
       }
     }
-  }))
-
+  );
 });
 
 // Userblogs
@@ -311,12 +317,12 @@ const userBlog = mongoose.model("userBlog", userBlogSchema);
 
 app.post("/userblog", (req, res) => {
   console.log("here");
-  console.log(req.body)
+  console.log(req.body);
   let myuserBlog = new userBlog(req.body);
   myuserBlog.save();
 
   res.writeHead(200, {
-    "Content-Type": "text/html"
+    "Content-Type": "text/html",
   });
   let myResponse = `<img src='https://img2.pngio.com/writing-services-png-picture-889262-writing-services-png-web-content-png-650_519.png' style='margin:60px 42%; width:200px;'><p style='text-align:center;font-size:1.8rem;margin-top:20px;'>Thanks for adding one!<br>We hope your blog is worthy enough to be displayed on our dashboard.<br><br>Our team will look onto it as soon as possible..</p><a href='/'style='text-align:center;margin-left:42.5%;'><button style='font-size:1.3rem;padding:9px;border-radius:10px;border:2px solid #30475e;background-color:#d6e0f0;color:#30475e;cursor:pointer;'>Back to Jssconnect</button></a>`;
   res.write(myResponse);
@@ -324,10 +330,10 @@ app.post("/userblog", (req, res) => {
 });
 // like blog feature
 
-// Like Schema 
+// Like Schema
 const likeSchema = new mongoose.Schema({
   uniqueId: String,
-  likes: Array
+  likes: Array,
 });
 const userLikes = mongoose.model("userLikes", likeSchema);
 
@@ -335,25 +341,20 @@ app.post("/savelikes", (req, res) => {
   console.log(req.body, "likes");
 
   if (req.isAuthenticated()) {
-
     var myLikes = [];
 
     userLikes.find({ uniqueId: req.body.uniqueId }, async (err, data) => {
-      if (err)
-        console.log(err);
+      if (err) console.log(err);
       else if (data == "") {
         console.log("data empty");
         myLikes.push(req.body.email);
-        let newuserlikes = new userLikes(
-          {
-            uniqueId: req.body.uniqueId,
-            likes: myLikes
-          }
-        );
+        let newuserlikes = new userLikes({
+          uniqueId: req.body.uniqueId,
+          likes: myLikes,
+        });
         newuserlikes.save();
         res.json(JSON.stringify({ likedearlier: true }));
-      }
-      else if (data != "") {
+      } else if (data != "") {
         myLikes = await data[0].likes;
         console.log(myLikes, "data[0].likes");
 
@@ -367,32 +368,31 @@ app.post("/savelikes", (req, res) => {
         }
         if (likecheck == 1) {
           res.json(JSON.stringify({ likedearlier: true }));
-        }
-        else if (likecheck == 0) {
+        } else if (likecheck == 0) {
           myLikes.push(req.body.email);
           console.log(myLikes, "data[0].likes");
           // update original entry(if exists)
-          userLikes.updateOne({ uniqueId: req.body.uniqueId }, { likes: myLikes }, function (err, result) {
-            if (err) {
-              console.log(err)
-            } else {
-              console.log("Result :", result)
+          userLikes.updateOne(
+            { uniqueId: req.body.uniqueId },
+            { likes: myLikes },
+            function (err, result) {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log("Result :", result);
+              }
             }
-          });
+          );
           res.json(JSON.stringify({ likedearlier: false }));
         }
-
-
       }
     });
-  }
-  else {
+  } else {
     res.send("not authenticated");
   }
-
 });
 
-// Comment Schema 
+// Comment Schema
 const commentSchema = new mongoose.Schema({
   authorName: String,
   date: String,
@@ -400,7 +400,7 @@ const commentSchema = new mongoose.Schema({
   uniqueId: String,
   email: String,
   picture: String,
-})
+});
 const userComment = mongoose.model("userComment", commentSchema);
 app.post("/savecomment", (req, res) => {
   console.log("post happend");
@@ -416,33 +416,31 @@ app.post("/savecomment", (req, res) => {
     console.log("Not Signed In");
     res.send("Please Sign In First");
   }
-
-})
+});
 // find all comments
 app.get("/getComment/:id", (req, res) => {
   console.log("get request made");
   console.log(req.params.id);
-  userComment.find({uniqueId: req.params.id}, (err, data) => {
+  userComment.find({ uniqueId: req.params.id }, (err, data) => {
     if (err) console.log(err);
     else {
       console.log("00000000000000000000000");
       console.log(data);
       res.send(data);
     }
-  })
-})
+  });
+});
 // Staus Checking of User
 //@desc; Whether he is authenticated or not
 app.get("/status", (req, res) => {
   if (req.isAuthenticated()) {
     console.log("Yeh he is authenticated");
     res.send("1");
-  }
-  else {
+  } else {
     console.log("Nope! not authenticated");
     res.send("0");
   }
-})
+});
 // Contact
 const contactSchema = new mongoose.Schema({
   name: String,
@@ -458,7 +456,7 @@ app.post("/contact", (req, res) => {
   myContact.save();
 
   res.writeHead(200, {
-    "Content-Type": "text/html"
+    "Content-Type": "text/html",
   });
   let myResponse = `<img src='https://www.kindpng.com/picc/b/357/3576404.png' style='margin:60px 42%; width:200px;'><p style='text-align:center;font-size:1.8rem;margin-top:20px;'>We will get back to you as soon as possible!<br>We are glad to hear from you.<br></p><a href='/'style='text-align:center;margin-left:42.5%;'><button style='font-size:1.3rem;padding:9px;border-radius:10px;border:2px solid #30475e;background-color:#d6e0f0;color:#30475e;cursor:pointer;'>Back to Jssconnect</button></a>`;
   res.write(myResponse);
@@ -484,7 +482,7 @@ app.post("/feedback", (req, res) => {
   myFeedback.save();
 
   res.writeHead(200, {
-    "Content-Type": "text/html"
+    "Content-Type": "text/html",
   });
   let myResponse = `<img src='https://www.clipartkey.com/mpngs/m/14-142559_computer-science-thank-you-for-your-feedback-png.png' style='margin:60px 42%; width:200px;'><p style='text-align:center;font-size:1.8rem;margin-top:20px;'>Thanks for your feedback!<br>This means a lot to us.<br></p><a href='/'style='text-align:center;margin-left:42.5%;'><button style='font-size:1.3rem;padding:9px;border-radius:10px;border:2px solid #30475e;background-color:#d6e0f0;color:#30475e;cursor:pointer;'>Back to Jssconnect</button></a>`;
   res.write(myResponse);
@@ -499,7 +497,7 @@ app.post("/newsletter", (req, res) => {
   const newsletterSchema = new Schema({
     email: {
       type: String,
-      required: true
+      required: true,
     },
   });
 
@@ -532,7 +530,7 @@ app.post("/newsletter", (req, res) => {
   });
 
   res.writeHead(200, {
-    "Content-Type": "text/html"
+    "Content-Type": "text/html",
   });
   var writeText =
     "<img src='https://cdn.pixabay.com/photo/2016/09/01/08/24/smiley-1635449__340.png' style='margin:60px 42%; width:200px;'><p style='text-align:center;font-size:1.8rem;margin-top:60px;'>Thanks for subscibing!<br>You will now get regular updates from Jssconnect.</p><a href='/'style='text-align:center;margin-left:46%;'><button style='font-size:1.5rem;padding:6px;border-radius:10px;background-color:aliceblue;cursor:pointer;'>Get Back</button></a>";
@@ -587,7 +585,10 @@ const contributionRecordSchema = new mongoose.Schema({
   yourimage: String,
   todaysMonth: String,
 });
-const contributionRecord = mongoose.model("contributionRecord", contributionRecordSchema);
+const contributionRecord = mongoose.model(
+  "contributionRecord",
+  contributionRecordSchema
+);
 
 //firstYear Model
 const firstyearBook = mongoose.model("firstyearBook", firstyearSchema);
@@ -630,13 +631,14 @@ const secondyearPapers = mongoose.model(
 //   // secondyearVideos1.save();
 // })
 
-// HOME PAGE 
+// HOME PAGE
 app.get("/", (req, res) => {
   let pageTitle = "JSS Connect";
   let cssName = "css/index.css";
   let username = "Guest";
   let email = "";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let member = "";
   let message = "";
   if (req.query.message != "") {
@@ -646,19 +648,20 @@ app.get("/", (req, res) => {
     username = req.user.name;
     picture = req.user.picture;
     email = req.user.email;
-    communityUser.find({
-      email: email
-    }, (err, data) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(data);
-        if (data != "")
-          member = true;
-        else
-          member = false;
+    communityUser.find(
+      {
+        email: email,
+      },
+      (err, data) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(data);
+          if (data != "") member = true;
+          else member = false;
+        }
       }
-    });
+    );
   }
   let community = "";
   communityUser.find({}, (err, data) => {
@@ -685,7 +688,8 @@ app.get("/contact", (req, res) => {
   let pageTitle = "Contact";
   let cssName = "css/team.css";
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -698,7 +702,7 @@ app.get("/contact", (req, res) => {
     picture,
     email,
     pageTitle,
-    cssName
+    cssName,
   });
 });
 
@@ -707,11 +711,12 @@ app.get("/login", (req, res) => {
   let pageTitle = "JSS Connect | Login";
   let cssName = "css/login.css";
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   let message = "";
   if (req.query.message != "") {
-      message = req.query.message;
+    message = req.query.message;
   }
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -737,7 +742,8 @@ app.get("/login", (req, res) => {
 // REGISTER PAGE
 app.get("/register", (req, res) => {
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -747,7 +753,7 @@ app.get("/register", (req, res) => {
   res.render("register", {
     username,
     picture,
-    email
+    email,
   });
 });
 // RESOURCE PAGE
@@ -755,7 +761,8 @@ app.get("/resources", (req, res) => {
   let username = "Guest";
   let cssName = "css/resource.css";
   let pageTitle = "JSS Connect|Resources";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -767,13 +774,13 @@ app.get("/resources", (req, res) => {
     picture,
     email,
     pageTitle: pageTitle,
-    cssName: cssName
+    cssName: cssName,
   });
-
 });
 app.get("/about", (req, res) => {
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -783,14 +790,15 @@ app.get("/about", (req, res) => {
   res.render("about", {
     username,
     picture,
-    email
+    email,
   });
 });
 app.get("/privacy", (req, res) => {
   let pageTitle = "Privacy";
   let cssName = "css/index.css";
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
 
   if (req.isAuthenticated()) {
@@ -803,7 +811,7 @@ app.get("/privacy", (req, res) => {
     pageTitle,
     username,
     picture,
-    email
+    email,
   });
 });
 // CONTRIBUTE RESOURCES PAGE
@@ -835,7 +843,7 @@ app.get("/contribute", async (req, res) => {
       username,
       picture,
       email,
-      contributors
+      contributors,
     });
   } else {
     res.redirect("/login");
@@ -845,7 +853,8 @@ app.get("/contribute", async (req, res) => {
 // USER CONTRIBUTION SECTION
 app.get("/usercontributions", (req, res) => {
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -855,7 +864,7 @@ app.get("/usercontributions", (req, res) => {
   res.render("usercontributions", {
     username,
     picture,
-    email
+    email,
   });
 });
 
@@ -864,7 +873,8 @@ app.get("/feedback", (req, res) => {
   let pageTitle = "Feedback";
   let cssName = "css/index.css";
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -876,31 +886,31 @@ app.get("/feedback", (req, res) => {
     pageTitle,
     username,
     picture,
-    email
+    email,
   });
 });
-
 
 // Card
 app.get("/getComment/:id", (req, res) => {
   console.log("get request made");
   console.log(req.params.id);
-  userComment.find({uniqueId: req.params.id}, (err, data) => {
+  userComment.find({ uniqueId: req.params.id }, (err, data) => {
     if (err) console.log(err);
     else {
       console.log("00000000000000000000000");
       console.log(data);
       res.send(data);
     }
-  })
-})
+  });
+});
 
 app.get("/users/:requestedEmail", (req, res) => {
   let pageTitle = `Profile | Jssconnect`;
   let cssName = "css/index.css";
   let message = "";
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -910,37 +920,40 @@ app.get("/users/:requestedEmail", (req, res) => {
 
   let dataReqUser = "";
   let commData = "";
-  User.find({email: req.params.requestedEmail},(err,data)=>{
+  User.find({ email: req.params.requestedEmail }, (err, data) => {
     if (err) console.log(err);
     else {
       dataReqUser = data[0];
 
-      communityUser.find({email: req.params.requestedEmail},(err,commdata)=>{
-        if (err) console.log(err);
-        else {
-             commData = commdata;
-             console.log(commData ,"commData");
-             
-             res.render("users", {
-               cssName,
-               pageTitle,
-               username,
-               picture,
-               email,
-               message,
-               dataReqUser,
-               commData,
-              });
-              
-            }
-          });
+      communityUser.find(
+        { email: req.params.requestedEmail },
+        (err, commdata) => {
+          if (err) console.log(err);
+          else {
+            commData = commdata;
+            console.log(commData, "commData");
+
+            res.render("users", {
+              cssName,
+              pageTitle,
+              username,
+              picture,
+              email,
+              message,
+              dataReqUser,
+              commData,
+            });
+          }
+        }
+      );
     }
   });
-    });
-    
+});
+
 app.get("/dataupload", (req, res) => {
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -950,7 +963,7 @@ app.get("/dataupload", (req, res) => {
   res.render("dataupload", {
     username,
     picture,
-    email
+    email,
   });
 });
 
@@ -958,8 +971,7 @@ app.get("/getlikes", (req, res) => {
   console.log(req.query.uniqueId, "req.query.uniqueId");
   let myLikes = [];
   userLikes.find({ uniqueId: req.query.uniqueId }, async (err, likedata) => {
-    if (err)
-      console.log(err);
+    if (err) console.log(err);
     else if (likedata) {
       myLikes = JSON.stringify(await likedata[0].likes);
       res.json(myLikes);
@@ -975,7 +987,8 @@ app.post("/myblog", (req, res) => {
   let username = "Guest";
   let like = 0;
   let uniqueId = uniId;
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -997,7 +1010,7 @@ app.post("/myblog", (req, res) => {
         email,
         pageTitle,
         cssName,
-        uniqueId
+        uniqueId,
       });
     }
   });
@@ -1007,7 +1020,8 @@ app.get("/blogs", (req, res) => {
   let pageTitle = "Blogs | Jssconnect";
   let cssName = "css/blogs.css";
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -1025,7 +1039,7 @@ app.get("/blogs", (req, res) => {
         cssName: cssName,
         username,
         picture,
-        email
+        email,
       });
     }
   });
@@ -1044,25 +1058,23 @@ app.get("/userblog", function (req, res) {
       cssName,
       username,
       picture,
-      email
+      email,
     });
   } else {
     res.redirect("/login");
   }
 });
 
-
-
 // Community
 
 app.get("/community", async (req, res) => {
   let cssName = "css/index.css";
-  let pageTitle = "Community | JSSConnect"
+  let pageTitle = "Community | JSSConnect";
   await communityUser.find({}, (err, data) => {
     if (err) {
       console.log(err);
       res.writeHead(404, {
-        "Content-Type": "text/html"
+        "Content-Type": "text/html",
       });
       res.write(
         '<img src="https://cdn.dribbble.com/users/1963449/screenshots/5915645/404_not_found.png" alt="not found">'
@@ -1070,16 +1082,21 @@ app.get("/community", async (req, res) => {
       res.send();
     } else {
       console.log(data);
-      for(let i=0; i<data.length; i++){
-        if(data[i].picture.includes("s96-c") || data[i].picture.includes("s88") || data[i].picture.includes("s80") ){
-          data[i].picture = data[i].picture.replace('s96-c','s500-c');
-          data[i].picture = data[i].picture.replace('s88','s500');
-          data[i].picture = data[i].picture.replace('s80','s500');
+      for (let i = 0; i < data.length; i++) {
+        if (
+          data[i].picture.includes("s96-c") ||
+          data[i].picture.includes("s88") ||
+          data[i].picture.includes("s80")
+        ) {
+          data[i].picture = data[i].picture.replace("s96-c", "s500-c");
+          data[i].picture = data[i].picture.replace("s88", "s500");
+          data[i].picture = data[i].picture.replace("s80", "s500");
         }
       }
 
       let username = "Guest";
-      let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+      let picture =
+        "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
       let email = "";
       if (req.isAuthenticated()) {
         username = req.user.name;
@@ -1093,7 +1110,7 @@ app.get("/community", async (req, res) => {
         pageTitle,
         username,
         picture,
-        email
+        email,
       });
     }
   });
@@ -1116,22 +1133,23 @@ app.post("/CommunityFilter", (req, res) => {
       for (var j = 0; j < found.length; j++) {
         var dataToPush = {
           picture: found[j].picture,
-          email: found[j].email
+          email: found[j].email,
         };
         commData.push(dataToPush);
       }
     }
   });
 
-  communityUser.find({
+  communityUser.find(
+    {
       year: myYear,
-      department: myDepartment
+      department: myDepartment,
     },
     (err, data) => {
       if (err) {
         console.log(err);
         res.writeHead(404, {
-          "Content-Type": "text/html"
+          "Content-Type": "text/html",
         });
         res.write(
           '<img src="https://cdn.dribbble.com/users/1963449/screenshots/5915645/404_not_found.png" alt="not found">'
@@ -1139,7 +1157,8 @@ app.post("/CommunityFilter", (req, res) => {
         res.send();
       } else {
         let username = "Guest";
-        let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+        let picture =
+          "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
         let email = "";
         if (req.isAuthenticated()) {
           let username = req.user.name;
@@ -1154,7 +1173,7 @@ app.post("/CommunityFilter", (req, res) => {
           commData: commData,
           username,
           picture,
-          email
+          email,
         });
       }
     }
@@ -1166,7 +1185,10 @@ app.post("/CommunityFilter", (req, res) => {
 //firstYear Model
 const ufirstyearBook = mongoose.model("ufirstyearBook", firstyearSchema);
 const ufirstyearNote = mongoose.model("ufirstyearNote", firstyearSchema);
-const ufirstyearPapers = mongoose.model("ufirstyearPapers", firstyearPaperSchema);
+const ufirstyearPapers = mongoose.model(
+  "ufirstyearPapers",
+  firstyearPaperSchema
+);
 
 // secondYear model
 
@@ -1215,24 +1237,27 @@ app.post("/ucontribute", (req, res) => {
     }
   }
 
-  res.redirect(url.format({
-    pathname: `/contribute`,
-    query: {
-      message: "Your data has been saved to database. Thanks for contributing."
-    }
-  }));
+  res.redirect(
+    url.format({
+      pathname: `/contribute`,
+      query: {
+        message:
+          "Your data has been saved to database. Thanks for contributing.",
+      },
+    })
+  );
 
   // usecondyearBook1.save();
   // usecondyearNote1.save();
 });
-
 
 // FirstYear Resources
 app.post("/firstyear", async (req, res) => {
   let pageTitle = "FirstYear|Resources";
   let cssName = "css/firstyearresource.css";
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   const department = req.body.department;
   const subject = req.body.subject;
@@ -1243,35 +1268,44 @@ app.post("/firstyear", async (req, res) => {
     picture = req.user.picture;
     email = req.user.email;
   }
-  await firstyearBook.find({
-    subject: subject
-  }, function (err, foundBooks) {
-    if (err) {
-      console.log(err);
-    } else {
-      books1 = foundBooks;
+  await firstyearBook.find(
+    {
+      subject: subject,
+    },
+    function (err, foundBooks) {
+      if (err) {
+        console.log(err);
+      } else {
+        books1 = foundBooks;
+      }
     }
-  });
+  );
   let notes1 = [];
-  await firstyearNote.find({
-    subject: subject
-  }, function (err, foundNotes) {
-    if (err) {
-      console.log(err);
-    } else {
-      notes1 = foundNotes;
+  await firstyearNote.find(
+    {
+      subject: subject,
+    },
+    function (err, foundNotes) {
+      if (err) {
+        console.log(err);
+      } else {
+        notes1 = foundNotes;
+      }
     }
-  });
+  );
   let papers1 = [];
-  await firstyearPapers.find({
-    subject: subject
-  }, function (err, foundPapers) {
-    if (err) {
-      console.log(err);
-    } else {
-      papers1 = foundPapers;
+  await firstyearPapers.find(
+    {
+      subject: subject,
+    },
+    function (err, foundPapers) {
+      if (err) {
+        console.log(err);
+      } else {
+        papers1 = foundPapers;
+      }
     }
-  });
+  );
   res.render("firstyear", {
     username: username,
     email: email,
@@ -1281,7 +1315,7 @@ app.post("/firstyear", async (req, res) => {
     Notes: notes1,
     Papers: papers1,
     cssName,
-    pageTitle
+    pageTitle,
   });
 });
 
@@ -1290,7 +1324,8 @@ app.post("/secondyear", async (req, res) => {
   let pageTitle = "SecondYear|Resources";
   let cssName = "css/firstyearresource.css";
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   const department = req.body.department;
   const subject = req.body.subject;
@@ -1301,9 +1336,10 @@ app.post("/secondyear", async (req, res) => {
     picture = req.user.picture;
     email = req.user.email;
   }
-  await secondyearBook.find({
+  await secondyearBook.find(
+    {
       department: department,
-      subject: subject
+      subject: subject,
     },
     function (err, foundBooks) {
       if (err) {
@@ -1314,18 +1350,22 @@ app.post("/secondyear", async (req, res) => {
     }
   );
   let notes2 = "";
-  await secondyearNote.find({
-    subject: subject
-  }, function (err, foundNotes) {
-    if (err) {
-      console.log(err);
-    } else {
-      notes2 = foundNotes;
+  await secondyearNote.find(
+    {
+      subject: subject,
+    },
+    function (err, foundNotes) {
+      if (err) {
+        console.log(err);
+      } else {
+        notes2 = foundNotes;
+      }
     }
-  });
+  );
   let papers2 = "";
-  await secondyearPapers.find({
-      subject: subject
+  await secondyearPapers.find(
+    {
+      subject: subject,
     },
     function (err, foundPapers) {
       if (err) {
@@ -1344,7 +1384,7 @@ app.post("/secondyear", async (req, res) => {
     Notes: notes2,
     Papers: papers2,
     cssName,
-    pageTitle
+    pageTitle,
   });
 });
 
@@ -1355,48 +1395,52 @@ app.post("/ufirstyear", async (req, res) => {
   const subject = req.body.subject;
   let year = "First Year";
   let books1 = "";
-  await ufirstyearBook.find({
-    subject: subject
-  }, function (err, foundBooks) {
-    if (err) {
-      console.log(err);
-    } else {
-      books1 = foundBooks;
-      console.log(books1);
+  await ufirstyearBook.find(
+    {
+      subject: subject,
+    },
+    function (err, foundBooks) {
+      if (err) {
+        console.log(err);
+      } else {
+        books1 = foundBooks;
+        console.log(books1);
+      }
     }
-  });
+  );
   let notes1 = "";
-  await ufirstyearNote.find({
-    subject: subject
-  }, function (err, foundNotes) {
-    if (err) {
-      console.log(err);
-    } else {
-      notes1 = foundNotes;
-      console.log(notes1);
+  await ufirstyearNote.find(
+    {
+      subject: subject,
+    },
+    function (err, foundNotes) {
+      if (err) {
+        console.log(err);
+      } else {
+        notes1 = foundNotes;
+        console.log(notes1);
+      }
     }
-
-  });
+  );
   let papers1 = "";
   res.render("firstyear", {
     year: year,
     Books: books1,
     Notes: notes1,
-    Papers: papers1
+    Papers: papers1,
   });
 });
 
 // SecondYear Resources
 app.post("/usecondyear", async (req, res) => {
-
-
   const department = req.body.department;
   const subject = req.body.subject;
   const year = "Second Year";
   let books2 = "";
-  await usecondyearBook.find({
+  await usecondyearBook.find(
+    {
       department: department,
-      subject: subject
+      subject: subject,
     },
     function (err, foundBooks) {
       if (err) {
@@ -1407,23 +1451,24 @@ app.post("/usecondyear", async (req, res) => {
     }
   );
   let notes1 = "";
-  await usecondyearNote.find({
-    subject: subject
-  }, function (err, foundNotes) {
-    if (err) {
-      console.log(err);
-    } else {
-      notes2 = foundNotes;
+  await usecondyearNote.find(
+    {
+      subject: subject,
+    },
+    function (err, foundNotes) {
+      if (err) {
+        console.log(err);
+      } else {
+        notes2 = foundNotes;
+      }
     }
-
-
-  });
+  );
   let papers2 = "";
   res.render("secondyear", {
     year: year,
     Books: books2,
     Notes: notes2,
-    Papers: papers2
+    Papers: papers2,
   });
 });
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -1433,7 +1478,8 @@ app.get("/courselanding", (req, res) => {
   let pageTitle = "Blogs";
   let cssName = "css/course/courselanding.css";
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -1445,10 +1491,8 @@ app.get("/courselanding", (req, res) => {
     cssName: cssName,
     username,
     picture,
-    email
+    email,
   });
-
-
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -1457,7 +1501,8 @@ app.get("/webhome", (req, res) => {
   let pageTitle = "Web Development";
   let cssName = "css/course/web/webhome.css";
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
     username = req.user.name;
@@ -1469,10 +1514,9 @@ app.get("/webhome", (req, res) => {
     cssName: cssName,
     username,
     picture,
-    email
+    email,
   });
-
-})
+});
 
 // PROFILE SECTION ///////////////////////////////////////////////////////////
 
@@ -1480,7 +1524,8 @@ app.get("/profile", (req, res) => {
   let pageTitle = "Profile";
   let cssName = "css/profile.css";
   let username = "Guest";
-  let picture = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+  let picture =
+    "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   let uniqueId = -1;
   let one = 0;
@@ -1495,11 +1540,10 @@ app.get("/profile", (req, res) => {
     picture = req.user.picture;
     email = req.user.email;
     /* To Find Liked Posts Data */
-    userLikes.find({}, (err,data) => {
+    userLikes.find({}, (err, data) => {
       if (err) {
         console.log(err);
-      }
-      else {
+      } else {
         console.log("data at profile");
         console.log(data);
         for (let i = 0; i < data.length; i++) {
@@ -1543,22 +1587,19 @@ app.get("/profile", (req, res) => {
           if (data[i].uniqueId == 4) {
             for (let j = 0; j < data[i].likes.length; j++) {
               if (data[i].likes[j] == email) {
-                 five = 1;
+                five = 1;
                 break;
               }
             }
           }
           // end of outer loop
         }
-      
-      // end of else 
+
+        // end of else
       }
       console.log(data[0].likes[0]);
       console.log(data[0].uniqueId);
-
-     
-
-    })
+    });
     userBlog.find({}, (err, data) => {
       if (err) console.log(err);
       else {
@@ -1599,14 +1640,7 @@ app.get("/profile", (req, res) => {
     console.log("Not authenticated !");
     res.redirect("/login");
   }
-  
- 
-
-})
-
-
-
-
+});
 
 app.listen(port, () => {
   console.log(`Server running at  http://${hostname}:${port}/`);
