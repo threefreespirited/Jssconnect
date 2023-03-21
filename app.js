@@ -83,7 +83,8 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "https://jssconnect.cyclic.app/auth/google/home",
+      callbackURL: "http://localhost:3000/auth/google/home",
+      // callbackURL: "https://jssconnect.cyclic.app/auth/google/home",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
@@ -294,6 +295,28 @@ app.post("/joincommunity", (req, res) => {
         } else {
           res.send("You are Already a member");
         }
+      }
+    }
+  );
+});
+
+// Update community details
+app.post("/update-community-details", async (req, res) => {
+  console.log(req.body.email);
+  await communityUser.findOneAndUpdate(
+    {
+      email: req.body.email,
+    },
+    req.body,
+    function (err, data) {
+      if (err) console.log(err);
+      else {
+          res.redirect(url.format({
+            pathname: `/profile`,
+            query: {
+              message: "Your community details updated!"
+            }
+          }));
       }
     }
   );
