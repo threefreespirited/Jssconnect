@@ -1551,6 +1551,12 @@ app.get("/profile", async (req, res) => {
   let picture =
     "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
+  
+  let message = "";
+  if (req.query.message != "") {
+    message = req.query.message;
+  }
+
   let uniqueId = -1;
   let one = 0;
   let two = 0;
@@ -1645,6 +1651,7 @@ app.get("/profile", async (req, res) => {
       // console.log("blog data");
       // console.log(blogData);
     res.render("profile", {
+      updateMessage: message,
       pageTitle,
       cssName: cssName,
       username,
