@@ -306,7 +306,7 @@
 
   <script>
     // jQuery code to display a toast message on recieving message through res.render 
-    if (document.querySelector("#updateMessage").innerHTML != "") {
+    if (document.querySelector("#updateMessage").innerHTML.trim() != "") {
       $('#updateMessage')
         .toast({
           class: 'success',
