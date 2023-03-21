@@ -15,15 +15,16 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "g": "^2.0.1",
     "mongoose": "^5.10.3",
     "mongoose-findorcreate": "^3.0.0",
     "nodemailer": "^6.4.11",
+    "nodemon": "^2.0.21",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "passport-local-mongoose": "^6.0.1",
     "url": "^0.11.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SUCHITRAGIRI/Jssconnect.git"

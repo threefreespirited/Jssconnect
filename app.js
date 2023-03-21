@@ -655,7 +655,7 @@ const secondyearPapers = mongoose.model(
 // })
 
 // HOME PAGE
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   let pageTitle = "JSS Connect";
   let cssName = "css/index.css";
   let username = "Guest";
@@ -671,7 +671,7 @@ app.get("/", (req, res) => {
     username = req.user.name;
     picture = req.user.picture;
     email = req.user.email;
-    communityUser.find(
+    await communityUser.find(
       {
         email: email,
       },
@@ -780,7 +780,7 @@ app.get("/register", (req, res) => {
   });
 });
 // RESOURCE PAGE
-app.get("/resources", (req, res) => {
+app.get("/resources", async (req, res) => {
   let username = "Guest";
   let cssName = "css/resource.css";
   let pageTitle = "JSS Connect|Resources";
@@ -788,9 +788,9 @@ app.get("/resources", (req, res) => {
     "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
+    username = await req.user.name;
+    picture = await req.user.picture;
+    email = await req.user.email;
   }
   res.render("resources", {
     username,
@@ -800,15 +800,15 @@ app.get("/resources", (req, res) => {
     cssName: cssName,
   });
 });
-app.get("/about", (req, res) => {
+app.get("/about", async (req, res) => {
   let username = "Guest";
   let picture =
     "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
+    username = await req.user.name;
+    picture = await req.user.picture;
+    email = await req.user.email;
   }
   res.render("about", {
     username,
@@ -816,7 +816,7 @@ app.get("/about", (req, res) => {
     email,
   });
 });
-app.get("/privacy", (req, res) => {
+app.get("/privacy", async (req, res) => {
   let pageTitle = "Privacy";
   let cssName = "css/index.css";
   let username = "Guest";
@@ -825,9 +825,9 @@ app.get("/privacy", (req, res) => {
   let email = "";
 
   if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
+    username = await req.user.name;
+    picture = await req.user.picture;
+    email = await req.user.email;
   }
   res.render("privacy", {
     cssName,
@@ -855,9 +855,9 @@ app.get("/contribute", async (req, res) => {
   });
 
   if (req.isAuthenticated()) {
-    let username = req.user.name;
-    let picture = req.user.picture;
-    email = req.user.email;
+    username = await req.user.name;
+    picture = await req.user.picture;
+    email = await req.user.email;
     console.log(req.user);
     res.render("contribute", {
       updateMessage: message,
@@ -874,15 +874,15 @@ app.get("/contribute", async (req, res) => {
 });
 
 // USER CONTRIBUTION SECTION
-app.get("/usercontributions", (req, res) => {
+app.get("/usercontributions", async (req, res) => {
   let username = "Guest";
   let picture =
     "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
+    username = await req.user.name;
+    picture = await req.user.picture;
+    email = await req.user.email;
   }
   res.render("usercontributions", {
     username,
@@ -892,7 +892,7 @@ app.get("/usercontributions", (req, res) => {
 });
 
 // FEEDBACK
-app.get("/feedback", (req, res) => {
+app.get("/feedback", async (req, res) => {
   let pageTitle = "Feedback";
   let cssName = "css/index.css";
   let username = "Guest";
@@ -900,9 +900,9 @@ app.get("/feedback", (req, res) => {
     "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
+    username = await req.user.name;
+    picture = await req.user.picture;
+    email = await req.user.email;
   }
   res.render("feedback", {
     cssName,
@@ -927,7 +927,7 @@ app.get("/getComment/:id", (req, res) => {
   });
 });
 
-app.get("/users/:requestedEmail", (req, res) => {
+app.get("/users/:requestedEmail", async (req, res) => {
   let pageTitle = `Profile | Jssconnect`;
   let cssName = "css/index.css";
   let message = "";
@@ -936,9 +936,9 @@ app.get("/users/:requestedEmail", (req, res) => {
     "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
+    username = await req.user.name;
+    picture = await req.user.picture;
+    email = await req.user.email;
   }
 
   let dataReqUser = "";
@@ -973,15 +973,15 @@ app.get("/users/:requestedEmail", (req, res) => {
   });
 });
 
-app.get("/dataupload", (req, res) => {
+app.get("/dataupload", async (req, res) => {
   let username = "Guest";
   let picture =
     "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
+    username = await req.user.name;
+    picture = await req.user.picture;
+    email = await req.user.email;
   }
   res.render("dataupload", {
     username,
@@ -1002,7 +1002,7 @@ app.get("/getlikes", (req, res) => {
   });
 });
 
-app.post("/myblog", (req, res) => {
+app.post("/myblog", async (req, res) => {
   console.log(req.body.uniqueId);
   let uniId = req.body.uniqueId;
   let pageTitle = "Blog | Jssconnect";
@@ -1014,9 +1014,9 @@ app.post("/myblog", (req, res) => {
     "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
+    username = await req.user.name;
+    picture = await req.user.picture;
+    email = await req.user.email;
   }
   userBlog.find({}, (err, data) => {
     if (err) console.log(err);
@@ -1039,7 +1039,7 @@ app.post("/myblog", (req, res) => {
   });
 });
 
-app.get("/blogs", (req, res) => {
+app.get("/blogs", async (req, res) => {
   let pageTitle = "Blogs | Jssconnect";
   let cssName = "css/blogs.css";
   let username = "Guest";
@@ -1047,9 +1047,9 @@ app.get("/blogs", (req, res) => {
     "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
+    username = await req.user.name;
+    picture = await req.user.picture;
+    email = await req.user.email;
   }
 
   userBlog.find({}, (err, data) => {
@@ -1068,14 +1068,15 @@ app.get("/blogs", (req, res) => {
   });
 });
 
-app.get("/userblog", function (req, res) {
+app.get("/userblog", async function (req, res) {
   let pageTitle = "Your Blog";
   let cssName = "css/blogs.css";
 
   if (req.isAuthenticated()) {
-    let username = req.user.name;
-    let picture = req.user.picture;
-    email = req.user.email;
+    username = await req.user.name;
+    picture = await req.user.picture;
+    email = await req.user.email;
+
     res.render("userblog", {
       pageTitle,
       cssName,
@@ -1093,7 +1094,7 @@ app.get("/userblog", function (req, res) {
 app.get("/community", async (req, res) => {
   let cssName = "css/index.css";
   let pageTitle = "Community | JSSConnect";
-  await communityUser.find({}, (err, data) => {
+  await communityUser.find({}, async (err, data) => {
     if (err) {
       console.log(err);
       res.writeHead(404, {
@@ -1122,9 +1123,9 @@ app.get("/community", async (req, res) => {
         "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
       let email = "";
       if (req.isAuthenticated()) {
-        username = req.user.name;
-        picture = req.user.picture;
-        email = req.user.email;
+        username = await req.user.name;
+        picture = await req.user.picture;
+        email = await req.user.email;
       }
 
       res.render("community", {
@@ -1287,9 +1288,9 @@ app.post("/firstyear", async (req, res) => {
   const year = "First Year";
   let books1 = "";
   if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
+    username = await req.user.name;
+    picture = await req.user.picture;
+    email = await req.user.email;
   }
   await firstyearBook.find(
     {
@@ -1355,9 +1356,9 @@ app.post("/secondyear", async (req, res) => {
   const year = "Second Year";
   let books2 = "";
   if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
+    username = await req.user.name;
+    picture = await req.user.picture;
+    email = await req.user.email;
   }
   await secondyearBook.find(
     {
@@ -1497,7 +1498,7 @@ app.post("/usecondyear", async (req, res) => {
 ////////////////////////////////////////////////////////////////////////////////////////
 /* Course Section */
 // Course Section Landing Page
-app.get("/courselanding", (req, res) => {
+app.get("/courselanding",async (req, res) => {
   let pageTitle = "Blogs";
   let cssName = "css/course/courselanding.css";
   let username = "Guest";
@@ -1505,9 +1506,9 @@ app.get("/courselanding", (req, res) => {
     "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
   let email = "";
   if (req.isAuthenticated()) {
-    username = req.user.name;
-    picture = req.user.picture;
-    email = req.user.email;
+    username = await req.user.name;
+    picture = await req.user.picture;
+    email = await req.user.email;
   }
   res.render("courselanding", {
     title: pageTitle,
@@ -1543,7 +1544,7 @@ app.get("/webhome", (req, res) => {
 
 // PROFILE SECTION ///////////////////////////////////////////////////////////
 
-app.get("/profile", (req, res) => {
+app.get("/profile", async (req, res) => {
   let pageTitle = "Profile";
   let cssName = "css/profile.css";
   let username = "Guest";
@@ -1562,6 +1563,7 @@ app.get("/profile", (req, res) => {
     username = req.user.name;
     picture = req.user.picture;
     email = req.user.email;
+
     /* To Find Liked Posts Data */
     userLikes.find({}, (err, data) => {
       if (err) {
