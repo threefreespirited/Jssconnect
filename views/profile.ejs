@@ -201,107 +201,132 @@
       </div>
     </div>
     <div id="rightSection">
-      <% if(commData == []){ %>
-      <div id="notCommUser">
-        <img style="margin-top: 45px;" src="./images/chat.svg" alt="user">
-        <div>
-          <h5 style="margin-top: 20px;">Join our community and connect with peers.</h5>
-          <a href="/" style="margin-top: 20px;" class="ui positive right labeled icon button">
-            Yep, Let's Join
-            <i class="checkmark icon"></i>
-          </a>
-        </div>
-      </div>
-      <% }
-       else{ %>
-        <div>
-          <h4>Community Profile Details</h4>
-          <form class="ui form" action="/update-community-details" method="POST" style="margin: 30px auto;">
-            <div class="field">
-              <label>Your Name</label>
-              <input type="text" name="name" placeholder="Your name" value="<%= commData.name %>" readonly required>
-            </div>
-            <div class="field">
-              <label>Your Email</label>
-              <input type="email" name="email" placeholder="Your E-mail" value="<%= commData.email %>" readonly required>
-            </div>
-            <div class="field">
-              <label style="display: inline;">Your Residence Type </label>
-              <a class="ui inverted label" style="margin: 5px;"><%= commData.location %></a> 
-              <select name="location" id="location" value="<%= commData.location %>" required>
-                <option value="Day Scholar">Day Scholar</option>
-                <option value="Hosteler">Hosteler</option>
-              </select>
-            </div>
-            <div class="field">
-              <label style="display: inline;">Current Year </label>
-              <a class="ui inverted label" style="margin: 5px;"><%= commData.year %></a> 
-              <select name="year" id="year" value="<%= commData.year %>" required>
-                <option value="1st year">1st year</option>
-                <option value="2nd year">2nd year</option>
-                <option value="3rd year">3rd year</option>
-                <option value="4th year">4th year</option>
-              </select>
-            </div>
-            <div class="field">
-              <label style="display: inline;">Your Department</label>
-              <a class="ui inverted label" style="margin: 5px;"><%= commData.department %></a> 
-              <select name="department" id="department" value="<%= commData.department %>" required>
-                <option value="CS">CS</option>
-                <option value="IT">IT</option>
-                <option value="ECE">ECE</option>
-                <option value="EE">EE</option>
-                <option value="EEE">EEE</option>
-                <option value="ME">ME</option>
-                <option value="CE">CE</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>Your Bio (nearly 70 characters)</label>
-              <input type="text" name="about" placeholder="Enter a short intro" value="<%= commData.about %>" required maxlength="70">
-            </div>
-            <div class="field">
-              <label>Github Handle</label>
-              <input type="text" name="gHub" placeholder="Enter Github profile URL" value="<%= commData.gHub %>" required>
-            </div>
-            <div class="field">
-              <label>LinkedIn Handle</label>
-              <input type="text" name="lIn" placeholder="Enter Linked In profle URL" value="<%= commData.lIn %>" required>
-            </div>
-      
-            <!-- hidden utility information -->
-            <input type="text" name="picture" value="<%= commData.picture %>" hidden required>
-            <!-- value of todaysDate is set using js -->
-            <input type="text" name="todaysDate" id="todaysDate" value="" hidden required>
-      
-            <p style="margin-top: 30px;margin-bottom: 18px;color: #29a19c;font-size: 1.1rem;">
-              NOTE: Please ensure to provide absolute links to your socials like `https://linkedin.com/in/username`.</p>
-      
-            <button style="margin-bottom: 20px;" type="submit" class="ui positive right labeled icon button">
-              Update Details
+      <% if(commData==[]){ %>
+        <div id="notCommUser">
+          <img style="margin-top: 45px;" src="./images/chat.svg" alt="user">
+          <div>
+            <h5 style="margin-top: 20px;">Join our community and connect with peers.</h5>
+            <a href="/" style="margin-top: 20px;" class="ui positive right labeled icon button">
+              Yep, Let's Join
               <i class="checkmark icon"></i>
-            </button>
-          </form>
-
+            </a>
+          </div>
         </div>
-        <% } %>
+        <% } else{ %>
+          <div>
+            <h4>Community Profile Details</h4>
+            <form class="ui form" action="/update-community-details" method="POST" style="margin: 30px auto;">
+              <div class="field">
+                <label>Your Name</label>
+                <input type="text" name="name" placeholder="Your name" value="<%= commData.name %>" readonly required>
+              </div>
+              <div class="field">
+                <label>Your Email</label>
+                <input type="email" name="email" placeholder="Your E-mail" value="<%= commData.email %>" readonly
+                  required>
+              </div>
+              <div class="field">
+                <label style="display: inline;">Your Residence Type </label>
+                <a class="ui inverted label" style="margin: 5px;">
+                  <%= commData.location %>
+                </a>
+                <select name="location" id="location" value="<%= commData.location %>" required>
+                  <option value="Day Scholar">Day Scholar</option>
+                  <option value="Hosteler">Hosteler</option>
+                </select>
+              </div>
+              <div class="field">
+                <label style="display: inline;">Current Year </label>
+                <a class="ui inverted label" style="margin: 5px;">
+                  <%= commData.year %>
+                </a>
+                <select name="year" id="year" value="<%= commData.year %>" required>
+                  <option value="1st year">1st year</option>
+                  <option value="2nd year">2nd year</option>
+                  <option value="3rd year">3rd year</option>
+                  <option value="4th year">4th year</option>
+                </select>
+              </div>
+              <div class="field">
+                <label style="display: inline;">Your Department</label>
+                <a class="ui inverted label" style="margin: 5px;">
+                  <%= commData.department %>
+                </a>
+                <select name="department" id="department" value="<%= commData.department %>" required>
+                  <option value="CS">CS</option>
+                  <option value="IT">IT</option>
+                  <option value="ECE">ECE</option>
+                  <option value="EE">EE</option>
+                  <option value="EEE">EEE</option>
+                  <option value="ME">ME</option>
+                  <option value="CE">CE</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Your Bio (nearly 70 characters)</label>
+                <input type="text" name="about" placeholder="Enter a short intro" value="<%= commData.about %>" required
+                  maxlength="70">
+              </div>
+              <div class="field">
+                <label>Github Handle</label>
+                <input type="text" name="gHub" placeholder="Enter Github profile URL" value="<%= commData.gHub %>"
+                  required>
+              </div>
+              <div class="field">
+                <label>LinkedIn Handle</label>
+                <input type="text" name="lIn" placeholder="Enter Linked In profle URL" value="<%= commData.lIn %>"
+                  required>
+              </div>
+
+              <!-- hidden utility information -->
+              <input type="text" name="picture" value="<%= commData.picture %>" hidden required>
+              <!-- value of todaysDate is set using js -->
+              <input type="text" name="todaysDate" id="todaysDate" value="" hidden required>
+
+              <p style="margin-top: 30px;margin-bottom: 18px;color: #29a19c;font-size: 1.1rem;">
+                NOTE: Please ensure to provide absolute links to your socials like `https://linkedin.com/in/username`.
+              </p>
+
+              <button style="margin-bottom: 20px;" type="submit" class="ui positive right labeled icon button">
+                Update Details
+                <i class="checkmark icon"></i>
+              </button>
+            </form>
+
+          </div>
+          <% } %>
     </div>
   </div>
 
 
+  <!-- divs used for displaying messages passed on to ejs using res.render (rest is done below using jQuery) -->
+  <div id="updateMessage" style="display:none">
+    <%= updateMessage %>
+  </div>
 
+  <script>
+    // jQuery code to display a toast message on recieving message through res.render 
+    if (document.querySelector("#updateMessage").innerHTML != "") {
+      $('#updateMessage')
+        .toast({
+          class: 'success',
+          message: document.querySelector("#updateMessage").innerHTML
+        })
+        ;
+    }
+  </script>
 
 
   <%- include("footer") %>
 
     <script>
-      
+
       let todaysDate = document.getElementById("todaysDate");
       var date = new Date().getDate();
       var month = new Date().getMonth() + 1;
       var year = new Date().getFullYear();
       todaysDate.setAttribute("value", date + "/" + month + "/" + year);
-      
+
       let readBtn = document.querySelectorAll(".readBtn");
 
       for (let i = 0; i < readBtn.length; i++) {
